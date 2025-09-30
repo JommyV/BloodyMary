@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffwx4xuawmse"]
+
+[ext_resource type="Texture2D" uid="uid://etbv3heyffj" path="res://Assets/Sprites/food.jpg" id="1_74rpt"]
+[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scenes/interactibles.gd" id="1_khktg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlmm"]
+size = Vector2(60, 60)
+
+[node name="Interactible" type="RigidBody2D" groups=["Interactible"]]
+gravity_scale = 0.0
+script = ExtResource("1_khktg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Interactible"]]
+shape = SubResource("RectangleShape2D_rjlmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_74rpt")

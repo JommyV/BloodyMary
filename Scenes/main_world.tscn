@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cjx8hdfvtvd"]
+
+[ext_resource type="PackedScene" uid="uid://c4f4q41lc1838" path="res://Scenes/player.tscn" id="2_43o5b"]
+[ext_resource type="PackedScene" uid="uid://ffwx4xuawmse" path="res://Scenes/interactibles.tscn" id="2_ekhe2"]
+
+[node name="MainWorld" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 646.0
+
+[node name="Player" parent="." instance=ExtResource("2_43o5b")]
+speed = 400
+
+[node name="Interactible" parent="." instance=ExtResource("2_ekhe2")]
+position = Vector2(233, 164)
