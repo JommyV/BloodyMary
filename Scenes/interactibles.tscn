@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scenes/interactibles.gd" id="1_khktg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlmm"]
-size = Vector2(60, 60)
+size = Vector2(24, 24)
 
 [node name="Interactible" type="RigidBody2D" groups=["Interactible"]]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_khktg")
 
@@ -14,5 +16,5 @@ script = ExtResource("1_khktg")
 shape = SubResource("RectangleShape2D_rjlmm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_74rpt")
