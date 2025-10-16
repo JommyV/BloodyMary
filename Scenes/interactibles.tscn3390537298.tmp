@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ffwx4xuawmse"]
 
 [ext_resource type="Texture2D" uid="uid://etbv3heyffj" path="res://Assets/Sprites/food.jpg" id="1_74rpt"]
-[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scenes/interactibles.gd" id="1_khktg"]
+[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scripts/interactibles.gd" id="1_khktg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlmm"]
 size = Vector2(24, 24)
 
 [node name="Interactible" type="RigidBody2D" groups=["Interactible"]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_khktg")
 
@@ -16,5 +16,7 @@ script = ExtResource("1_khktg")
 shape = SubResource("RectangleShape2D_rjlmm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
+unique_name_in_owner = true
+position = Vector2(1.1920929e-07, 1.1920929e-07)
+scale = Vector2(0.015000001, 0.013333333)
 texture = ExtResource("1_74rpt")

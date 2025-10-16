@@ -1,20 +1,17 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-@export var speed = 400
+class_name Player
+
+@export var speed = 200
 var screen_size 
 var pickedup : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var carry_position: Marker2D = %CarryPosition
-@onready var raycast: RayCast2D = %RayCast2D
-@onready var ray_cast_2d_3: RayCast2D = %RayCast2D3
-@onready var ray_cast_2d_4: RayCast2D = %RayCast2D4
-@onready var ray_cast_2d_5: RayCast2D = %RayCast2D5
-@onready var ray_cast_2d_6: RayCast2D = %RayCast2D6
-@onready var ray_cast_2d_7: RayCast2D = %RayCast2D7
-@onready var raycasts = [raycast, ray_cast_2d_3,ray_cast_2d_4,ray_cast_2d_5, ray_cast_2d_6,ray_cast_2d_7]
 const TILE_SIZE = Vector2(24,24)
 var carriedobject
 var snap: bool = false
+var can_interact: bool = false
+var interactible_station: Object
 
 func _ready() -> void:
 	#hide()
@@ -27,31 +24,23 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#var objectheld = raycasts.get_collider()
-	#for i in raycasts.size()-1: 
-		#var objectheld = raycasts[i].get_collider()
-		#if raycasts[i].is_colliding():
-			#if objectheld.is_in_group("Interactible"):
-				#if Input.is_action_pressed("pickup"):
-					#pickedup = true
-					##onhand = objectheld
-					#objectheld.global_position = objectheld.global_position\
-						#.lerp(carry_position.global_position,delta*200.0)
-					#objectheld.global_rotation = carry_position.global_rotation
-					#objectheld.collision_layer = 2
-					##objectheld.linear_velocity = Vector2(0.1,3.0)s
-					##else:
-						##objectheld.global_position = global_position.snapped(TILE_SIZE)
-	#for i in raycasts.size()-1: 
-		#var objectheld = raycasts[i].get_collider()
-		#if raycasts[i].is_colliding():
-			#print("gotit")
 	if carriedobject != null and Input.is_action_pressed("pickup"):
 		carriedobject.global_position = carriedobject.global_position.lerp\
 			(carry_position.global_position,delta*100.0)
+		carriedobject.set_collision_layer_value(1,false)
+		#print(carriedobject.get_collision_layer_value(1))
+		carriedobject.rotation = self.rotation
 	elif carriedobject != null:
-		carriedobject.global_position = carriedobject.global_position.snapped(TILE_SIZE)
-	
+		carriedobject.global_position = carriedobject.global_position.snapped(TILE_SIZE/2)
+		carriedobject.set_collision_layer_value(1,true)
+	if Input.is_action_just_released("pickup") and carriedobject != null:
+		carriedobject.apply_force(Vector2(100,100))
+
+	if Input.is_action_just_pressed("interact") and interactible_station != null:
+		interactible_station.interact()
+
+	#if carriedobject != null:
+		#pass
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:
@@ -66,24 +55,42 @@ func _physics_process(delta: float) -> void:
 		local_velocity.y -= 1
 	if local_velocity.length() > 0:
 		local_velocity = local_velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+		#$AnimatedSprite2D.play()
 		rotation = lerp_angle(rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
-	else:
-		$AnimatedSprite2D.stop()
+	#else:
+		#$AnimatedSprite2D.stop()
 	position += local_velocity * delta
 	#position = position.clamp(Vector2.ZERO, screen_size)
 	
+	
 
 	
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Interactible"):
-		print("WawaWiwi")
+
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Interactible"):
 		carriedobject = body
-		print("wiwiwawa")
-			#snap = false
+	
+	
+
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Interactible"):
+		carriedobject = null
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("WorkStation"):
+		can_interact = true
+		interactible_station = area.get_parent()
+		print(interactible_station)
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("WorkStation"):
+		can_interact = false
+		interactible_station = null

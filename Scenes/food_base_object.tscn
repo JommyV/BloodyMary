@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffwx4xuawmse"]
+
+[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scripts/food_base_object.gd" id="1_imj14"]
+[ext_resource type="Texture2D" uid="uid://ypash33mfmvd" path="res://Assets/Sprites/cuteyeball.png" id="2_imj14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlmm"]
+size = Vector2(24, 24)
+
+[node name="FoodBaseObject" type="RigidBody2D" groups=["Interactible"]]
+collision_layer = 3
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_imj14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Interactible"]]
+shape = SubResource("RectangleShape2D_rjlmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1.1920929e-07, 1.1920929e-07)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_imj14")
