@@ -8,7 +8,7 @@ var screen_size
 #Variables for held objetct.
 var carriedobject
 var pickedup : bool = false
-var carriableobject
+var carriableobject: Node2D
 
 #Variables for dropping objects in grid with snap.
 @onready var carry_position: Marker2D = %CarryPosition
@@ -25,7 +25,8 @@ var in_area: bool
 
 
 func _ready() -> void:
-	screen_size = get_viewport_rect()
+	#screen_size = get_viewport_rect()
+	pass
 
 
 func _process(delta: float) -> void:
@@ -36,17 +37,14 @@ func _process(delta: float) -> void:
 		if pickedup == true:
 			carriedobject.global_position = carriedobject.global_position.snapped(TILE_SIZE/2)
 			carriedobject.set_collision_layer_value(1,true)
-			pickedup = false
-			carriedobject = null
-			if !in_area:
-				carriableobject = null
+			release()
 		else:
 			pickedup = true
 			carriedobject = carriableobject
 
 #Checks if object is hel in hand, if so, keeps it in the hand of the player and
 #aligns its rotation as well. 
-	if pickedup:
+	if pickedup and carriedobject != null:
 		carriedobject.global_position = carriedobject.global_position.lerp\
 			(carry_position.global_position,delta*100.0)
 		carriedobject.set_collision_layer_value(1,false)
@@ -56,7 +54,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interactible_station != null:
 		interactible_station.interact()
 		
-	print(carriableobject)
+	#print(pickedup)
 
 
 func _physics_process(delta: float) -> void:
@@ -72,12 +70,19 @@ func _physics_process(delta: float) -> void:
 		local_velocity.y -= 1
 	if local_velocity.length() > 0:
 		local_velocity = local_velocity.normalized() * speed
-		#$AnimatedSprite2D.play()
 		rotation = lerp_angle(rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
-	#else:
-		#$AnimatedSprite2D.stop()
 	position += local_velocity * delta
 	#position = position.clamp(Vector2.ZERO, screen_size)
+
+
+func release() -> void:
+	pickedup = false
+	carriedobject = null
+	if !in_area:
+		carriableobject = null
+
+
+
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -86,8 +91,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 
 #func _on_area_2d_body_exited(body: Node2D) -> void:
-	##if body.is_in_group("Interactible"):
-		##carriedobject = null
+	#if body.is_in_group("Interactible"):
+		#carriedobject = null
 		#pass
 
 

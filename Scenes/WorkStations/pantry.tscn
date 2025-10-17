@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0xdv1u27x2ew"]
 
-[ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/work_stations.tscn" id="1_ifwt2"]
-[ext_resource type="Script" uid="uid://cq1t4e70mq5sa" path="res://Scenes/pantry.gd" id="2_viask"]
+[ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_ifwt2"]
+[ext_resource type="Script" uid="uid://cq1t4e70mq5sa" path="res://Scripts/pantry.gd" id="2_viask"]
 [ext_resource type="Texture2D" uid="uid://dw4tgana3of4" path="res://Assets/Sprites/pantry.jpeg" id="3_ffcwk"]
 
 [node name="Pantry" instance=ExtResource("1_ifwt2")]

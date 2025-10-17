@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cqx1mklrreo4j"]
 
 [ext_resource type="Texture2D" uid="uid://bqkomskmnpf80" path="res://Assets/Sprites/tilemap.png" id="1_atbi5"]
-[ext_resource type="PackedScene" uid="uid://ffwx4xuawmse" path="res://Scenes/food_base_object.tscn" id="2_xmk7k"]
+[ext_resource type="PackedScene" uid="uid://ffwx4xuawmse" path="res://Scenes/carriable_object.tscn" id="2_xmk7k"]
 [ext_resource type="PackedScene" uid="uid://c4f4q41lc1838" path="res://Scenes/player.tscn" id="3_cyyeu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq1df"]
@@ -577,7 +577,8 @@ scenes/2/scene = ExtResource("3_cyyeu")
 
 [resource]
 uv_clipping = true
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)

@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://ffwx4xuawmse"]
 
-[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scripts/food_base_object.gd" id="1_imj14"]
-[ext_resource type="Texture2D" uid="uid://ypash33mfmvd" path="res://Assets/Sprites/cuteyeball.png" id="2_imj14"]
+[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scripts/carriable_object.gd" id="1_2aw3j"]
+[ext_resource type="Texture2D" uid="uid://ypash33mfmvd" path="res://Assets/Sprites/cuteyeball.png" id="2_74exa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imj14"]
 
-[node name="FoodBaseObject" type="RigidBody2D" groups=["Interactible"]]
+[node name="CarriableObject" type="RigidBody2D" groups=["Interactible"]]
 gravity_scale = 0.0
-script = ExtResource("1_imj14")
+script = ExtResource("1_2aw3j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1.1920929e-07, 1.1920929e-07)
 scale = Vector2(0.04, 0.04)
-texture = ExtResource("2_imj14")
+texture = ExtResource("2_74exa")
 
 [node name="Area2D" type="Area2D" parent="."]
 

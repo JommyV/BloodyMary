@@ -4,25 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
-size = Vector2(133.33331, 132.74335)
+size = Vector2(155.55554, 92.92035)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(104, 138)
 
 [node name="Player" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 4
 gravity_scale = 0.0
 script = ExtResource("1_4flbx")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.9604645e-08, -2.9999995)
+position = Vector2(1.1920929e-07, 0.50000006)
 scale = Vector2(0.09, 0.226)
 shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -3.0000014)
-scale = Vector2(0.09, 0.226)
+position = Vector2(5.9604645e-08, 0.73199964)
+scale = Vector2(0.10937501, 0.16768749)
 texture = ExtResource("2_onrkg")
 
 [node name="CarryPosition" type="Marker2D" parent="."]
@@ -41,6 +43,8 @@ shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

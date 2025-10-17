@@ -2,23 +2,31 @@ extends RigidBody2D
 
 @onready var carried : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
-var globaltype: String
+var global_type: String
 
 func setup(type:String) -> void:
 	match type:
 		"eyeball":
 			sprite_2d.texture = preload("uid://dycl41yr58est")
-			globaltype = "eyeball"
+			global_type = "eyeball"
 		"slice":
 			sprite_2d.texture = preload("uid://ev6benlbdc5p")
-			globaltype = "slice"
+			global_type = "slice"
+		"plate":
+			sprite_2d.texture = preload("uid://ds0sqyxkw86f6")
+			sprite_2d.scale = Vector2(0.012,0.012)
+			global_type = "plate"
+	
 
 func _physics_process(_delta: float) -> void:
 	pass
-#
-#
+
+
 func cook() -> void: 
-	match globaltype:
+	match global_type:
 		"eyeball":
-			globaltype = "cut_eyeball"
+			global_type = "cut_eyeball"
 			sprite_2d.texture = preload("res://Assets/Sprites/cuteyeball.png")
+		"eyeball_on_toast":
+			global_type = "eyeball_on_toast"
+			sprite_2d.texture = preload("res://Assets/Sprites/eyeballontoast.png")

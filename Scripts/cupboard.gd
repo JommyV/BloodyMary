@@ -1,8 +1,7 @@
 extends "res://Scripts/work_stations.gd"
 
 
-
 func interact() -> void:
-	var object = food.instantiate()
+	var object = plate.instantiate()
 	add_child(object)
-	object.setup("eyeball")
+	object.setup("plate")
