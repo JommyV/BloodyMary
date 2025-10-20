@@ -1,7 +1,6 @@
 extends "res://Scripts/work_stations.gd"
 
 
-
 func interact() -> void:
 	if player.carriedobject !=null:
 		if player.carriedobject.global_type == "eyeball":

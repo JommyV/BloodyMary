@@ -33,16 +33,25 @@ func _process(delta: float) -> void:
 #Function to carry food. Checks if there is an object in range, and if pickup is
 #pressed. If both are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
-	if carriableobject != null and Input.is_action_just_pressed("pickup"):
+	if carriableobject != null and Input.is_action_just_pressed("pickup") and \
+	carriableobject.carriable == true:
 		if pickedup == true:
 			carriedobject.global_position = carriedobject.global_position.snapped(TILE_SIZE/2)
 			carriedobject.set_collision_layer_value(1,true)
+			carriedobject.carried = false
+			carriedobject.carriable = true
 			release()
-		else:
+		elif !carriableobject.carried:
 			pickedup = true
+			carriableobject.carried = true
 			carriedobject = carriableobject
+			carriedobject.carriable = true
+			#print(carriedobject.global_type)
+	if carriableobject != null: 
+		print(carriableobject.global_type)
 
-#Checks if object is hel in hand, if so, keeps it in the hand of the player and
+
+#Checks if object is held in hand, if so, keeps it in the hand of the player and
 #aligns its rotation as well. 
 	if pickedup and carriedobject != null:
 		carriedobject.global_position = carriedobject.global_position.lerp\
@@ -54,7 +63,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interactible_station != null:
 		interactible_station.interact()
 		
-	#print(pickedup)
+	
+	
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +88,7 @@ func _physics_process(delta: float) -> void:
 
 func release() -> void:
 	pickedup = false
+	carriableobject.carried = false
 	carriedobject = null
 	if !in_area:
 		carriableobject = null
@@ -100,9 +112,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("WorkStation"):
 		can_interact = true
 		interactible_station = area.get_parent()
-		print(interactible_station)
+		#print(interactible_station)
 
-	if area.get_parent().is_in_group("Interactible") and carriedobject == null:
+	if area.get_parent().is_in_group("Interactible") and carriedobject == null\
+	 and area.get_parent().carriable:
 		carriableobject = area.get_parent()
 		in_area = true
 
