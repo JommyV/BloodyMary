@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name Carriable
+
 @onready var carried : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 var global_type: String
@@ -20,10 +22,10 @@ func setup(type:String) -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	#print(carried)
+	#print(carriable)
 	pass
 
-
+ 
 func cook() -> void: 
 	match global_type:
 		"eyeball":

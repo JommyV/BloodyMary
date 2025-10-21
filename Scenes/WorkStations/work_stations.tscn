@@ -18,6 +18,16 @@ shape = SubResource("RectangleShape2D_aolcr")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -10
 
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = -37.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

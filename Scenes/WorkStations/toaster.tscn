@@ -10,3 +10,7 @@ script = ExtResource("2_qtmht")
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.128, 0.12)
 texture = ExtResource("3_qtmht")
+
+[node name="Timer" parent="." index="2"]
+wait_time = 4.0
+one_shot = true
