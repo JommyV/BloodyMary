@@ -6,19 +6,20 @@ func interact() -> void:
 		working = true
 		timer.start()
 		progress_bar.value = timer.time_left
+		progress_bar.show()
 		object.carriable = false
 		player.release()
+		
 		await timer.timeout
-		object.global_type = "toast"
-		object.sprite_2d.texture = preload("uid://xgbddpvesgmj")
+		
+		progress_bar.hide()
+		object.cook()
 		working = false
-		await get_tree().create_timer(0.5).timeout
 		object.carriable = true
+		object.cooked = true
 
 
 func _process(_delta: float) -> void:
 	progress_bar.value = timer.time_left*(100/timer.wait_time)
 	if object != null:
 		print(object.global_type + " on toaster")
-	else:
-		print("not here")

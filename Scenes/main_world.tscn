@@ -41,3 +41,5 @@ scale = Vector2(0.36, 0.36)
 [node name="Fridge" parent="." instance=ExtResource("8_k5cj5")]
 position = Vector2(111, 80)
 scale = Vector2(0.44000125, 0.44000125)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ds0sqyxkw86f6" path="res://Assets/Sprites/pngwing.com.png" id="3_vhhg4"]
 
 [node name="Plate" groups=["Plate"] instance=ExtResource("1_ylgsf")]
+z_index = -5
 script = ExtResource("2_6e1f7")
 
 [node name="Sprite2D" parent="." index="0"]

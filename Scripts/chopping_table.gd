@@ -7,15 +7,19 @@ func interact() -> void:
 		working = true
 		timer.start()
 		progress_bar.value = timer.time_left
+		progress_bar.show()
 		object.carriable = false
 		player.can_walk = false
+		
 		await timer.timeout
-		object.global_type = "cut_eyeball"
-		object.sprite_2d.texture = preload("res://Assets/Sprites/cuteyeball.png")
+		
+		progress_bar.hide()
+		object.cook()
 		player.release()
 		player.can_walk = true
 		working = false
 		object.carriable = true
+		object.cooked = true
 
 
 func _process(_delta: float) -> void:
