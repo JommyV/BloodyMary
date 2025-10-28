@@ -21,6 +21,7 @@ SignalsController="*res://Scripts/signals_controller.gd"
 
 [display]
 
+window/size/mode=2
 window/size/resizable=false
 window/stretch/scale=2.0
 
