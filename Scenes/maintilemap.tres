@@ -1,8 +1,11 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cqx1mklrreo4j"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cqx1mklrreo4j"]
 
 [ext_resource type="Texture2D" uid="uid://bqkomskmnpf80" path="res://Assets/Sprites/tilemap.png" id="1_atbi5"]
-[ext_resource type="PackedScene" uid="uid://ffwx4xuawmse" path="res://Scenes/carriable_object.tscn" id="2_xmk7k"]
-[ext_resource type="PackedScene" uid="uid://c4f4q41lc1838" path="res://Scenes/player.tscn" id="3_cyyeu"]
+[ext_resource type="PackedScene" uid="uid://b0xdv1u27x2ew" path="res://Scenes/WorkStations/pantry.tscn" id="2_cdvhi"]
+[ext_resource type="PackedScene" uid="uid://bly3r3sj0wxsp" path="res://Scenes/WorkStations/fridge.tscn" id="3_pr81q"]
+[ext_resource type="PackedScene" uid="uid://wyywqchmj4ym" path="res://Scenes/WorkStations/cupboard.tscn" id="4_yogpm"]
+[ext_resource type="PackedScene" uid="uid://b7n6egp67d0wf" path="res://Scenes/WorkStations/chopping_table.tscn" id="5_pd0kh"]
+[ext_resource type="PackedScene" uid="uid://bktoqtu7u3rkj" path="res://Scenes/WorkStations/toaster.tscn" id="6_emk6m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq1df"]
 texture = ExtResource("1_atbi5")
@@ -521,7 +524,9 @@ separation = Vector2i(1, 1)
 3:16/0 = 0
 4:16/0 = 0
 5:16/0 = 0
+5:16/0/custom_data_1 = true
 6:16/0 = 0
+6:16/0/custom_data_1 = true
 7:16/0 = 0
 8:16/0 = 0
 9:16/0 = 0
@@ -548,7 +553,9 @@ separation = Vector2i(1, 1)
 3:17/0 = 0
 4:17/0 = 0
 5:17/0 = 0
+5:17/0/custom_data_1 = true
 6:17/0 = 0
+6:17/0/custom_data_1 = true
 7:17/0 = 0
 8:17/0 = 0
 9:17/0 = 0
@@ -572,8 +579,11 @@ separation = Vector2i(1, 1)
 26:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1tp12"]
-scenes/1/scene = ExtResource("2_xmk7k")
-scenes/2/scene = ExtResource("3_cyyeu")
+scenes/3/scene = ExtResource("2_cdvhi")
+scenes/4/scene = ExtResource("3_pr81q")
+scenes/5/scene = ExtResource("4_yogpm")
+scenes/6/scene = ExtResource("5_pd0kh")
+scenes/7/scene = ExtResource("6_emk6m")
 
 [resource]
 uv_clipping = true
@@ -584,5 +594,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "Interactibles"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "WorkStation"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_uq1df")
 sources/1 = SubResource("TileSetScenesCollectionSource_1tp12")

@@ -17,7 +17,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 
 [autoload]
 
-SignalsController="*res://Scripts/signals_controller.gd"
+grid_snapping="*res://Scripts/grid_snapping.gd"
 
 [display]
 

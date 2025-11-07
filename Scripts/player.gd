@@ -4,6 +4,8 @@ class_name Player
 
 @export var speed = 200
 var screen_size 
+@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
+@onready var area_2d: Area2D = %Area2D
 
 var can_walk: bool = true
 
@@ -43,7 +45,7 @@ func _process(delta: float) -> void:
 #If the player is carrying an object, releases it. 
 		if pickedup == true:
 			#Snaps the object into the grid.
-			carriedobject.global_position = carriedobject.global_position.snapped(TILE_SIZE/4)
+			#carriedobject.global_position = carriedobject.to_global(carriedobject.tile_location)
 			carriedobject.set_collision_layer_value(1,true)
 			carriedobject.carried = false
 			carriedobject.carriable = true
@@ -77,15 +79,21 @@ func _physics_process(delta: float) -> void:
 	if can_walk:
 		if Input.is_action_pressed("move_right"):
 			local_velocity.x += 1
+			animated_sprite_2d.set_animation("right")
 		if Input.is_action_pressed("move_left"):
 			local_velocity.x -= 1
+			animated_sprite_2d.set_animation("left")
 		if Input.is_action_pressed("move_down"):
 			local_velocity.y += 1
+			animated_sprite_2d.set_animation("front")
 		if Input.is_action_pressed("move_up"):
 			local_velocity.y -= 1
+			animated_sprite_2d.set_animation("back")
+			
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed
-			rotation = lerp_angle(rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
+			area_2d.rotation = lerp_angle(area_2d.rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
+			#carry_position.rotation = lerp_angle(carry_position.rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
 		position += local_velocity * delta
 		#if carriableobject != null:
 			#print(carriableobject.global_type)
@@ -98,6 +106,7 @@ func release() -> void:
 #Sets the object to not be carried 
 	carriableobject.carried = false
 	carriedobject = null
+	
 
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:

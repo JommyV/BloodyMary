@@ -7,7 +7,6 @@ var dish1_on_plate: bool = false
 var dish2_on_plate: bool = false
 
 
-
 func prepare_food():
 	if ingredient1.global_type == "toast" and ingredient2.global_type == "cut_eyeball":
 		ingredient2.queue_free()

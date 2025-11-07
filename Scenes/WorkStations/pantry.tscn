@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dw4tgana3of4" path="res://Assets/Sprites/pantry.jpeg" id="3_ffcwk"]
 
 [node name="Pantry" instance=ExtResource("1_ifwt2")]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_viask")
 
 [node name="Sprite2D" parent="." index="1"]

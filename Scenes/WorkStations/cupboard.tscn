@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cy31ghvuc5tmc" path="res://Assets/Sprites/table-bowl-kitchen-plate-chopsticks-creative-dishes-child-thumbnail.jpg" id="3_oxra3"]
 
 [node name="Cupboard" instance=ExtResource("1_wlx7k")]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_oxra3")
 
 [node name="Sprite2D" parent="." index="1"]

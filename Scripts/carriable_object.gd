@@ -11,11 +11,80 @@ var global_type: String
 var carriable: bool = true
 var cooked: bool = false
 
+
+@export var tilemap_path: NodePath
+@export var highlight_tilemap_path: NodePath
+@export var highlight_source_id: int = 1 # ID do tile de destaque no TileSet
+
+
+#Variables for the placement system
+var tilemap: TileMapLayer
+var highlight_tm: TileMapLayer
+var _last_highlighted_cell: Vector2i
+var tilemap_data
+var tile_location
+var drop_location
+@onready var marker_2d: Marker2D = %Marker2D
+var _can_drop := true 
+
 #Variable exclusive to the plate to determine if it can pick food. Is stated 
 #in the global class so the player can always access it as it is part of the check
 #it does when picking up things. If the plate can pickup foods, it takes priority
 #over the player dropping the plate. 
 var can_pick_food: bool = false
+
+
+func _ready() -> void:
+	tilemap = get_node("/root/MainWorld/TilesFloor")
+	highlight_tm = get_node("/root/MainWorld/TileHighlight")
+	_last_highlighted_cell = Vector2i(999999, 999999)
+
+
+func drop() -> void:
+	if not carried:
+		return
+	carried = false
+	var cell := GridSnapping.world_to_cell(tilemap, global_position)
+	if _is_cell_drop_allowed(cell):
+		global_position = GridSnapping.cell_to_world_center(tilemap, cell)
+		_clear_highlight()
+
+
+func _clear_highlight() -> void:
+	if highlight_tm and _last_highlighted_cell.x < 999998:
+		highlight_tm.erase_cell(_last_highlighted_cell)
+
+
+func _physics_process(_delta: float) -> void:
+	if carried:
+		_update_highlight_under()
+
+
+func _update_highlight_under() -> void:
+	var cell := GridSnapping.world_to_cell(tilemap, global_position)
+
+	if cell != _last_highlighted_cell:
+		_clear_highlight()
+		if _is_cell_drop_allowed(cell):
+			highlight_tm.set_cell(cell, highlight_source_id)
+		_last_highlighted_cell = cell
+
+
+func _is_cell_drop_allowed(cell: Vector2i) -> bool:
+	if not _cell_in_bounds(cell):
+		return false
+	# Poderá incluir verificação de tiles sólidos, colisões ou ocupação
+	return _can_drop #um dicionário de células ocupadas por objetos
+
+
+func _cell_in_bounds(cell: Vector2i) -> bool:
+	var used := tilemap.get_used_rect() # Rect2i
+	return used.has_point(cell)
+
+
+
+
+
 
 func setup(type:String) -> void:
 #Function for the creation of the object by the creation work station.
@@ -28,7 +97,6 @@ func setup(type:String) -> void:
 			global_type = "slice"
 		"plate":
 			sprite_2d.texture = preload("uid://ds0sqyxkw86f6")
-			sprite_2d.scale = Vector2(0.024,0.024)
 			global_type = "plate"
 
  
