@@ -6,6 +6,7 @@ class_name Player
 var screen_size 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var area_2d: Area2D = %Area2D
+@export var rotationspeed: float
 
 var can_walk: bool = true
 
@@ -33,7 +34,7 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 #Function to carry food. First checks if there is a carriable object in range to 
 #avoid null errors, checks if pickup is pressed, checks if the object is actually carriable
 #as it may be conditioned to not be and lastly checks to see if the plate can pick up food,
@@ -45,8 +46,8 @@ func _process(delta: float) -> void:
 #If the player is carrying an object, releases it. 
 		if pickedup == true:
 			#Snaps the object into the grid.
-			#carriedobject.global_position = carriedobject.to_global(carriedobject.tile_location)
-			carriedobject.set_collision_layer_value(1,true)
+			carriedobject.drop()
+			#carriedobject.set_collision_layer_value(1,true)
 			carriedobject.carried = false
 			carriedobject.carriable = true
 			release()
@@ -58,17 +59,9 @@ func _process(delta: float) -> void:
 			carriedobject = carriableobject #Sets which object is being carried.
 			carriedobject.carriable = true #Allows the object to be carriable.
 
-#Checks if object is held in hand, if so, keeps it in the hand of the player and
-#aligns its rotation and makes it not collide with the player.
-	if pickedup and carriedobject != null:
-		carriedobject.global_position = carriedobject.global_position.lerp\
-			(carry_position.global_position,delta*100.0)
-		carriedobject.set_collision_layer_value(1,false)
-		carriedobject.rotation = self.rotation
-
 #Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
-	if Input.is_action_just_pressed("interact") and interactible_station != null:
+	if Input.is_action_just_pressed("interact") and interactible_station != null and !pickedup:
 		interactible_station.interact()
 
 
@@ -97,6 +90,14 @@ func _physics_process(delta: float) -> void:
 		position += local_velocity * delta
 		#if carriableobject != null:
 			#print(carriableobject.global_type)
+			
+			#Checks if object is held in hand, if so, keeps it in the hand of the player and
+#aligns its rotation and makes it not collide with the player.
+	if pickedup and carriedobject != null:
+		carriedobject.global_position = carry_position.global_position
+		#carriedobject.set_collision_layer_value(1,false)
+		#carriedobject.freeze = true
+		carriedobject.rotation = self.rotation
 
 
 #Function made for releasing the object when player presses the release button,

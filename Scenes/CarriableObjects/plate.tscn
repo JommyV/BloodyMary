@@ -6,17 +6,21 @@
 
 [node name="Plate" groups=["Plate"] instance=ExtResource("1_ylgsf")]
 z_index = -5
-scale = Vector2(1, 1)
+scale = Vector2(10, 10)
 script = ExtResource("2_6e1f7")
 
 [node name="Sprite2D" parent="." index="0"]
 z_index = 5
-scale = Vector2(0.0075, 0.0075)
+position = Vector2(-5.662441e-07, 5.9604645e-08)
+scale = Vector2(0.003749999, 0.00375)
 texture = ExtResource("3_vhhg4")
 
 [node name="Area2D" parent="." index="1"]
 z_index = 5
 scale = Vector2(0.6, 0.6)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 5.9604645e-08)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

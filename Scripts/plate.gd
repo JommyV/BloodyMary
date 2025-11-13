@@ -21,7 +21,6 @@ func prepare_food():
 		ready_dish = true
 
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if ingredient1 == null and area.get_parent().is_in_group("Interactible") \
 		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate") and area.get_parent().cooked:
@@ -39,6 +38,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#print(ingredient2.get_groups())
 		#print("added")
 
+
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if ingredient1 != null and area.get_parent().is_in_group("Interactible") and !dish1_on_plate:
 			ingredient1 = null
@@ -47,7 +47,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate"):
 			ingredient2 = null
 			can_pick_food = false
-	
+
 
 func _process(delta: float) -> void:
 	if dish1_on_plate:

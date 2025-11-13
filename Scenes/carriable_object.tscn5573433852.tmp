@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffwx4xuawmse"]
+
+[ext_resource type="Script" uid="uid://ctcblyv8r7lfk" path="res://Scripts/carriable_object.gd" id="1_2aw3j"]
+[ext_resource type="Texture2D" uid="uid://ypash33mfmvd" path="res://Assets/Sprites/cuteyeball.png" id="2_74exa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imj14"]
+size = Vector2(10.000001, 10.000001)
+
+[node name="CarriableObject" type="RigidBody2D" groups=["Interactible"]]
+scale = Vector2(0.2, 0.2)
+collision_layer = 5
+collision_mask = 5
+gravity_scale = 0.0
+script = ExtResource("1_2aw3j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1.1920929e-07, 1.1920929e-07)
+scale = Vector2(0.019999998, 0.02)
+texture = ExtResource("2_74exa")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_imj14")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+unique_name_in_owner = true

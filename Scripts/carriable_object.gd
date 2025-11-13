@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Node2D
 
 class_name Carriable
 
@@ -47,26 +47,35 @@ func drop() -> void:
 	var cell := GridSnapping.world_to_cell(tilemap, global_position)
 	if _is_cell_drop_allowed(cell):
 		global_position = GridSnapping.cell_to_world_center(tilemap, cell)
-		_clear_highlight()
+	_clear_highlight()
 
 
 func _clear_highlight() -> void:
 	if highlight_tm and _last_highlighted_cell.x < 999998:
 		highlight_tm.erase_cell(_last_highlighted_cell)
+	_last_highlighted_cell = Vector2i(999999, 999999)
 
 
 func _physics_process(_delta: float) -> void:
+	# Sem alterar a forma como o player o move — apenas tratamos o highlight
 	if carried:
 		_update_highlight_under()
+	else:
+		# Garantia: se deixar de estar a ser carregado por outra via,
+		# o destaque também é removido.
+		if _last_highlighted_cell.x < 999998:
+			_clear_highlight()
 
 
 func _update_highlight_under() -> void:
-	var cell := GridSnapping.world_to_cell(tilemap, global_position)
-
-	if cell != _last_highlighted_cell:
-		_clear_highlight()
+		var cell : Vector2i = GridSnapping.world_to_cell(tilemap, global_position)
+		print(cell)
+		print(_last_highlighted_cell)
+		if cell != _last_highlighted_cell:
+			_clear_highlight()
 		if _is_cell_drop_allowed(cell):
-			highlight_tm.set_cell(cell, highlight_source_id)
+			# TileMapLayer.set_cell(coords, source_id)
+			highlight_tm.set_cell(cell, 1,Vector2i(1,1))
 		_last_highlighted_cell = cell
 
 
@@ -80,10 +89,6 @@ func _is_cell_drop_allowed(cell: Vector2i) -> bool:
 func _cell_in_bounds(cell: Vector2i) -> bool:
 	var used := tilemap.get_used_rect() # Rect2i
 	return used.has_point(cell)
-
-
-
-
 
 
 func setup(type:String) -> void:
