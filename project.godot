@@ -35,7 +35,6 @@ grid_snapping="*res://Scripts/grid_snapping.gd"
 [display]
 
 window/size/mode=2
-window/size/resizable=false
 window/stretch/scale=2.0
 
 [editor_plugins]
