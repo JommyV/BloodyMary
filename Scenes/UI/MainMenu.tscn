@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cmxuggd07idw6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -198.0
+offset_right = 211.5
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text 1 for Main Menu Camera Fix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -129.0
+offset_top = -87.0
+offset_right = 129.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Button 1"
