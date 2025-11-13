@@ -51,7 +51,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func _process(_delta: float) -> void:
-	print(ingredient1)
+	#print(ingredient1)
 	
 	if dish1_on_plate:
 		ingredient1.global_position = global_position
@@ -79,6 +79,8 @@ func take_food() -> void:
 	if can_pick_food and !dish1_on_plate:
 		dish1_on_plate = true
 		can_pick_food = false
+		ingredient1.area_2d.monitorable = false
 	elif can_pick_food and dish1_on_plate:
 		dish2_on_plate = true
 		can_pick_food = false
+		ingredient2.area_2d.monitorable = false

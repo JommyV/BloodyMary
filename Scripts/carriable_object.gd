@@ -10,6 +10,7 @@ var global_type: String
 #Defines if object can be carried.
 var carriable: bool = true
 var cooked: bool = false
+@onready var area_2d: Area2D = %Area2D
 
 
 @export var tilemap_path: NodePath
@@ -40,15 +41,14 @@ func _ready() -> void:
 	_last_highlighted_cell = Vector2i(999999, 999999)
 
 
-#func drop() -> void:
-	#if not carried:
-		#return
-	#if not can_pick_food:
-		#carried = false
-		#var cell := GridSnapping.world_to_cell(tilemap, global_position)
-		#if _is_cell_drop_allowed(cell):
-			#global_position = GridSnapping.cell_to_world_center(tilemap, cell)
-		#_clear_highlight()
+func drop() -> void:
+	if not carried:
+		return
+	carried = false
+	var cell := GridSnapping.world_to_cell(tilemap, global_position)
+	if _is_cell_drop_allowed(cell):
+		global_position = GridSnapping.cell_to_world_center(tilemap, cell)
+	_clear_highlight()
 
 
 func _clear_highlight() -> void:

@@ -12,7 +12,7 @@ var can_walk: bool = true
 
 #Variables for held objetct.
 var carriedobject
-var pickedup : bool = false
+@export var pickedup : bool = false
 var carriableobject: Node2D
 
 #Variables for dropping objects in grid with snap.
@@ -97,6 +97,7 @@ func _physics_process(delta: float) -> void:
 func release() -> void:
 	pickedup = false
 #Sets the object to not be carried 
+	carriedobject.drop()
 	carriableobject.carried = false
 	carriedobject.carried = false
 	carriedobject = null
@@ -104,18 +105,23 @@ func release() -> void:
 
 
 func pick_up() -> void:
-	
-	if carriedobject != null and carriedobject.global_type == "plate" and !carriedobject.dish1_on_plate:
+
+	if carriedobject != null and carriedobject.global_type == "plate" and !carriedobject.ingredient1\
+	and !carriedobject.can_pick_food:
+		print(pickedup)
 		release()
+		print(pickedup)
 		return
 	
-	elif carriedobject != null and carriedobject.global_type == "plate" and carriedobject.can_pick_food:
+	elif carriedobject != null and carriedobject.global_type == "plate" and carriedobject.ingredient1\
+	and carriedobject.can_pick_food:
 		carriedobject.take_food()
 		return
 	#If the player is carrying an object, releases it. 
 	if pickedup == true:
 		#Snaps the object into the grid.
 		release()
+		return
 
 #If not carrying an object, picks it up.s
 	elif !carriableobject.carried:
