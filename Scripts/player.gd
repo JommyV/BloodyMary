@@ -11,9 +11,9 @@ var screen_size
 var can_walk: bool = true
 
 #Variables for held objetct.
-var carriedobject
+var carried_object
 @export var pickedup : bool = false
-var carriableobject: Node2D
+var carriable_object: Node2D
 
 #Variables for dropping objects in grid with snap.
 @onready var carry_position: Marker2D = %CarryPosition
@@ -42,18 +42,17 @@ func _process(_delta: float) -> void:
 # as it takes preference when picking up to the player.
 #If all are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
-	
-	if carriableobject != null and Input.is_action_just_pressed("pickup") and \
-	carriableobject.carriable == true:
+	if carriable_object != null and Input.is_action_just_pressed("pickup") and \
+	carriable_object.carriable == true:
 		pick_up()
 		#Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
 	if Input.is_action_just_pressed("interact") and interactible_station != null:
 		interactible_station.interact()
 		
-	#if carriedobject != null:
-		#print(carriedobject.global_type)
-	#print(carriedobject)
+	if carried_object != null:
+		print(carried_object.global_type)
+		#print(carried_object)
 
 
 
@@ -77,19 +76,19 @@ func _physics_process(delta: float) -> void:
 			
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed
-			area_2d.rotation = lerp_angle(area_2d.rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
+			area_2d.rotation = lerp_angle(area_2d.rotation, atan2(local_velocity.x, -local_velocity.y), delta*rotationspeed)
 			#carry_position.rotation = lerp_angle(carry_position.rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
 		position += local_velocity * delta
-		#if carriableobject != null:
-			#print(carriableobject.global_type)
+		#if carriable_object != null:
+			#print(carriable_object.global_type)
 			
 			#Checks if object is held in hand, if so, keeps it in the hand of the player and
 #aligns its rotation and makes it not collide with the player.
-	if pickedup and carriedobject != null:
-		carriedobject.global_position = carry_position.global_position
-		#carriedobject.set_collision_layer_value(1,false)
-		#carriedobject.freeze = true
-		carriedobject.rotation = self.rotation
+	if pickedup and carried_object != null:
+		carried_object.global_position = carry_position.global_position
+		#carried_object.set_collision_layer_value(1,false)
+		#carried_object.freeze = true
+		carried_object.rotation = self.rotation
 
 
 #Function made for releasing the object when player presses the release button,
@@ -97,25 +96,25 @@ func _physics_process(delta: float) -> void:
 func release() -> void:
 	pickedup = false
 #Sets the object to not be carried 
-	carriedobject.drop()
-	carriableobject.carried = false
-	carriedobject.carried = false
-	carriedobject = null
+	carried_object.drop()
+	carriable_object.carried = false
+	carried_object.carried = false
+	carried_object = null
 
 
 
 func pick_up() -> void:
 
-	if carriedobject != null and carriedobject.global_type == "plate" and !carriedobject.ingredient1\
-	and !carriedobject.can_pick_food:
+	if carried_object != null and carried_object.global_type == "plate" and !carried_object.ingredient1\
+	and !carried_object.can_pick_food:
 		print(pickedup)
 		release()
 		print(pickedup)
 		return
 	
-	elif carriedobject != null and carriedobject.global_type == "plate" and carriedobject.ingredient1\
-	and carriedobject.can_pick_food:
-		carriedobject.take_food()
+	elif carried_object != null and carried_object.global_type == "plate" and carried_object.ingredient1\
+	and carried_object.can_pick_food:
+		carried_object.take_food()
 		return
 	#If the player is carrying an object, releases it. 
 	if pickedup == true:
@@ -124,27 +123,27 @@ func pick_up() -> void:
 		return
 
 #If not carrying an object, picks it up.s
-	elif !carriableobject.carried:
+	elif !carriable_object.carried:
 		pickedup = true #Sets object as carried in self.
-		carriableobject.carried = true #Sets object as carried in the object.
-		carriedobject = carriableobject #Sets which object is being carried.
-		carriedobject.carriable = true #Allows the object to be carriable.
+		carriable_object.carried = true #Sets object as carried in the object.
+		carried_object = carriable_object #Sets which object is being carried.
+		carried_object.carriable = true #Allows the object to be carriable.
 
-	if carriedobject != null and carriedobject.global_type == "plate" and Input.is_action_just_pressed("pickup") and carriedobject.can_pick_food:
-		print(carriedobject.can_pick_food)
+	if carried_object != null and carried_object.global_type == "plate" and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
+		print(carried_object.can_pick_food)
 		
 
 
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:
 ##Sets the object to be carried 
-	#if body.is_in_group("Interactible") and carriedobject == null:
-		#carriableobject = body
+	#if body.is_in_group("Interactible") and carried_object == null:
+		#carriable_object = body
 
 
 #func _on_area_2d_body_exited(body: Node2D) -> void:
 	#if body.is_in_group("Interactible"):
-		#carriedobject = null
+		#carried_object = null
 		#pass
 
 
@@ -157,10 +156,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		interactible_station = area.get_parent()
 		#print(interactible_station)
 
-	if area.get_parent().is_in_group("Interactible") and carriedobject == null\
+	if area.get_parent().is_in_group("Interactible") and carried_object == null\
 		 and area.get_parent().carriable:
 #Sets the object that can be carried when the player can interact with it.
-		carriableobject = area.get_parent()
+		carriable_object = area.get_parent()
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -172,5 +171,5 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 #Removes the object that can be carried when the player can no 
 #longer interact with it.
-		if area.get_parent().is_in_group("Interactible") and carriedobject == null:
-			carriableobject = null
+		if area.get_parent().is_in_group("Interactible") and carried_object == null:
+			carriable_object = null

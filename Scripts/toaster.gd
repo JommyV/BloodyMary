@@ -21,5 +21,5 @@ func interact() -> void:
 
 func _process(_delta: float) -> void:
 	progress_bar.value = timer.time_left*(100/timer.wait_time)
-	if object != null:
-		print(object.global_type + " on toaster")
+	#if object != null:
+		#print(object.global_type + " on toaster")
