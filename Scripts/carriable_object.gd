@@ -40,14 +40,15 @@ func _ready() -> void:
 	_last_highlighted_cell = Vector2i(999999, 999999)
 
 
-func drop() -> void:
-	if not carried:
-		return
-	carried = false
-	var cell := GridSnapping.world_to_cell(tilemap, global_position)
-	if _is_cell_drop_allowed(cell):
-		global_position = GridSnapping.cell_to_world_center(tilemap, cell)
-	_clear_highlight()
+#func drop() -> void:
+	#if not carried:
+		#return
+	#if not can_pick_food:
+		#carried = false
+		#var cell := GridSnapping.world_to_cell(tilemap, global_position)
+		#if _is_cell_drop_allowed(cell):
+			#global_position = GridSnapping.cell_to_world_center(tilemap, cell)
+		#_clear_highlight()
 
 
 func _clear_highlight() -> void:
@@ -69,8 +70,8 @@ func _physics_process(_delta: float) -> void:
 
 func _update_highlight_under() -> void:
 		var cell : Vector2i = GridSnapping.world_to_cell(tilemap, global_position)
-		print(cell)
-		print(_last_highlighted_cell)
+		#print(cell)
+		#print(_last_highlighted_cell)
 		if cell != _last_highlighted_cell:
 			_clear_highlight()
 		if _is_cell_drop_allowed(cell):

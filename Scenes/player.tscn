@@ -10,7 +10,7 @@
 size = Vector2(155.55554, 92.92035)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(23.529337, 138)
+size = Vector2(82.35268, 136.61403)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1ek2"]
 animations = [{

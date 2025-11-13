@@ -25,6 +25,7 @@ var snap: bool = false
 var can_interact: bool = false
 var interactible_station: Object
 var in_area: bool
+var plate_in_hand:bool
 
 @onready var exit_timer: Timer = $Timer
 
@@ -41,28 +42,19 @@ func _process(_delta: float) -> void:
 # as it takes preference when picking up to the player.
 #If all are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
+	
 	if carriableobject != null and Input.is_action_just_pressed("pickup") and \
-	carriableobject.carriable == true and !carriableobject.can_pick_food:
-#If the player is carrying an object, releases it. 
-		if pickedup == true:
-			#Snaps the object into the grid.
-			carriedobject.drop()
-			#carriedobject.set_collision_layer_value(1,true)
-			carriedobject.carried = false
-			carriedobject.carriable = true
-			release()
-
-#If not carrying an object, picks it up.s
-		elif !carriableobject.carried:
-			pickedup = true #Sets object as carried in self.
-			carriableobject.carried = true #Sets object as carried in the object.
-			carriedobject = carriableobject #Sets which object is being carried.
-			carriedobject.carriable = true #Allows the object to be carriable.
-
-#Check if able to interact if in range and carrying object. If so, calls 
+	carriableobject.carriable == true:
+		pick_up()
+		#Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
-	if Input.is_action_just_pressed("interact") and interactible_station != null and !pickedup:
+	if Input.is_action_just_pressed("interact") and interactible_station != null:
 		interactible_station.interact()
+		
+	#if carriedobject != null:
+		#print(carriedobject.global_type)
+	#print(carriedobject)
+
 
 
 func _physics_process(delta: float) -> void:
@@ -106,8 +98,36 @@ func release() -> void:
 	pickedup = false
 #Sets the object to not be carried 
 	carriableobject.carried = false
+	carriedobject.carried = false
 	carriedobject = null
+
+
+
+func pick_up() -> void:
 	
+	if carriedobject != null and carriedobject.global_type == "plate" and !carriedobject.dish1_on_plate:
+		release()
+		return
+	
+	elif carriedobject != null and carriedobject.global_type == "plate" and carriedobject.can_pick_food:
+		carriedobject.take_food()
+		return
+	#If the player is carrying an object, releases it. 
+	if pickedup == true:
+		#Snaps the object into the grid.
+		release()
+
+#If not carrying an object, picks it up.s
+	elif !carriableobject.carried:
+		pickedup = true #Sets object as carried in self.
+		carriableobject.carried = true #Sets object as carried in the object.
+		carriedobject = carriableobject #Sets which object is being carried.
+		carriedobject.carriable = true #Allows the object to be carriable.
+
+	if carriedobject != null and carriedobject.global_type == "plate" and Input.is_action_just_pressed("pickup") and carriedobject.can_pick_food:
+		print(carriedobject.can_pick_food)
+		
+
 
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -123,6 +143,7 @@ func release() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	#if area_2d.get_overlapping_areas():
 	if area.is_in_group("WorkStation"):
 #Sets the work station that can be used when the player 
 #can interact with it and tells the workstation it can be used.

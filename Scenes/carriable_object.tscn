@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ypash33mfmvd" path="res://Assets/Sprites/cuteyeball.png" id="2_74exa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imj14"]
+size = Vector2(22.666668, 24.666668)
 
 [node name="CarriableObject" type="Node2D" groups=["Interactible"]]
 scale = Vector2(6, 6)

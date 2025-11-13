@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://k5kpgipbrc7c"]
+[gd_scene load_steps=2 format=3 uid="uid://k5kpgipbrc7c"]
+
+[ext_resource type="Script" uid="uid://bc4j4eptmwc0v" path="res://Scenes/criador_clientes.gd" id="1_vt376"]
 
 [node name="CriadorClientes" type="Node2D"]
+script = ExtResource("1_vt376")

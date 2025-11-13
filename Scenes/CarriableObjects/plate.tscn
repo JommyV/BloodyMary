@@ -6,7 +6,7 @@
 
 [node name="Plate" groups=["Plate"] instance=ExtResource("1_ylgsf")]
 z_index = -5
-scale = Vector2(10, 10)
+scale = Vector2(12, 12)
 script = ExtResource("2_6e1f7")
 
 [node name="Sprite2D" parent="." index="0"]

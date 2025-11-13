@@ -23,7 +23,8 @@ func prepare_food():
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if ingredient1 == null and area.get_parent().is_in_group("Interactible") \
-		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate") and area.get_parent().cooked:
+		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate")\
+		 and area.get_parent().cooked:
 		ingredient1 = area.get_parent()
 		ingredient1.carriable = false
 		can_pick_food = true
@@ -49,24 +50,35 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 			can_pick_food = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	print(ingredient1)
+	
 	if dish1_on_plate:
-		ingredient1.global_position = ingredient1.global_position.lerp\
-			(global_position,delta*100.0)
+		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
-		print(ingredient1.global_type)
+		#print(ingredient1.global_type)
 	if ingredient2 and dish2_on_plate:
-		ingredient2.global_position = ingredient2.global_position.lerp\
-			(global_position,delta*100.0)
+		ingredient2.global_position = global_position
 		ingredient1.rotation = self.rotation
-		print(ingredient2.global_type)
+		#print(ingredient2.global_type)
 	if Input.is_action_just_pressed("mix"):
 		prepare_food()
-	if Input.is_action_just_pressed("pickup") and can_pick_food and !dish1_on_plate:
+
+
+	#if Input.is_action_just_pressed("pickup") and can_pick_food and !dish1_on_plate:
+		#dish1_on_plate = true
+		#can_pick_food = false
+		#
+	#elif Input.is_action_just_pressed("pickup") and can_pick_food and dish1_on_plate:
+		#dish2_on_plate = true
+		#can_pick_food = false
+
+
+func take_food() -> void:
+	#print(can_pick_food)
+	if can_pick_food and !dish1_on_plate:
 		dish1_on_plate = true
 		can_pick_food = false
-		print(dish1_on_plate)
-		print(can_pick_food)
-	elif Input.is_action_just_pressed("pickup") and can_pick_food and dish1_on_plate:
+	elif can_pick_food and dish1_on_plate:
 		dish2_on_plate = true
 		can_pick_food = false
