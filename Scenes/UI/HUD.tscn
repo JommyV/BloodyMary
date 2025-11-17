@@ -1,0 +1,129 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcwrqy3812xdr"]
+
+[ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="1_omqfp"]
+[ext_resource type="Script" uid="uid://bphq6sapxuhpf" path="res://Scenes/UI/hud.gd" id="1_qc5w2"]
+
+[node name="Hud" type="Node"]
+script = ExtResource("1_qc5w2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Clock" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 110.0
+
+[node name="Clock" type="TextureRect" parent="CanvasLayer/Clock"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("1_omqfp")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Clock"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Night 1"
+
+[node name="Pointer" type="TextureRect" parent="CanvasLayer/Clock"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = -41.0
+offset_right = 43.0
+offset_bottom = 39.0
+scale = Vector2(1, 0.5)
+pivot_offset = Vector2(3, 81)
+texture = ExtResource("1_omqfp")
+expand_mode = 1
+
+[node name="DebugInput" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 388.0
+offset_top = 286.0
+offset_right = 428.0
+offset_bottom = 326.0
+
+[node name="CommitClient" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 24.0
+offset_right = 99.0
+offset_bottom = 63.0
+text = "Commit Client Count"
+
+[node name="ClientOut" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 80.0
+offset_right = 101.0
+offset_bottom = 119.0
+text = "ClientOut"
+
+[node name="ClientDisplay" type="Label" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -54.0
+offset_right = 77.0
+offset_bottom = -21.0
+text = "Client Amount: 0"
+
+[node name="P1" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = -63.0
+offset_right = 162.0
+offset_bottom = -19.0
+text = "+1"
+
+[node name="P5" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = -63.0
+offset_right = 232.0
+offset_bottom = -19.0
+text = "+5"
+
+[node name="M1" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -129.0
+offset_top = -63.0
+offset_right = -80.0
+offset_bottom = -19.0
+text = "-1"
+
+[node name="M5" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -199.0
+offset_top = -63.0
+offset_right = -150.0
+offset_bottom = -19.0
+text = "-5"
+
+[node name="Res" type="Button" parent="CanvasLayer/DebugInput"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 152.0
+offset_right = 39.0
+offset_bottom = 183.0
+text = "Reset"
+
+[connection signal="pressed" from="CanvasLayer/DebugInput/CommitClient" to="." method="_on_commit_client_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/ClientOut" to="." method="_on_client_out_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/P1" to="." method="_on_p_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/P5" to="." method="_on_p_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/M1" to="." method="_on_m_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/M5" to="." method="_on_m_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/DebugInput/Res" to="." method="_on_res_pressed"]
