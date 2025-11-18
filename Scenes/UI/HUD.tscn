@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcwrqy3812xdr"]
 
-[ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="1_omqfp"]
-[ext_resource type="Script" uid="uid://bphq6sapxuhpf" path="res://Scenes/UI/hud.gd" id="1_qc5w2"]
+[ext_resource type="Script" uid="uid://bphq6sapxuhpf" path="res://Scenes/UI/hud.gd" id="1_ny26j"]
+[ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="2_fdl0h"]
 
-[node name="Hud" type="Node"]
-script = ExtResource("1_qc5w2")
+[node name="hud" type="Node"]
+script = ExtResource("1_ny26j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -19,7 +19,7 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 80.0
 offset_bottom = 80.0
-texture = ExtResource("1_omqfp")
+texture = ExtResource("2_fdl0h")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Clock"]
@@ -45,7 +45,7 @@ offset_right = 43.0
 offset_bottom = 39.0
 scale = Vector2(1, 0.5)
 pivot_offset = Vector2(3, 81)
-texture = ExtResource("1_omqfp")
+texture = ExtResource("2_fdl0h")
 expand_mode = 1
 
 [node name="DebugInput" type="Control" parent="CanvasLayer"]

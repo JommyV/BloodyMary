@@ -1,0 +1,150 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpbcg217lm1nl"]
+
+[ext_resource type="Script" uid="uid://cpvg6o2jrle63" path="res://Scenes/UI/nightly_menu.gd" id="1_3nho0"]
+
+[node name="nightly_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3nho0")
+
+[node name="night_stats" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="night_indicator" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.5
+offset_top = -197.0
+offset_right = 75.5
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 56
+text = "Night 1"
+
+[node name="pet" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -37.5
+offset_right = -259.0
+offset_bottom = 37.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Profit
+Expenses
+Tips"
+
+[node name="profit" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 214.0
+offset_top = -57.0
+offset_right = 331.0
+offset_bottom = -21.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Profit"
+horizontal_alignment = 2
+
+[node name="expenses" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 214.0
+offset_top = -18.0
+offset_right = 331.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Expenses"
+horizontal_alignment = 2
+
+[node name="tips" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 214.0
+offset_top = 21.0
+offset_right = 331.0
+offset_bottom = 57.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Tips"
+horizontal_alignment = 2
+
+[node name="stats" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = 112.0
+offset_right = -256.0
+offset_bottom = 148.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Nightly Stats:"
+
+[node name="clients" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = 170.0
+offset_right = -214.0
+offset_bottom = 206.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Clients:"
+
+[node name="served_dishes" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = 205.0
+offset_right = -214.0
+offset_bottom = 241.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "Served Plates:"
+
+[node name="shop" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="menu" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
