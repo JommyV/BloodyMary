@@ -354,7 +354,8 @@ self_modulate = Color(1, 1, 1, 0.7294118)
 tile_set = SubResource("TileSet_42jam")
 
 [node name="Player" parent="." instance=ExtResource("2_43o5b")]
-position = Vector2(65, 175)
+position = Vector2(85, 183)
+rotationspeed = 50.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

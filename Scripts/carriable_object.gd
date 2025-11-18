@@ -2,12 +2,14 @@ extends Node2D
 
 class_name Carriable
 
-@export var local_food_type: Resource
 
 @onready var carried : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 #Variable that defines the type of food the object is and how it can interact.
 var global_type: String
+var cooked_texture
+
+@export var foods: Array[Resource]
 
 #Defines if object can be carried.
 var carriable: bool = true
@@ -60,7 +62,7 @@ func _clear_highlight() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	# Sem alterar a forma como o player o move — apenas tratamos o highlight
+	 #Sem alterar a forma como o player o move — apenas tratamos o highlight
 	if carried:
 		_update_highlight_under()
 	else:
@@ -94,24 +96,14 @@ func _cell_in_bounds(cell: Vector2i) -> bool:
 	return used.has_point(cell)
 
 
-func setup(type:String, texture: Texture2D) -> void:
+func setup(type:String, texture: Texture2D, cooked_txt: Texture2D) -> void:
 #Function for the creation of the object by the creation work station.
 	sprite_2d.texture = texture
 	global_type = type
+	cooked_texture = cooked_txt
 
 func cook() -> void: 
 #Centralized Function called externally when the food is prepared. 
 #Will cook the food depending on its type. The check to see if the station can 
 #cook certain food is made at that station.
-	match global_type:
-		"eyeball":
-			global_type = "cut_eyeball"
-			sprite_2d.texture = preload("res://Assets/Sprites/cuteyeball.png")
-
-		"slice":
-			global_type = "toast"
-			sprite_2d.texture = preload("uid://xgbddpvesgmj")
-
-		"eyeball_on_toast":
-			global_type = "eyeball_on_toast"
-			sprite_2d.texture = preload("res://Assets/Sprites/eyeballontoast.png")
+	sprite_2d.texture = cooked_texture

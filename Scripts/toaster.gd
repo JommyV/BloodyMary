@@ -2,7 +2,7 @@ extends "res://Scripts/work_stations.gd"
 
 
 func interact() -> void:
-	if object !=null and object.global_type == "slice" and !working:
+	if object !=null and object.global_type == "slice" and !working and player.pickedup and !object.cooked:
 		working = true
 		timer.start()
 		progress_bar.value = timer.time_left

@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		carried_object.global_position = carry_position.global_position
 		#carried_object.set_collision_layer_value(1,false)
 		#carried_object.freeze = true
-		carried_object.rotation = self.rotation
+		carried_object.rotation = area_2d.rotation
 
 #region Grabbing:
 #Function made for releasing the object when player presses the release button,
