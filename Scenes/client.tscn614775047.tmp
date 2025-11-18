@@ -6,7 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsqxe"]
 
 [node name="Client" type="RigidBody2D" node_paths=PackedStringArray("tables")]
-mass = 0.001
 gravity_scale = 0.0
 script = ExtResource("1_o4a6k")
 tables = [null, null, null, null]
