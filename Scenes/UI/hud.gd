@@ -26,6 +26,10 @@ func _on_commit_client_pressed() -> void:
 
 func _on_client_out_pressed() -> void:
 	Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle
+	ClientCount-=1
+	ClientDisplay.text = ("Client Amount: " + str(ClientCount))
+	if ClientCount == 0:
+		ClientOut.disabled = true
 
 func _on_p_1_pressed() -> void:
 	ClientCount += 1
