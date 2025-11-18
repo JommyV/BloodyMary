@@ -54,8 +54,6 @@ func _process(_delta: float) -> void:
 		print(carried_object.global_type)
 		#print(carried_object)
 
-
-
 func _physics_process(delta: float) -> void:
 	#Control of movement:
 	var local_velocity = Vector2.ZERO
@@ -90,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		#carried_object.freeze = true
 		carried_object.rotation = self.rotation
 
-
+#region Grabbing:
 #Function made for releasing the object when player presses the release button,
 #separated from pick function to be called externally when necessary.
 func release() -> void:
@@ -101,10 +99,7 @@ func release() -> void:
 	carried_object.carried = false
 	carried_object = null
 
-
-
 func pick_up() -> void:
-
 	if carried_object != null and carried_object.global_type == "plate" and !carried_object.ingredient1\
 	and !carried_object.can_pick_food:
 		print(pickedup)
@@ -132,21 +127,9 @@ func pick_up() -> void:
 	if carried_object != null and carried_object.global_type == "plate" and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
 		print(carried_object.can_pick_food)
 		
+#endregion
 
-
-
-#func _on_area_2d_body_entered(body: Node2D) -> void:
-##Sets the object to be carried 
-	#if body.is_in_group("Interactible") and carried_object == null:
-		#carriable_object = body
-
-
-#func _on_area_2d_body_exited(body: Node2D) -> void:
-	#if body.is_in_group("Interactible"):
-		#carried_object = null
-		#pass
-
-
+#region Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#if area_2d.get_overlapping_areas():
 	if area.is_in_group("WorkStation"):
@@ -173,3 +156,4 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 #longer interact with it.
 		if area.get_parent().is_in_group("Interactible") and carried_object == null:
 			carriable_object = null
+#endregion

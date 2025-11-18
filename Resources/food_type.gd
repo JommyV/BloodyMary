@@ -22,24 +22,25 @@ enum types {
 }
 
 func find_global_type() -> String:
-	match types:
-		0:
+	match food:
+		types.BREAD:
 			global_type = "slice"
-			return global_type
-		1:
+
+		types.BRAIN:
 			global_type = "brain"
-			return global_type
-		2:
+
+		types.BLOOD:
 			global_type = "blood"
-			return global_type
-		3:
+
+		types.EYEBALL:
 			global_type = "eyeball"
-			return global_type
-		4: 
+
+		types.SPAGHETTI: 
 			global_type = "spaghetti"
-			return global_type
-		5: 
+
+		types.PLATE: 
 			global_type = "plate"
-			return global_type
+
 		_:
-			return "error"
+			global_type = "error"
+	return global_type

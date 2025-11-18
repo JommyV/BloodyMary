@@ -32,6 +32,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 
 grid_snapping="*res://Scripts/grid_snapping.gd"
 InventoryManager="*res://Scenes/UI/inventory_manager.gd"
+client_manager="*res://Scripts/client_manager.gd"
 
 [editor_plugins]
 
