@@ -10,6 +10,7 @@ var object
 var working: bool = false
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var timer: Timer = %Timer
+@export var cookable_food: Resource
 
 
 func interact() -> void:

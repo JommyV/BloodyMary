@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Carriable
 
+@export var local_food_type: Resource
+
 @onready var carried : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 #Variable that defines the type of food the object is and how it can interact.
@@ -92,20 +94,11 @@ func _cell_in_bounds(cell: Vector2i) -> bool:
 	return used.has_point(cell)
 
 
-func setup(type:String) -> void:
+func setup(type:String, texture: Texture2D) -> void:
 #Function for the creation of the object by the creation work station.
-	match type:
-		"eyeball":
-			sprite_2d.texture = preload("uid://dycl41yr58est")
-			global_type = "eyeball"
-		"slice":
-			sprite_2d.texture = preload("uid://ev6benlbdc5p")
-			global_type = "slice"
-		"plate":
-			sprite_2d.texture = preload("uid://ds0sqyxkw86f6")
-			global_type = "plate"
+	sprite_2d.texture = texture
+	global_type = type
 
- 
 func cook() -> void: 
 #Centralized Function called externally when the food is prepared. 
 #Will cook the food depending on its type. The check to see if the station can 
