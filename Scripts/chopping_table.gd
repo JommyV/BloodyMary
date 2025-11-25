@@ -8,6 +8,7 @@ func interact() -> void:
 		timer.start()
 		progress_bar.value = timer.time_left
 		progress_bar.show()
+		object.global_type = "cut_eyeball"
 		object.carriable = false
 		player.can_walk = false
 		

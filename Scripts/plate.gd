@@ -12,13 +12,13 @@ func prepare_food():
 		if ingredient1.global_type == "toast" and ingredient2.global_type == "cut_eyeball":
 			ingredient2.queue_free()
 			ingredient1.global_type = "eyeball_on_toast"
-			ingredient1.cook()
+			ingredient1.prepare_food()
 			ready_dish = true
 
 		if ingredient1.global_type == "cut_eyeball" and ingredient2.global_type == "toast":
 			ingredient2.queue_free()
 			ingredient1.global_type = "eyeball_on_toast"
-			ingredient1.cook()
+			ingredient1.prepare_food()
 			ready_dish = true
 
 
@@ -29,7 +29,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		ingredient1 = area.get_parent()
 		ingredient1.carriable = false
 		can_pick_food = true
-		#print("added")
+		print("cooked")
 
 	elif ingredient2 == null and area.get_parent().is_in_group("Interactible") \
 		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate")\
@@ -38,7 +38,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		ingredient2.carriable = false
 		can_pick_food = true
 		#print(ingredient2.get_groups())
-		#print("added")
+		print("cooked")
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -58,12 +58,14 @@ func _physics_process(_delta: float) -> void:
 	if dish1_on_plate:
 		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
+		#print(ingredient1.global_type)
 	if ingredient2 and dish2_on_plate:
 		ingredient2.global_position = global_position
 		ingredient1.rotation = self.rotation
 		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
 		#print(ingredient2.global_type)
+		
 	if Input.is_action_just_pressed("mix"):
 		prepare_food()
 	if carried:

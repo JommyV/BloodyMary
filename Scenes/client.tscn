@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce1yiwaoaf5a4"]
+[gd_scene load_steps=7 format=3 uid="uid://ce1yiwaoaf5a4"]
 
 [ext_resource type="Texture2D" uid="uid://b7f5p3vi7oahg" path="res://Assets/Sprites/6009864.png" id="1_lgb4g"]
 [ext_resource type="Script" uid="uid://hnlip3ohujgg" path="res://Scripts/client.gd" id="1_o4a6k"]
+[ext_resource type="Texture2D" uid="uid://dkcyyw0vfqx4n" path="res://Assets/Sprites/bubble-emoji-thought-balloon-symbol-thinking-man.jpg" id="3_v1moc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsqxe"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4a6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1moc"]
+
 [node name="Client" type="RigidBody2D" node_paths=PackedStringArray("tables")]
-mass = 0.001
 gravity_scale = 0.0
 script = ExtResource("1_o4a6k")
 tables = [null, null, null, null]
@@ -20,4 +24,35 @@ scale = Vector2(0.039062496, 0.0390625)
 texture = ExtResource("1_lgb4g")
 
 [node name="OrderSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
+unique_name_in_owner = true
+position = Vector2(0, -17)
+scale = Vector2(0.015999999, 0.016000003)
+texture = ExtResource("3_v1moc")
+
+[node name="Start_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Start_timer2" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_o4a6k")
+
+[node name="Plate_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plate_area"]
+shape = SubResource("RectangleShape2D_v1moc")
+
+[connection signal="timeout" from="Start_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="Start_timer2" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Plate_area" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Plate_area" to="." method="_on_plate_area_area_entered"]

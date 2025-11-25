@@ -43,6 +43,7 @@ func _ready() -> void:
 	tilemap = get_node("/root/MainWorld/TilesFloor")
 	highlight_tm = get_node("/root/MainWorld/TileHighlight")
 	_last_highlighted_cell = Vector2i(999999, 999999)
+		
 
 
 func drop() -> void:
@@ -107,3 +108,6 @@ func cook() -> void:
 #Will cook the food depending on its type. The check to see if the station can 
 #cook certain food is made at that station.
 	sprite_2d.texture = cooked_texture
+	
+func prepare_food() -> void:
+	sprite_2d.texture = preload("uid://bfesx1lken8py")

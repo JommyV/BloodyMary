@@ -29,6 +29,8 @@ var plate_in_hand:bool
 
 @onready var exit_timer: Timer = $Timer
 
+var served: bool = false
+
 
 func _ready() -> void:
 	#screen_size = get_viewport_rect()
@@ -50,8 +52,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interactible_station != null:
 		interactible_station.interact()
 		
-	if carried_object != null:
-		print(carried_object.global_type)
+	#if carried_object != null:
+		#print(carried_object.global_type)
 		#print(carried_object)
 
 func _physics_process(delta: float) -> void:

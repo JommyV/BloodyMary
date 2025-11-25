@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cqx1mklrreo4j"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://cqx1mklrreo4j"]
 
 [ext_resource type="Texture2D" uid="uid://bqkomskmnpf80" path="res://Assets/Sprites/tilemap.png" id="1_atbi5"]
 [ext_resource type="PackedScene" uid="uid://b0xdv1u27x2ew" path="res://Scenes/WorkStations/pantry.tscn" id="2_cdvhi"]
+[ext_resource type="PackedScene" uid="uid://bobi26y34g5jt" path="res://Scenes/WorkStations/table.tscn" id="2_pr81q"]
 [ext_resource type="PackedScene" uid="uid://bly3r3sj0wxsp" path="res://Scenes/WorkStations/fridge.tscn" id="3_pr81q"]
 [ext_resource type="PackedScene" uid="uid://wyywqchmj4ym" path="res://Scenes/WorkStations/cupboard.tscn" id="4_yogpm"]
 [ext_resource type="PackedScene" uid="uid://b7n6egp67d0wf" path="res://Scenes/WorkStations/chopping_table.tscn" id="5_pd0kh"]
@@ -579,6 +580,7 @@ separation = Vector2i(1, 1)
 26:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1tp12"]
+scenes/1/scene = ExtResource("2_pr81q")
 scenes/3/scene = ExtResource("2_cdvhi")
 scenes/4/scene = ExtResource("3_pr81q")
 scenes/5/scene = ExtResource("4_yogpm")

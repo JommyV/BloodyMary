@@ -7,6 +7,7 @@ func interact() -> void:
 		timer.start()
 		progress_bar.value = timer.time_left
 		progress_bar.show()
+		object.global_type = "toast"
 		object.carriable = false
 		player.release()
 		
