@@ -13,9 +13,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -26.0
 offset_top = -76.0
-offset_right = -26.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -217,145 +215,25 @@ offset_top = -107.0
 offset_right = 494.0
 offset_bottom = 224.0
 
-[node name="shopping_catalogue" type="Control" parent="shop"]
-anchors_preset = 0
-
-[node name="buttons" type="Control" parent="shop/shopping_catalogue"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="bread_plus" type="Button" parent="shop/shopping_catalogue/buttons"]
+[node name="brain_plus" type="Button" parent="shop/shopping_cart"]
 layout_mode = 0
-offset_left = -93.0
-offset_top = -81.0
-offset_right = -59.0
-offset_bottom = -50.0
-text = "+"
+offset_left = -125.0
+offset_top = 126.0
+offset_right = -12.0
+offset_bottom = 221.0
+text = "test"
 
-[node name="bread_minus" type="Button" parent="shop/shopping_catalogue/buttons"]
+[node name="brain_minus" type="Button" parent="shop/shopping_cart"]
 layout_mode = 0
-offset_left = -134.0
-offset_top = -81.0
-offset_right = -100.0
-offset_bottom = -50.0
-text = "-"
-
-[node name="eyeball_plus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -93.0
-offset_top = -39.0
-offset_right = -59.0
-offset_bottom = -8.0
-text = "+"
-
-[node name="eyeball_minus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -134.0
-offset_top = -39.0
-offset_right = -100.0
-offset_bottom = -8.0
-text = "-"
-
-[node name="brain_plus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -93.0
-offset_top = 3.0
-offset_right = -59.0
-offset_bottom = 34.0
-text = "+"
-
-[node name="brain_minus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -134.0
-offset_top = 3.0
-offset_right = -100.0
-offset_bottom = 34.0
-text = "-"
-
-[node name="spaghetti_plus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -93.0
-offset_top = 46.0
-offset_right = -59.0
-offset_bottom = 77.0
-text = "+"
-
-[node name="spaghetti_minus" type="Button" parent="shop/shopping_catalogue/buttons"]
-layout_mode = 0
-offset_left = -134.0
-offset_top = 46.0
-offset_right = -100.0
-offset_bottom = 77.0
-text = "-"
-
-[node name="item_one" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = -438.0
-offset_top = -78.0
-offset_right = -396.0
-offset_bottom = -55.0
-text = "5 Bread Slices"
-
-[node name="item_two" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = -438.0
-offset_top = -36.0
-offset_right = -396.0
-offset_bottom = -13.0
-text = "2 Eyeball Pack"
-
-[node name="item_three" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = -438.0
-offset_top = 6.0
-offset_right = -396.0
-offset_bottom = 29.0
-text = "1 Brain"
-
-[node name="item_four" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = -438.0
-offset_top = 49.0
-offset_right = -396.0
-offset_bottom = 72.0
-text = "1 Spaghetti Pack"
-
-[node name="balance" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = -438.0
-offset_top = 157.0
-offset_right = -310.0
-offset_bottom = 180.0
-text = "Balance: "
-
-[node name="purchase" type="Button" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = 361.0
-offset_top = 220.0
-offset_right = 490.0
-offset_bottom = 284.0
-text = "Purchase"
-
-[node name="total" type="Label" parent="shop/shopping_catalogue"]
-layout_mode = 0
-offset_left = 385.0
-offset_top = 158.0
-offset_right = 496.0
-offset_bottom = 181.0
-text = "Total: "
-horizontal_alignment = 2
+offset_left = -125.0
+offset_top = 243.0
+offset_right = -12.0
+offset_bottom = 338.0
+text = "del"
 
 [node name="menu" type="Control" parent="."]
 anchors_preset = 0
 
 [connection signal="pressed" from="night_stats/stats_next" to="." method="_on_stats_next_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/bread_plus" to="." method="_on_bread_plus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/bread_minus" to="." method="_on_bread_minus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/eyeball_plus" to="." method="_on_eyeball_plus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/eyeball_minus" to="." method="_on_eyeball_minus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/brain_plus" to="." method="_on_brain_plus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/brain_minus" to="." method="_on_brain_minus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/spaghetti_plus" to="." method="_on_spaghetti_plus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/buttons/spaghetti_minus" to="." method="_on_spaghetti_minus_pressed"]
-[connection signal="pressed" from="shop/shopping_catalogue/purchase" to="." method="_on_purchase_pressed"]
+[connection signal="pressed" from="shop/shopping_cart/brain_plus" to="." method="_on_brain_plus_pressed"]
+[connection signal="pressed" from="shop/shopping_cart/brain_minus" to="." method="_on_brain_minus_pressed"]

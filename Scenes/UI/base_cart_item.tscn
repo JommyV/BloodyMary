@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dums68pvvo63x"]
+
+[ext_resource type="Script" uid="uid://cnniuy55jgdvh" path="res://Scenes/UI/base_cart_item.gd" id="1_bkg30"]
+
+[node name="BaseCartItem" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bkg30")
+
+[node name="base_item_name" type="Label" parent="."]
+layout_mode = 2
+text = "Brain"
+
+[node name="base_item_quantity" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+horizontal_alignment = 1
+
+[node name="base_item_price" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "20"
