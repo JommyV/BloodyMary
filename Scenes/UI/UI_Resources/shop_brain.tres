@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="purchaseable" load_steps=2 format=3 uid="uid://dfw48rh27bf43"]
+
+[ext_resource type="Script" uid="uid://cmss5auh3godi" path="res://Scenes/UI/purchaseable.gd" id="1_qk6u2"]
+
+[resource]
+script = ExtResource("1_qk6u2")
+ingredient_name = "Brain (1 Unit)"
+price = 5
+metadata/_custom_type_script = "uid://cmss5auh3godi"

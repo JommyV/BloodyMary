@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpbcg217lm1nl"]
+[gd_scene load_steps=6 format=3 uid="uid://bpbcg217lm1nl"]
 
 [ext_resource type="Script" uid="uid://cpvg6o2jrle63" path="res://Scenes/UI/nightly_menu.gd" id="1_3nho0"]
+[ext_resource type="Resource" uid="uid://dfw48rh27bf43" path="res://Scenes/UI/UI_Resources/shop_brain.tres" id="2_ymgje"]
+[ext_resource type="Resource" uid="uid://lvur24gfm3wq" path="res://Scenes/UI/UI_Resources/shop_spaghetti.tres" id="3_fgg3c"]
+[ext_resource type="Resource" uid="uid://ciasxpiyf4hbb" path="res://Scenes/UI/UI_Resources/shop_bread.tres" id="4_nigd5"]
+[ext_resource type="Resource" uid="uid://bmjlw71kusy7q" path="res://Scenes/UI/UI_Resources/shop_eyeball.tres" id="5_q1xhj"]
 
 [node name="nightly_menu" type="Control"]
 layout_mode = 3
@@ -14,6 +18,10 @@ offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3nho0")
+shop_brain = ExtResource("2_ymgje")
+shop_spaghetti = ExtResource("3_fgg3c")
+shop_bread = ExtResource("4_nigd5")
+shop_eyeball = ExtResource("5_q1xhj")
 
 [node name="night_stats" type="Control" parent="."]
 layout_mode = 1
@@ -41,7 +49,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 56
 text = "Night 1"
 
-[node name="pet" type="Label" parent="night_stats"]
+[node name="wentw" type="Label" parent="night_stats"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -52,36 +60,38 @@ offset_right = -259.0
 offset_bottom = 37.5
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
-text = "Profit
-Expenses
-Tips"
+text = "Old Balance
+Earned From Plates
+Nightly Fee
+Tips
+New Balance"
 
-[node name="profit" type="Label" parent="night_stats"]
+[node name="earned_from_plates" type="Label" parent="night_stats"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 214.0
+offset_left = 44.0
 offset_top = -57.0
 offset_right = 331.0
 offset_bottom = -21.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
-text = "Profit"
+text = "+1"
 horizontal_alignment = 2
 
-[node name="expenses" type="Label" parent="night_stats"]
+[node name="nightly_fee" type="Label" parent="night_stats"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 214.0
+offset_left = 44.0
 offset_top = -18.0
 offset_right = 331.0
 offset_bottom = 18.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
-text = "Expenses"
+text = "-1"
 horizontal_alignment = 2
 
 [node name="tips" type="Label" parent="night_stats"]
@@ -89,13 +99,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 214.0
+offset_left = 44.0
 offset_top = 21.0
 offset_right = 331.0
 offset_bottom = 57.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
-text = "Tips"
+text = "+1"
 horizontal_alignment = 2
 
 [node name="stats" type="Label" parent="night_stats"]
@@ -118,7 +128,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -331.0
 offset_top = 170.0
-offset_right = -214.0
+offset_right = -135.0
 offset_bottom = 206.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
@@ -131,20 +141,60 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -331.0
 offset_top = 205.0
-offset_right = -214.0
+offset_right = 33.0
 offset_bottom = 241.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 26
 text = "Served Plates:"
 
+[node name="new_balance" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = 60.0
+offset_right = 331.0
+offset_bottom = 96.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "11"
+horizontal_alignment = 2
+
+[node name="old_balance" type="Label" parent="night_stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 44.0
+offset_top = -96.0
+offset_right = 331.0
+offset_bottom = -60.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "10"
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="night_stats"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 228.0
+offset_right = 398.0
+offset_bottom = 295.0
+text = "NEXT"
+
 [node name="shop" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+
+[node name="shopping_cart" type="VBoxContainer" parent="shop"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = -110.0
+offset_right = 483.0
+offset_bottom = 266.0
 
 [node name="menu" type="Control" parent="."]
-visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+
+[connection signal="pressed" from="night_stats/Button" to="." method="_on_button_pressed"]
