@@ -45,8 +45,12 @@ func _physics_process(_delta: float) -> void:
 		go_to_table()
 	if should_leave:
 		leave()
-	if can_eat and player.served:
-		pass
+	if can_eat:
+		print("nham nham nham")
+		await get_tree().create_timer(3).timeout
+		should_leave = true
+	if position.distance_to(target_position_1)>1000:
+		queue_free()
 	#print(tables[0].global_position - global_position)
 	#print(position.distance_to(target_position_1))
 	#print(linear_velocity)
@@ -77,20 +81,29 @@ func leave() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.get_parent().name)
+	#print(area.get_parent().name)
 	if area.get_parent() is Player and not ordered and arrived and sat:
 		order_sprite.texture = order
 		should_move = false
-		area_2d.monitoring = false
+		area_2d.set_deferred("monitoring", false)
 		area_2d.hide()
 		plate_area.show()
 		ordered = true
+		player = area.get_parent()
 
 
 func _on_plate_area_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Carriable and ordered:
-		can_eat = true
-		player = area.get_parent()
+	var overlapping = plate_area.get_overlapping_areas()
+	print(overlapping)
+
+	for overlapping_area in overlapping:
+		var parent := overlapping_area.get_parent()
+		if parent and parent.global_type == "eyeball_on_toast":
+			print(parent.name)
+			print("food is: " + parent.name)
+			can_eat = true
+			
+		#player = area.get_parent()
 		#order_sprite.hide()
 		#print("yomama")
 		#await get_tree().create_timer(5).timeout

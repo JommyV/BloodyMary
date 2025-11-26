@@ -48,8 +48,6 @@ animations = [{
 }]
 
 [node name="Player" type="RigidBody2D"]
-collision_layer = 4
-collision_mask = 4
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_4flbx")
@@ -80,7 +78,7 @@ scale = Vector2(0.5294101, 0.7385608)
 wait_time = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

@@ -91,8 +91,8 @@ func take_food() -> void:
 	if can_pick_food and !dish1_on_plate:
 		dish1_on_plate = true
 		can_pick_food = false
-		ingredient1.area_2d.monitorable = false
+		ingredient1.collision_layer = 3
 	elif can_pick_food and dish1_on_plate:
 		dish2_on_plate = true
 		can_pick_food = false
-		ingredient2.area_2d.monitorable = false
+		ingredient2.collision_layer = 3

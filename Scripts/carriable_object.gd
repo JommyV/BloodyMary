@@ -71,6 +71,9 @@ func _physics_process(_delta: float) -> void:
 		# o destaque também é removido.
 		if _last_highlighted_cell.x < 999998:
 			_clear_highlight()
+	if Input.is_action_just_pressed("test"):
+		sprite_2d.texture = preload("uid://bfesx1lken8py")
+		global_type = "eyeball_on_toast"
 
 
 func _update_highlight_under() -> void:
@@ -110,4 +113,5 @@ func cook() -> void:
 	sprite_2d.texture = cooked_texture
 	
 func prepare_food() -> void:
+	print(global_type)
 	sprite_2d.texture = preload("uid://bfesx1lken8py")
