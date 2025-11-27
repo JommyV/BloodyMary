@@ -55,7 +55,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func _physics_process(_delta: float) -> void:
 	#print(ingredient2)
-	if dish1_on_plate:
+	if dish1_on_plate and ingredient1:
 		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
 		#print(ingredient1.global_type)
@@ -75,6 +75,8 @@ func _physics_process(_delta: float) -> void:
 		# o destaque também é removido.
 		if _last_highlighted_cell.x < 999998:
 			_clear_highlight()
+	if ingredient1 != null and !carried:
+		ingredient1.carried = false
 
 
 	#if Input.is_action_just_pressed("pickup") and can_pick_food and !dish1_on_plate:
@@ -91,8 +93,19 @@ func take_food() -> void:
 	if can_pick_food and !dish1_on_plate:
 		dish1_on_plate = true
 		can_pick_food = false
-		ingredient1.collision_layer = 3
+		ingredient1.area_2d.set_collision_layer_value(1, false)
+		ingredient1.area_2d.set_collision_mask_value(1, false)
+		ingredient1.area_2d.set_collision_layer_value(3, true)
+		ingredient1.area_2d.set_collision_mask_value(3, true)
+		
 	elif can_pick_food and dish1_on_plate:
 		dish2_on_plate = true
 		can_pick_food = false
-		ingredient2.collision_layer = 3
+		ingredient2.area_2d.set_collision_layer_value(1, false)
+		ingredient2.area_2d.set_collision_mask_value(1, false)
+		ingredient2.area_2d.set_collision_layer_value(3, true)
+		ingredient2.area_2d.set_collision_mask_value(3, true)
+
+func kill_food() ->void:
+	await get_tree().create_timer(3).timeout
+	ingredient1.queue_free()

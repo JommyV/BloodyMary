@@ -1,13 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://bobi26y34g5jt"]
 
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_v0pal"]
-[ext_resource type="Script" uid="uid://bd7sbwq1b7iqf" path="res://Scenes/WorkStations/table.gd" id="2_ytcpc"]
+[ext_resource type="Script" uid="uid://bd7sbwq1b7iqf" path="res://Scripts/table.gd" id="2_ytcpc"]
 [ext_resource type="Texture2D" uid="uid://q3fclxg28mt4" path="res://Assets/TileSprites/TableSide.png" id="3_ytcpc"]
 [ext_resource type="Texture2D" uid="uid://cft5csa1xowrd" path="res://Assets/TileSprites/Table.png" id="4_05u5q"]
 
 [node name="Table" instance=ExtResource("1_v0pal")]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("2_ytcpc")
+
+[node name="Area2D" parent="." index="0"]
+monitoring = false
+monitorable = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
 position = Vector2(0, 41.666748)

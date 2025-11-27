@@ -10,7 +10,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1moc"]
 
-[node name="Client" type="RigidBody2D" node_paths=PackedStringArray("tables")]
+[node name="Client" type="RigidBody2D" node_paths=PackedStringArray("tables") groups=["Client"]]
 collision_layer = 5
 collision_mask = 5
 gravity_scale = 0.0
@@ -45,11 +45,11 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_o4a6k")
 
-[node name="Plate_area" type="Area2D" parent="."]
+[node name="Plate_area" type="Area2D" parent="." groups=["Table"]]
 unique_name_in_owner = true
 position = Vector2(0, 20)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plate_area"]
 shape = SubResource("RectangleShape2D_v1moc")

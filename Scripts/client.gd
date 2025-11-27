@@ -19,6 +19,8 @@ var should_leave: bool = false
 @onready var plate_area: Area2D = %Plate_area
 var can_eat: bool = false
 var player
+var plate
+var should_react:bool = false
 
 func _ready() -> void:
 	intermediates = get_tree().get_nodes_in_group("Intermediate")
@@ -31,6 +33,7 @@ func _ready() -> void:
 	area_2d.monitoring = false
 	order_sprite.hide()
 	plate_area.hide()
+	plate_area.monitoring = false
 
 
 func spawn(spawn_pos:Vector2, pos_1:Vector2, pos_2:Vector2) -> void:
@@ -46,11 +49,17 @@ func _physics_process(_delta: float) -> void:
 	if should_leave:
 		leave()
 	if can_eat:
-		print("nham nham nham")
+		#print("nham nham nham")
 		await get_tree().create_timer(3).timeout
+		should_react = false
 		should_leave = true
+
 	if position.distance_to(target_position_1)>1000:
 		queue_free()
+	#if plate != null and !plate.carriable:
+		#can_eat = true
+	if plate!= null:
+		print(plate.get_parent().global_type)
 	#print(tables[0].global_position - global_position)
 	#print(position.distance_to(target_position_1))
 	#print(linear_velocity)
@@ -65,15 +74,17 @@ func go_to_table() -> void:
 	if arrived and global_position.distance_to(table_position)>1:
 		@warning_ignore("integer_division")
 		move_and_collide(target_position_2 / (delay/2))
-		print("aaaaa")
+		#print("aaaaa")
 		print(global_position.distance_to(table_position))
 	elif arrived:
 		#await get_tree().create_timer(2).timeout
-		print("weeee")
+		#print("weeee")
 		order_sprite.show()
 		sat = true
 		area_2d.show()
 		area_2d.monitoring = true
+		plate_area.show()
+		plate_area.monitoring = true
 
 
 func leave() -> void:
@@ -93,16 +104,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_plate_area_area_entered(area: Area2D) -> void:
-	var overlapping = plate_area.get_overlapping_areas()
-	print(overlapping)
-
-	for overlapping_area in overlapping:
-		var parent := overlapping_area.get_parent()
-		if parent and parent.global_type == "eyeball_on_toast":
-			print(parent.name)
-			print("food is: " + parent.name)
-			can_eat = true
-			
+	print("food is: " + area.get_parent().name)
+	if area.get_parent() is Carriable and area.get_parent().global_type == "eyeball_on_toast":
+		print("food is: " + area.get_parent().global_type)
+		plate = area
+		should_react = true
 		#player = area.get_parent()
 		#order_sprite.hide()
 		#print("yomama")
@@ -112,3 +118,8 @@ func _on_plate_area_area_entered(area: Area2D) -> void:
 
 func _on_start_timer_timeout() -> void:
 	should_move = true
+
+
+func start_eating() -> void:
+	if should_react:
+		can_eat = true

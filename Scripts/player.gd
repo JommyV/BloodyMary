@@ -26,7 +26,7 @@ var can_interact: bool = false
 var interactible_station: Object
 var in_area: bool
 var plate_in_hand:bool
-
+var can_serve: bool = false
 @onready var exit_timer: Timer = $Timer
 
 var served: bool = false
@@ -49,12 +49,14 @@ func _process(_delta: float) -> void:
 		pick_up()
 		#Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
-	if Input.is_action_just_pressed("interact") and interactible_station != null:
+	if Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
 		interactible_station.interact()
 		
-	#if carried_object != null:
-		#print(carried_object.global_type)
-		#print(carried_object)
+	if Input.is_action_just_pressed("interact") and can_serve and carried_object:
+		get_tree().call_group("Client", "start_eating")
+		carried_object.kill_food()
+		release()
+	#print(can_serve)
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:
@@ -133,18 +135,24 @@ func pick_up() -> void:
 
 #region Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print(area)
 	#if area_2d.get_overlapping_areas():
 	if area.is_in_group("WorkStation"):
 #Sets the work station that can be used when the player 
 #can interact with it and tells the workstation it can be used.
 		can_interact = true
 		interactible_station = area.get_parent()
-		#print(interactible_station)
+		print(interactible_station)
 
 	if area.get_parent().is_in_group("Interactible") and carried_object == null\
 		 and area.get_parent().carriable:
 #Sets the object that can be carried when the player can interact with it.
 		carriable_object = area.get_parent()
+		can_serve = false
+
+	if area.is_in_group("Table") and carried_object!= null and carried_object.ingredient1 != null and carried_object.ingredient1.global_type == "eyeball_on_toast":
+		can_serve = true
+
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -158,4 +166,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 #longer interact with it.
 		if area.get_parent().is_in_group("Interactible") and carried_object == null:
 			carriable_object = null
+			
+		if area.is_in_group("Table"):
+			can_serve = false
 #endregion
