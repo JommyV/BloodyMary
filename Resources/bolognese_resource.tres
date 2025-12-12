@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="dish" load_steps=2 format=3 uid="uid://dmnkk6ojrevou"]
+
+[ext_resource type="Script" uid="uid://sb07313c2goo" path="res://Scripts/dish_resource.gd" id="1_1wpkc"]
+
+[resource]
+script = ExtResource("1_1wpkc")
+dish_name = "Brain Bolognese"
+price = 10
+ingredient_1 = 1
+ingredient_2 = 2
+ingredient_3 = 5
+global_type = "brain_bolognese"
+metadata/_custom_type_script = "uid://sb07313c2goo"

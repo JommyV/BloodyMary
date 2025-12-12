@@ -19,7 +19,6 @@ foods = Array[Resource]([ExtResource("2_u85by"), ExtResource("3_of0nh"), ExtReso
 unique_name_in_owner = true
 z_index = 100
 position = Vector2(1.1920929e-07, 1.1920929e-07)
-rotation = -1.5707964
 scale = Vector2(0.008888889, 0.008888889)
 texture = ExtResource("5_u85by")
 

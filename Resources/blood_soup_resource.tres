@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="dish" load_steps=2 format=3 uid="uid://2hf1up21qduo"]
+
+[ext_resource type="Script" uid="uid://sb07313c2goo" path="res://Scripts/dish_resource.gd" id="1_1vcu6"]
+
+[resource]
+script = ExtResource("1_1vcu6")
+dish_name = "Blood Soup"
+price = 10
+ingredient_1 = 3
+ingredient_2 = 3
+ingredient_3 = 3
+global_type = "cooked_blood"
+metadata/_custom_type_script = "uid://sb07313c2goo"

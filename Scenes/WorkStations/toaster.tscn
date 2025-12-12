@@ -10,13 +10,17 @@ scale = Vector2(0.2, 0.2)
 script = ExtResource("2_qtmht")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(4.1723247e-06, -2.4999974)
+scale = Vector2(0.9999994, 0.9999994)
 
 [node name="Sprite2D" parent="." index="1"]
 z_index = 2
 scale = Vector2(0.075, 0.0703125)
 texture = ExtResource("3_ysj5s")
+flip_h = true
 
 [node name="Timer" parent="." index="2"]
 wait_time = 4.0
 one_shot = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="5"]

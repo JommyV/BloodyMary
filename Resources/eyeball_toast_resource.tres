@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="dish" load_steps=2 format=3 uid="uid://cyp6y54c0b3u7"]
+
+[ext_resource type="Script" uid="uid://sb07313c2goo" path="res://Scripts/dish_resource.gd" id="1_sd16o"]
+
+[resource]
+script = ExtResource("1_sd16o")
+dish_name = "EyeBall Toast"
+price = 10
+ingredient_2 = 4
+ingredient_3 = 5
+global_type = "eyeball_on_toast"
+metadata/_custom_type_script = "uid://sb07313c2goo"

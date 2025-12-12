@@ -30,6 +30,7 @@ var can_serve: bool = false
 @onready var exit_timer: Timer = $Timer
 
 var served: bool = false
+var client: Node2D
 
 
 func _ready() -> void:
@@ -53,10 +54,15 @@ func _process(_delta: float) -> void:
 		interactible_station.interact()
 		
 	if Input.is_action_just_pressed("interact") and can_serve and carried_object:
-		get_tree().call_group("Client", "start_eating")
+		#get_tree().call_group("Client", "start_eating")
+		client.start_eating()
 		carried_object.kill_food()
 		release()
 	#print(can_serve)
+	if Input.is_action_just_pressed("night"):
+		get_tree().change_scene_to_file("uid://bpbcg217lm1nl")
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:
@@ -90,7 +96,7 @@ func _physics_process(delta: float) -> void:
 		carried_object.global_position = carry_position.global_position
 		#carried_object.set_collision_layer_value(1,false)
 		#carried_object.freeze = true
-		carried_object.rotation = area_2d.rotation
+		#carried_object.rotation = area_2d.rotation
 
 #region Grabbing:
 #Function made for releasing the object when player presses the release button,
@@ -128,7 +134,8 @@ func pick_up() -> void:
 		carried_object = carriable_object #Sets which object is being carried.
 		carried_object.carriable = true #Allows the object to be carriable.
 
-	if carried_object != null and carried_object.global_type == "plate" and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
+	if carried_object != null and carried_object.global_type == "plate" \
+	and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
 		print(carried_object.can_pick_food)
 		
 #endregion
@@ -150,8 +157,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		carriable_object = area.get_parent()
 		can_serve = false
 
-	if area.is_in_group("Table") and carried_object!= null and carried_object.ingredient1 != null and carried_object.ingredient1.global_type == "eyeball_on_toast":
-		can_serve = true
+	if area.is_in_group("Table") and carried_object!= null and carried_object.ingredient1 != null:
+		client = area.get_parent()
+		if carried_object.ingredient1.global_type == client.dish_to_order.global_type:
+			can_serve = true
 
 
 

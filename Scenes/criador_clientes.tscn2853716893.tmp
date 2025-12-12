@@ -1,17 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://k5kpgipbrc7c"]
+[gd_scene load_steps=3 format=3 uid="uid://k5kpgipbrc7c"]
 
 [ext_resource type="Script" uid="uid://bc4j4eptmwc0v" path="res://Scripts/criador_clientes.gd" id="1_vt376"]
 [ext_resource type="PackedScene" uid="uid://ce1yiwaoaf5a4" path="res://Scenes/client.tscn" id="2_5tae2"]
-[ext_resource type="Resource" uid="uid://2hf1up21qduo" path="res://Resources/blood_soup_resource.tres" id="3_ttfka"]
-[ext_resource type="Resource" uid="uid://dmnkk6ojrevou" path="res://Resources/bolognese_resource.tres" id="4_15i7y"]
-[ext_resource type="Resource" uid="uid://cyp6y54c0b3u7" path="res://Resources/eyeball_toast_resource.tres" id="5_7e0h4"]
 
 [node name="CriadorClientes" type="Node2D"]
 script = ExtResource("1_vt376")
 client_list = ExtResource("2_5tae2")
-dish1 = ExtResource("4_15i7y")
-dish2 = ExtResource("3_ttfka")
-dish3 = ExtResource("5_7e0h4")
+sat_tables = null
 
 [node name="SpawnerTimer" type="Timer" parent="."]
 unique_name_in_owner = true

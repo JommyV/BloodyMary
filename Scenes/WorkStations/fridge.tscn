@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_7h7ne"]
 [ext_resource type="Script" uid="uid://dfcktmj3ufltf" path="res://Scripts/fridge.gd" id="2_lvk2a"]
-[ext_resource type="Texture2D" uid="uid://df3m4o17ymgy5" path="res://Assets/Sprites/fridge.png" id="3_3lqic"]
 [ext_resource type="Resource" uid="uid://dgce1w6roup1j" path="res://Resources/eyeball.tres" id="3_ewk8l"]
+[ext_resource type="Texture2D" uid="uid://cqdke4bj8v5x7" path="res://Assets/Sprites/frigo.png" id="4_ewk8l"]
 
 [node name="Fridge" instance=ExtResource("1_7h7ne")]
 scale = Vector2(0.2, 0.2)
@@ -12,5 +12,5 @@ cookable_food = ExtResource("3_ewk8l")
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(4.2021275e-06, 0)
-scale = Vector2(0.025600001, 0.024799995)
-texture = ExtResource("3_3lqic")
+scale = Vector2(0.052, 0.05)
+texture = ExtResource("4_ewk8l")

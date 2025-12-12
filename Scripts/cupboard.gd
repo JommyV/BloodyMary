@@ -2,6 +2,11 @@ extends "res://Scripts/work_stations.gd"
 
 
 func interact() -> void:
+
+
+
+
+	station_hud.hide()
 	var item = plate.instantiate()
 	add_child(item)
 	item.sprite_2d.scale.x = 0.007

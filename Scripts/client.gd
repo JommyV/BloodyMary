@@ -12,7 +12,7 @@ var should_move: bool = false
 @onready var start_timer: Timer = %Start_timer
 var table_position: Vector2
 @onready var order_sprite: Sprite2D = %OrderSprite
-var order = preload("uid://bfesx1lken8py")
+var order
 var ordered: bool = false
 var should_leave: bool = false
 @onready var area_2d: Area2D = %Area2D
@@ -21,19 +21,24 @@ var can_eat: bool = false
 var player
 var plate
 var should_react:bool = false
+var table_number
+var client_spawner
+var dish_to_order
 
 func _ready() -> void:
 	intermediates = get_tree().get_nodes_in_group("Intermediate")
 	tables = get_tree().get_nodes_in_group("Table")
 	#print(tables)
 	#target_position_1 = intermediates[0].global_position - global_position
-	print(target_position_1)
+	#print(target_position_1)
 	#target_position_2 = tables[0].global_position - global_position
 	area_2d.hide()
 	area_2d.monitoring = false
 	order_sprite.hide()
 	plate_area.hide()
 	plate_area.monitoring = false
+	print("client is " + str(table_number))
+	select_dish()
 
 
 func spawn(spawn_pos:Vector2, pos_1:Vector2, pos_2:Vector2) -> void:
@@ -41,7 +46,7 @@ func spawn(spawn_pos:Vector2, pos_1:Vector2, pos_2:Vector2) -> void:
 	target_position_1 = pos_1 - global_position
 	#target_position_2 = pos_2
 	table_position = pos_2
-	
+
 
 func _physics_process(_delta: float) -> void:
 	if should_move == true and sat == false:
@@ -58,12 +63,12 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 	#if plate != null and !plate.carriable:
 		#can_eat = true
-	if plate!= null:
-		print(plate.get_parent().global_type)
+	#if plate!= null:
+		#print(plate.get_parent().global_type)
 	#print(tables[0].global_position - global_position)
 	#print(position.distance_to(target_position_1))
 	#print(linear_velocity)
-	
+
 
 func go_to_table() -> void:
 	target_position_2 = table_position - global_position
@@ -75,7 +80,7 @@ func go_to_table() -> void:
 		@warning_ignore("integer_division")
 		move_and_collide(target_position_2 / (delay/2))
 		#print("aaaaa")
-		print(global_position.distance_to(table_position))
+		#print(global_position.distance_to(table_position))
 	elif arrived:
 		#await get_tree().create_timer(2).timeout
 		#print("weeee")
@@ -89,6 +94,8 @@ func go_to_table() -> void:
 
 func leave() -> void:
 		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
+		client_spawner.sat_tables[table_number] = false
+		print(table_number)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -104,9 +111,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_plate_area_area_entered(area: Area2D) -> void:
-	print("food is: " + area.get_parent().name)
-	if area.get_parent() is Carriable and area.get_parent().global_type == "eyeball_on_toast":
-		print("food is: " + area.get_parent().global_type)
+	#print("food is: " + area.get_parent().name)
+	if area.get_parent() is Carriable and area.get_parent().global_type == dish_to_order.global_type:
+		#print("food is: " + area.get_parent().global_type)
 		plate = area
 		should_react = true
 		#player = area.get_parent()
@@ -116,6 +123,7 @@ func _on_plate_area_area_entered(area: Area2D) -> void:
 		#should_leave = true
 		#move_and_collide(global_position / (delay/2))
 
+
 func _on_start_timer_timeout() -> void:
 	should_move = true
 
@@ -123,3 +131,13 @@ func _on_start_timer_timeout() -> void:
 func start_eating() -> void:
 	if should_react:
 		can_eat = true
+
+
+func select_dish() -> void:
+	match dish_to_order.dish_name:
+		"Blood Soup":
+			order = preload("uid://dnod7t1s65e77")
+		"Brain Bolognese":
+			order = preload("uid://dub0ru24114re")
+		"EyeBall Toast" :
+			order = preload("uid://bfesx1lken8py")

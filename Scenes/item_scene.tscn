@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0b3nqm0al5ri"]
+
+[ext_resource type="Script" uid="uid://c4vvibfk64d8l" path="res://Scripts/item_scene.gd" id="1_6576h"]
+
+[node name="Item_scene_eyeball" type="Node2D"]
+script = ExtResource("1_6576h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 2

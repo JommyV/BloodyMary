@@ -11,13 +11,18 @@ var working: bool = false
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var timer: Timer = %Timer
 @export var cookable_food: Resource
+@onready var station_hud: CanvasLayer = %StationHud
 
 
 func interact() -> void:
 	pass
 
+
 func _ready() -> void:
 	progress_bar.hide()
+	station_hud.hide()
+	station_hud.slot_1.cook_food.connect(create_food.bind())
+	station_hud.slot_2.cook_food.connect(create_food.bind())
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -37,3 +42,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent() is Carriable and !area.get_parent().is_in_group("Plate")\
 	and !working: 
 		object = null
+
+func create_food(_type: String) -> void:
+	pass
