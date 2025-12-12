@@ -60,7 +60,6 @@ func _on_spawner_timer_timeout() -> void:
 					client.table_number = b
 					client.client_spawner = self
 					client.dish_to_order = DayManager.menu[b]
-					DayManager.menu.remove_at(b)
 					print(DayManager.menu)
 					add_child(client)
 					client.spawn(global_position, tables[b].get_child(0).global_position,tables[b].global_position)

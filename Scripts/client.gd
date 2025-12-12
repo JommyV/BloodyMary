@@ -61,13 +61,7 @@ func _physics_process(_delta: float) -> void:
 
 	if position.distance_to(target_position_1)>1000:
 		queue_free()
-	#if plate != null and !plate.carriable:
-		#can_eat = true
-	#if plate!= null:
-		#print(plate.get_parent().global_type)
-	#print(tables[0].global_position - global_position)
-	#print(position.distance_to(target_position_1))
-	#print(linear_velocity)
+
 
 
 func go_to_table() -> void:
@@ -79,11 +73,9 @@ func go_to_table() -> void:
 	if arrived and global_position.distance_to(table_position)>1:
 		@warning_ignore("integer_division")
 		move_and_collide(target_position_2 / (delay/2))
-		#print("aaaaa")
-		#print(global_position.distance_to(table_position))
+
 	elif arrived:
-		#await get_tree().create_timer(2).timeout
-		#print("weeee")
+
 		order_sprite.show()
 		sat = true
 		area_2d.show()

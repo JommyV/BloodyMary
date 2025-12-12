@@ -19,8 +19,10 @@ func interact() -> void:
 
 
 func _ready() -> void:
+#Hides elements at game start.
 	progress_bar.hide()
 	station_hud.hide()
+#Adds the hud for picking food at stations 
 	station_hud.slot_1.cook_food.connect(create_food.bind())
 	station_hud.slot_2.cook_food.connect(create_food.bind())
 
