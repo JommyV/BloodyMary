@@ -63,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 		should_leave = true
 
 	if position.distance_to(target_position_1)>1000:
+		client_spawner.sat_tables[table_number] = false
 		queue_free()
 
 
@@ -89,7 +90,6 @@ func go_to_table() -> void:
 
 func leave() -> void:
 		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
-		client_spawner.sat_tables[table_number] = false
 		if hud:
 			hud.client_left = true
 		if hud and hud.client_left == true: 
@@ -100,7 +100,6 @@ func leave() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	#print(area.get_parent().name)
 	if area.get_parent() is Player and not ordered and arrived and sat:
 		order_sprite.texture = order
 		should_move = false
@@ -132,8 +131,15 @@ func _on_start_timer_timeout() -> void:
 
 func start_eating() -> void:
 	if should_react:
+		if wait.time_left > wait.wait_time/2:
+			GlobalData.popularity +=0.15
+			print("full pop")
+		else:
+			GlobalData.popularity += 0.1
+			print("half pop")
 		can_eat = true
 		eat_time.start()
+		wait.stop()
 
 
 func select_dish() -> void:

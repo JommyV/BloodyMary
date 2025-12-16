@@ -19,8 +19,8 @@ func _ready():
 	Reset.disabled = true
 	PointerAngle = 360.0 / DayManager.calculate_client_number(GlobalData.popularity)
 	number_of_clients = DayManager.calculate_client_number(GlobalData.popularity)
-	print("angle is " + str(PointerAngle))
-	print("popularity is " + str(DayManager.calculate_client_number(GlobalData.popularity)))
+	#print("angle is " + str(PointerAngle))
+	#print("popularity is " + str(DayManager.calculate_client_number(GlobalData.popularity)))
 
 func _on_commit_client_pressed() -> void:
 	Plus1.disabled = true
@@ -69,4 +69,4 @@ func _on_res_pressed() -> void:
 func on_client_out() -> void: 
 	if client_left:
 		Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle
-		print(number_of_clients)
+		#print(number_of_clients)

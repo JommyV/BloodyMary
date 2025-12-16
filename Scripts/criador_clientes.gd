@@ -22,7 +22,7 @@ var daily_clients
 func _ready() -> void:
 #Sets the daily clients that will come to the restaurant.
 	daily_clients = DayManager.calculate_client_number(1)
-	print(daily_clients)
+	#print(daily_clients)
 	DayManager.create_menu(dish1, dish2,dish3)
 
 
@@ -60,7 +60,7 @@ func _on_spawner_timer_timeout() -> void:
 					client.table_number = b
 					client.client_spawner = self
 					client.dish_to_order = DayManager.menu[b]
-					print(DayManager.menu)
+					#print(DayManager.menu)
 					add_child(client)
 					client.spawn(global_position, tables[b].get_child(0).global_position,tables[b].global_position)
 					#print(tables[0].get_child(0).global_position)

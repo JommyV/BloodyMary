@@ -1,16 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://bly3r3sj0wxsp"]
+[gd_scene load_steps=6 format=3 uid="uid://bly3r3sj0wxsp"]
 
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_7h7ne"]
 [ext_resource type="Script" uid="uid://dfcktmj3ufltf" path="res://Scripts/fridge.gd" id="2_lvk2a"]
 [ext_resource type="Resource" uid="uid://dgce1w6roup1j" path="res://Resources/eyeball.tres" id="3_ewk8l"]
 [ext_resource type="Texture2D" uid="uid://cqdke4bj8v5x7" path="res://Assets/Sprites/frigo.png" id="4_ewk8l"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewk8l"]
+size = Vector2(15.000021, 31.25006)
+
 [node name="Fridge" instance=ExtResource("1_7h7ne")]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_lvk2a")
 cookable_food = ExtResource("3_ewk8l")
 
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 8.499998)
+scale = Vector2(0.99999994, 0.99999994)
+
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(4.2021275e-06, 0)
 scale = Vector2(0.052, 0.05)
 texture = ExtResource("4_ewk8l")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="5"]
+disable_mode = 1
+collision_layer = 128
+collision_mask = 128
+mass = 1000.0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
+position = Vector2(0, -9.374999)
+scale = Vector2(0.999998, 0.999998)
+shape = SubResource("RectangleShape2D_ewk8l")

@@ -54,7 +54,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
 		interactible_station.interact()
 		
-	if Input.is_action_just_pressed("interact") and can_serve and carried_object:
+	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
 		#get_tree().call_group("Client", "start_eating")
 		client.start_eating()
 		carried_object.kill_food()
@@ -70,18 +70,23 @@ func _physics_process(delta: float) -> void:
 	var local_velocity = Vector2.ZERO
 	#check created to lock player out of movement if necessary for certain tasks.
 	if can_walk:
+		animated_sprite_2d.pause()
 		if Input.is_action_pressed("move_right"):
 			local_velocity.x += 1
-			animated_sprite_2d.set_animation("right")
+			animated_sprite_2d.play("right")
+			animated_sprite_2d.flip_h = false
 		if Input.is_action_pressed("move_left"):
 			local_velocity.x -= 1
-			animated_sprite_2d.set_animation("left")
+			if local_velocity.y ==0:
+				animated_sprite_2d.play("left")
+				animated_sprite_2d.flip_h = true
+				
 		if Input.is_action_pressed("move_down"):
 			local_velocity.y += 1
-			animated_sprite_2d.set_animation("front")
+			animated_sprite_2d.play("front")
 		if Input.is_action_pressed("move_up"):
 			local_velocity.y -= 1
-			animated_sprite_2d.set_animation("back")
+			animated_sprite_2d.play("back")
 			
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed
@@ -103,6 +108,8 @@ func _physics_process(delta: float) -> void:
 #Function made for releasing the object when player presses the release button,
 #separated from pick function to be called externally when necessary.
 func release() -> void:
+	if !carried_object:
+		return
 	pickedup = false
 #Sets the object to not be carried 
 	carried_object.drop()
@@ -158,7 +165,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		carriable_object = area.get_parent()
 		can_serve = false
 
-	if area.is_in_group("Table") and carried_object!= null and carried_object.ingredient1 != null:
+	if area.is_in_group("Table") and carried_object!= null and carried_object.global_type == "plate" and carried_object.ingredient1 != null:
 		client = area.get_parent()
 		if carried_object.ingredient1.global_type == client.dish_to_order.global_type:
 			can_serve = true

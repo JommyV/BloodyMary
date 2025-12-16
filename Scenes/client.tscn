@@ -43,7 +43,7 @@ autostart = true
 
 [node name="Wait" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true

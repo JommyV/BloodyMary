@@ -49,5 +49,5 @@ static func create_menu(_brain, soup, toast) -> Array:
 				dish_in_menu = soup
 			
 		menu.append(dish_in_menu)
-		print(menu[i].dish_name)
+		#print(menu[i].dish_name)
 	return menu

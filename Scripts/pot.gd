@@ -24,26 +24,6 @@ func interact() -> void:
 		
 	if bags_added == 3:
 		prepare_food();
-		#working = true
-		#timer.start()
-		#progress_bar.value = timer.time_left
-		#progress_bar.show()
-		#object.global_type = "cooked_blood"
-		#object.carriable = false
-		#area_2d.monitorable = false
-		#object.hide()
-		#
-		#await timer.timeout
-		#
-		#area_2d.monitorable = true
-		#progress_bar.hide()
-		#object.cook()
-		#working = false
-		#object.carriable = true
-		#object.cooked = true
-		#area_2d.monitorable = true
-		#bags_added = 0
-		#object.show()
 
 
 func _process(_delta: float) -> void:

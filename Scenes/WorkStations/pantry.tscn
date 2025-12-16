@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://duc4oycr6suo5" path="res://Assets/Sprites/prateleira.png" id="4_2yx50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yx50"]
-size = Vector2(50.000015, 145)
+size = Vector2(15.000021, 27.50005)
 
 [node name="Pantry" instance=ExtResource("1_ifwt2")]
 scale = Vector2(0.2, 0.2)
@@ -14,14 +14,21 @@ script = ExtResource("2_viask")
 cookable_food = ExtResource("3_2yx50")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, 12.499989)
-scale = Vector2(0.9999998, 0.9999998)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1"]
-position = Vector2(3.2782475e-07, 12.499984)
-scale = Vector2(0.9999995, 0.9999995)
-shape = SubResource("RectangleShape2D_2yx50")
+position = Vector2(0, 20.499998)
+scale = Vector2(0.99999976, 0.99999976)
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.06666667, 0.049999993)
 texture = ExtResource("4_2yx50")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="5"]
+disable_mode = 1
+collision_layer = 128
+collision_mask = 128
+mass = 1000.0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
+position = Vector2(0, -8.749999)
+scale = Vector2(0.99999803, 0.99999803)
+shape = SubResource("RectangleShape2D_2yx50")
