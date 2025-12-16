@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bphq6sapxuhpf" path="res://Scenes/UI/hud.gd" id="1_ny26j"]
 [ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="2_fdl0h"]
 
-[node name="hud" type="Node"]
+[node name="hud" type="Node" groups=["HUD"]]
 script = ExtResource("1_ny26j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -38,6 +38,7 @@ grow_vertical = 2
 text = "Night 1"
 
 [node name="Pointer" type="TextureRect" parent="CanvasLayer/Clock"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 37.0
 offset_top = -41.0
@@ -49,6 +50,7 @@ texture = ExtResource("2_fdl0h")
 expand_mode = 1
 
 [node name="DebugInput" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 388.0

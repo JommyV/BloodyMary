@@ -36,7 +36,7 @@ static func calculate_client_number(popularity: int) -> int:
 			return 0
 
 
-static func create_menu(brain, soup, toast) -> Array:
+static func create_menu(_brain, soup, toast) -> Array:
 	for i in range(calculate_client_number(1)):  
 		var r = randi_range(1,12)
 		var dish_in_menu

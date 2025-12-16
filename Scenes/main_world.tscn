@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://4cjx8hdfvtvd"]
+[gd_scene load_steps=17 format=4 uid="uid://4cjx8hdfvtvd"]
 
 [ext_resource type="Script" uid="uid://bcvdjg4xt00hs" path="res://Scripts/main_world.gd" id="1_4wdbe"]
 [ext_resource type="TileSet" uid="uid://btivwkas7wm6b" path="res://Assets/TileSprites/spritetiles.tres" id="2_42jam"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b0xdv1u27x2ew" path="res://Scenes/WorkStations/pantry.tscn" id="11_kyray"]
 [ext_resource type="PackedScene" uid="uid://bly3r3sj0wxsp" path="res://Scenes/WorkStations/fridge.tscn" id="12_l2j04"]
 [ext_resource type="PackedScene" uid="uid://ojfn8y64ayrs" path="res://Scenes/day_manager.tscn" id="13_26rrv"]
+[ext_resource type="PackedScene" uid="uid://dcwrqy3812xdr" path="res://Scenes/UI/HUD.tscn" id="14_6f08l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tp12"]
 texture = ExtResource("5_uq1df")
@@ -488,3 +489,5 @@ position = Vector2(73, 118)
 position = Vector2(88, 118)
 
 [node name="Node" parent="." instance=ExtResource("13_26rrv")]
+
+[node name="hud" parent="." instance=ExtResource("14_6f08l")]

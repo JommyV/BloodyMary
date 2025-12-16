@@ -33,8 +33,9 @@ var served: bool = false
 var client: Node2D
 
 
+
+
 func _ready() -> void:
-	#screen_size = get_viewport_rect()
 	pass
 
 

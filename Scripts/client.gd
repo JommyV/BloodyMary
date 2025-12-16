@@ -24,14 +24,17 @@ var should_react:bool = false
 var table_number
 var client_spawner
 var dish_to_order
+@onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
+@onready var eat_time: Timer = %Eat_time
+var hud
+@onready var wait: Timer = %Wait
+
+
 
 func _ready() -> void:
+	hud = get_tree().get_first_node_in_group("HUD")
 	intermediates = get_tree().get_nodes_in_group("Intermediate")
 	tables = get_tree().get_nodes_in_group("Table")
-	#print(tables)
-	#target_position_1 = intermediates[0].global_position - global_position
-	#print(target_position_1)
-	#target_position_2 = tables[0].global_position - global_position
 	area_2d.hide()
 	area_2d.monitoring = false
 	order_sprite.hide()
@@ -54,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 	if should_leave:
 		leave()
 	if can_eat:
-		#print("nham nham nham")
+		texture_progress_bar.value = eat_time.time_left*33
 		await get_tree().create_timer(3).timeout
 		should_react = false
 		should_leave = true
@@ -75,7 +78,7 @@ func go_to_table() -> void:
 		move_and_collide(target_position_2 / (delay/2))
 
 	elif arrived:
-
+		await get_tree().create_timer(4).timeout
 		order_sprite.show()
 		sat = true
 		area_2d.show()
@@ -87,6 +90,12 @@ func go_to_table() -> void:
 func leave() -> void:
 		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
 		client_spawner.sat_tables[table_number] = false
+		if hud:
+			hud.client_left = true
+		if hud and hud.client_left == true: 
+			hud.on_client_out()
+			hud.client_left = false
+			hud = null
 		print(table_number)
 
 
@@ -100,6 +109,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		plate_area.show()
 		ordered = true
 		player = area.get_parent()
+		wait.start()
 
 
 func _on_plate_area_area_entered(area: Area2D) -> void:
@@ -123,6 +133,7 @@ func _on_start_timer_timeout() -> void:
 func start_eating() -> void:
 	if should_react:
 		can_eat = true
+		eat_time.start()
 
 
 func select_dish() -> void:
@@ -133,3 +144,7 @@ func select_dish() -> void:
 			order = preload("uid://dub0ru24114re")
 		"EyeBall Toast" :
 			order = preload("uid://bfesx1lken8py")
+
+
+func _on_wait_timeout() -> void:
+	should_leave = true

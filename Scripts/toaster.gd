@@ -9,11 +9,13 @@ func interact() -> void:
 		progress_bar.show()
 		object.global_type = "toast"
 		object.carriable = false
+		object.hide()
 		player.release()
 		
 		await timer.timeout
 		
 		progress_bar.hide()
+		object.show()
 		object.cook()
 		working = false
 		object.carriable = true

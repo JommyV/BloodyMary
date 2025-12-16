@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce1yiwaoaf5a4"]
+[gd_scene load_steps=8 format=3 uid="uid://ce1yiwaoaf5a4"]
 
 [ext_resource type="Texture2D" uid="uid://b7f5p3vi7oahg" path="res://Assets/Sprites/6009864.png" id="1_lgb4g"]
 [ext_resource type="Script" uid="uid://hnlip3ohujgg" path="res://Scripts/client.gd" id="1_o4a6k"]
 [ext_resource type="Texture2D" uid="uid://dkcyyw0vfqx4n" path="res://Assets/Sprites/bubble-emoji-thought-balloon-symbol-thinking-man.jpg" id="3_v1moc"]
+[ext_resource type="Texture2D" uid="uid://dchtjqv714273" path="res://Assets/Sprites/pngimg.com - circle_PNG4.png" id="4_wuhft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsqxe"]
 
@@ -35,9 +36,14 @@ texture = ExtResource("3_v1moc")
 unique_name_in_owner = true
 autostart = true
 
-[node name="Start_timer2" type="Timer" parent="."]
+[node name="Eat_time" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 3.0
 autostart = true
+
+[node name="Wait" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -54,9 +60,30 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plate_area"]
 shape = SubResource("RectangleShape2D_v1moc")
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -25.0
+offset_right = 8.0
+offset_bottom = -9.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("4_wuhft")
+
 [connection signal="timeout" from="Start_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]
-[connection signal="timeout" from="Start_timer2" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Eat_time" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Plate_area" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Plate_area" to="." method="_on_plate_area_area_entered"]

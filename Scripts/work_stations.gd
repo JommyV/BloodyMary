@@ -29,6 +29,8 @@ func _ready() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#Determines if the player can access the workstation.
+	if working:
+		return
 	if area.get_parent() is Player:
 		interactible = true
 		player = area.get_parent()
@@ -38,6 +40,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
+	if working: 
+		return
 	if area.get_parent() is Player:
 			interactible = false
 			player = null

@@ -1,4 +1,5 @@
 extends Node
+class_name HUD
 
 var ClientCount : int
 var PointerAngle : float
@@ -10,10 +11,16 @@ var PointerAngle : float
 @onready var Pointer = $CanvasLayer/Clock/Pointer
 @onready var ClientOut = $CanvasLayer/DebugInput/ClientOut
 @onready var Reset = $CanvasLayer/DebugInput/Res
+var client_left: bool = false
+var number_of_clients: int
 
 func _ready():
 	ClientOut.disabled = true
 	Reset.disabled = true
+	PointerAngle = 360.0 / DayManager.calculate_client_number(GlobalData.popularity)
+	number_of_clients = DayManager.calculate_client_number(GlobalData.popularity)
+	print("angle is " + str(PointerAngle))
+	print("popularity is " + str(DayManager.calculate_client_number(GlobalData.popularity)))
 
 func _on_commit_client_pressed() -> void:
 	Plus1.disabled = true
@@ -22,7 +29,7 @@ func _on_commit_client_pressed() -> void:
 	Minus5.disabled = true
 	Reset.disabled = false
 	ClientOut.disabled = false
-	PointerAngle = 360.0 / ClientCount
+	
 
 func _on_client_out_pressed() -> void:
 	Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle
@@ -57,3 +64,9 @@ func _on_res_pressed() -> void:
 	ClientCount = 0
 	ClientDisplay.text = ("Client Amount: " + str(ClientCount))
 	Pointer.rotation_degrees = 0.0
+
+
+func on_client_out() -> void: 
+	if client_left:
+		Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle
+		print(number_of_clients)

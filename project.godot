@@ -33,7 +33,8 @@ config/icon="res://Assets/Sprites/icon.svg"
 grid_snapping="*res://Scripts/grid_snapping.gd"
 InventoryManager="*res://Scenes/UI/inventory_manager.gd"
 client_manager="*res://Scripts/client_manager.gd"
-data_distribution="*res://Scripts/day_manager.gd"
+day_manager="*res://Scripts/day_manager.gd"
+global_data_manager="*res://Scripts/global_data_manager.gd"
 
 [display]
 
@@ -50,6 +51,7 @@ WorkStation=""
 Plate=""
 Table=""
 Client=""
+HUD=""
 
 [input]
 
