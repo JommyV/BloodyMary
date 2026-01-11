@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="food_type" load_steps=3 format=3 uid="uid://d2poiinfaw71r"]
 
-[ext_resource type="Texture2D" uid="uid://ds0sqyxkw86f6" path="res://Assets/Sprites/pngwing.com.png" id="1_dh1ua"]
+[ext_resource type="Texture2D" uid="uid://doigl31aeyl2q" path="res://Assets/Sprites/platestack1.png" id="1_dh1ua"]
 [ext_resource type="Script" uid="uid://daolviydeuiaj" path="res://Scripts/food_type.gd" id="2_n1p8d"]
 
 [resource]

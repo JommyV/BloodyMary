@@ -13,6 +13,7 @@ var PointerAngle : float
 @onready var Reset = $CanvasLayer/DebugInput/Res
 var client_left: bool = false
 var number_of_clients: int
+static var night
 
 func _ready():
 	ClientOut.disabled = true

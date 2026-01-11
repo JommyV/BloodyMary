@@ -8,7 +8,6 @@ size = Vector2(52, 89.00002)
 
 [node name="WorkStations" type="Node2D"]
 script = ExtResource("1_aolcr")
-station_hud = ExtResource("2_3vljb")
 
 [node name="Area2D" type="Area2D" parent="." groups=["WorkStation"]]
 collision_layer = 3
@@ -29,6 +28,9 @@ offset_left = -32.0
 offset_top = -64.0
 offset_right = 32.0
 offset_bottom = -37.0
+
+[node name="StationHud" parent="." instance=ExtResource("2_3vljb")]
+unique_name_in_owner = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

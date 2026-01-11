@@ -309,7 +309,7 @@ text = "2 Eyeball Pack"
 layout_mode = 0
 offset_left = -438.0
 offset_top = 6.0
-offset_right = -396.0
+offset_right = -383.0
 offset_bottom = 29.0
 text = "1 Brain"
 
@@ -337,6 +337,14 @@ offset_right = 490.0
 offset_bottom = 284.0
 text = "Purchase"
 
+[node name="nextday" type="Button" parent="shop/shopping_catalogue"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 302.0
+offset_right = 490.0
+offset_bottom = 366.0
+text = "Next Day"
+
 [node name="total" type="Label" parent="shop/shopping_catalogue"]
 layout_mode = 0
 offset_left = 385.0
@@ -359,3 +367,4 @@ anchors_preset = 0
 [connection signal="pressed" from="shop/shopping_catalogue/buttons/spaghetti_plus" to="." method="_on_spaghetti_plus_pressed"]
 [connection signal="pressed" from="shop/shopping_catalogue/buttons/spaghetti_minus" to="." method="_on_spaghetti_minus_pressed"]
 [connection signal="pressed" from="shop/shopping_catalogue/purchase" to="." method="_on_purchase_pressed"]
+[connection signal="pressed" from="shop/shopping_catalogue/nextday" to="." method="_on_nextday_pressed"]

@@ -40,7 +40,8 @@ func _ready() -> void:
 	order_sprite.hide()
 	plate_area.hide()
 	plate_area.monitoring = false
-	print("client is " + str(table_number))
+	#print("client is " + str(table_number))
+	print(GlobalData.daily_clients)
 	select_dish()
 
 
@@ -62,9 +63,12 @@ func _physics_process(_delta: float) -> void:
 		should_react = false
 		should_leave = true
 
-	if position.distance_to(target_position_1)>1000:
+	if position.distance_to(target_position_1)>300:
 		client_spawner.sat_tables[table_number] = false
+		print("number of clients is" + str(GlobalData.daily_clients))
+		GlobalData.daily_clients -= 1
 		queue_free()
+		return
 
 
 
@@ -96,7 +100,8 @@ func leave() -> void:
 			hud.on_client_out()
 			hud.client_left = false
 			hud = null
-		print(table_number)
+		#print(table_number)
+
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -133,10 +138,10 @@ func start_eating() -> void:
 	if should_react:
 		if wait.time_left > wait.wait_time/2:
 			GlobalData.popularity +=0.15
-			print("full pop")
+			#print("full pop")
 		else:
 			GlobalData.popularity += 0.1
-			print("half pop")
+			#print("half pop")
 		can_eat = true
 		eat_time.start()
 		wait.stop()

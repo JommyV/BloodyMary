@@ -193,3 +193,9 @@ func _on_purchase_pressed() -> void:
 			temp_spaghetti = child.item_quantity
 
 #endregion
+
+
+func _on_nextday_pressed() -> void:
+	
+	get_tree().change_scene_to_file("res://Scenes/main_world.tscn")
+	

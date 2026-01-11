@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp6w7obgfyk3p"]
+[gd_scene load_steps=8 format=3 uid="uid://dp6w7obgfyk3p"]
 
 [ext_resource type="Script" uid="uid://qr0ugl63kcai" path="res://Scripts/item_slot.gd" id="1_dvb3c"]
 [ext_resource type="Script" uid="uid://d0tn547c0r84i" path="res://Scripts/station_hud.gd" id="1_jee7q"]
 [ext_resource type="Script" uid="uid://cbbiyc8ultpsq" path="res://Scripts/slot_2.gd" id="3_3lu4g"]
-[ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="4_e7xh8"]
+[ext_resource type="Texture2D" uid="uid://f6ntaut3iq2x" path="res://Assets/Sprites/eyeball_new.png" id="3_oxd7e"]
+[ext_resource type="Texture2D" uid="uid://bm47tblkuvdnw" path="res://Assets/Sprites/blood_bag.png" id="4_e7xh8"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wb6b0"]
 specular_color = Color(0.7368138, 0.00043914496, 0.74230754, 1)
@@ -67,6 +68,7 @@ offset_right = 2.079956
 offset_bottom = -0.11199951
 grow_horizontal = 2
 grow_vertical = 2
+icon = ExtResource("3_oxd7e")
 expand_icon = true
 
 [node name="Label" type="Label" parent="GridContainer/Slot1"]

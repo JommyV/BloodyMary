@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://4cjx8hdfvtvd"]
+[gd_scene load_steps=16 format=4 uid="uid://4cjx8hdfvtvd"]
 
 [ext_resource type="Script" uid="uid://bcvdjg4xt00hs" path="res://Scripts/main_world.gd" id="1_4wdbe"]
 [ext_resource type="TileSet" uid="uid://btivwkas7wm6b" path="res://Assets/TileSprites/spritetiles.tres" id="2_42jam"]
@@ -8,7 +8,6 @@
 [ext_resource type="TileSet" uid="uid://cqx1mklrreo4j" path="res://Scenes/maintilemap.tres" id="4_lefxv"]
 [ext_resource type="Texture2D" uid="uid://d0bupbr50b7k6" path="res://Assets/Sprites/transferir.png" id="5_uq1df"]
 [ext_resource type="PackedScene" uid="uid://k5kpgipbrc7c" path="res://Scenes/criador_clientes.tscn" id="6_1tp12"]
-[ext_resource type="PackedScene" uid="uid://bobi26y34g5jt" path="res://Scenes/WorkStations/table.tscn" id="9_lyqml"]
 [ext_resource type="PackedScene" uid="uid://c2t7yj7lhee75" path="res://Scenes/WorkStations/pot.tscn" id="10_oxewe"]
 [ext_resource type="PackedScene" uid="uid://b0xdv1u27x2ew" path="res://Scenes/WorkStations/pantry.tscn" id="11_kyray"]
 [ext_resource type="PackedScene" uid="uid://bly3r3sj0wxsp" path="res://Scenes/WorkStations/fridge.tscn" id="12_l2j04"]
@@ -351,7 +350,7 @@ script = ExtResource("1_4wdbe")
 [node name="TilesFloor" type="TileMapLayer" parent="."]
 z_index = 10
 position = Vector2(0, -1)
-tile_map_data = PackedByteArray("AAABAAcAAQAAAAAABQAJAAwAAQAAAAAABgAJAA4AAQAAAAAABgAJAAoAAQAAAAAABwAJAAgAAQAAAAAABwABAA8AAQAAAAAABQD4/w0AAQAAAAAAAQD4/wgAAQAAAAAAAQD9/wgAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAABAAcAAQAAAAAABQAJAAwAAQAAAAAABgAJAA4AAQAAAAAABgAJAAoAAQAAAAAABwAJAAgAAQAAAAAABwABAA8AAQAAAAAABQA=")
 tile_set = ExtResource("4_lefxv")
 use_kinematic_bodies = true
 collision_visibility_mode = 1
@@ -475,18 +474,15 @@ position = Vector2(-120, 198)
 [node name="Connection" type="Marker2D" parent="Table4" groups=["Intermediate"]]
 position = Vector2(28, 0)
 
-[node name="Table" parent="." instance=ExtResource("9_lyqml")]
-position = Vector2(-40, 216)
-
 [node name="Pot" parent="." instance=ExtResource("10_oxewe")]
 position = Vector2(89, 247)
 scale = Vector2(0.3, 0.3)
 
-[node name="Pantry" parent="." instance=ExtResource("11_kyray")]
-position = Vector2(73, 118)
-
 [node name="Fridge" parent="." instance=ExtResource("12_l2j04")]
 position = Vector2(88, 118)
+
+[node name="Pantry" parent="." instance=ExtResource("11_kyray")]
+position = Vector2(73, 118)
 
 [node name="Node" parent="." instance=ExtResource("13_26rrv")]
 

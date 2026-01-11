@@ -8,6 +8,7 @@
 z_index = 1
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_qtmht")
+station_type = 4
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(4.1723247e-06, -2.4999974)

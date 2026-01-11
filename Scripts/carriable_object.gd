@@ -100,7 +100,7 @@ func _cell_in_bounds(cell: Vector2i) -> bool:
 	return used.has_point(cell)
 
 
-func setup(type:String, texture: Texture2D, cooked_txt: Texture2D) -> void:
+func setup(type:String, texture: Texture2D, cooked_txt: Texture2D = null) -> void:
 #Function for the creation of the object by the creation work station.
 	sprite_2d.texture = texture
 	global_type = type

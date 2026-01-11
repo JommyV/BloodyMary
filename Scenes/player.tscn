@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"front",
-"speed": 30.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -99,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 30.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -128,7 +128,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 30.0
+"speed": 12.0
 }]
 
 [node name="Player" type="RigidBody2D"]
@@ -138,7 +138,7 @@ collision_mask = 129
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_4flbx")
-speed = 150
+speed = 100
 rotationspeed = 15.0
 metadata/_edit_group_ = true
 

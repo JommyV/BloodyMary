@@ -73,21 +73,32 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.pause()
 		if Input.is_action_pressed("move_right"):
 			local_velocity.x += 1
-			animated_sprite_2d.play("right")
-			animated_sprite_2d.flip_h = false
+
 		if Input.is_action_pressed("move_left"):
 			local_velocity.x -= 1
-			if local_velocity.y ==0:
-				animated_sprite_2d.play("left")
-				animated_sprite_2d.flip_h = true
-				
+
 		if Input.is_action_pressed("move_down"):
 			local_velocity.y += 1
-			animated_sprite_2d.play("front")
+
 		if Input.is_action_pressed("move_up"):
 			local_velocity.y -= 1
-			animated_sprite_2d.play("back")
-			
+
+		if local_velocity != Vector2.ZERO:
+			if local_velocity.y > 0 or local_velocity.y > 0 and local_velocity.x !=0:
+				animated_sprite_2d.play("front")
+				animated_sprite_2d.flip_v = false
+			elif local_velocity.x > 0:
+				animated_sprite_2d.play("left")
+				animated_sprite_2d.flip_h = false
+				animated_sprite_2d.flip_v = false
+			elif local_velocity.x < 0:
+				animated_sprite_2d.play("right")
+				animated_sprite_2d.flip_h = true
+				animated_sprite_2d.flip_v = false
+			elif local_velocity.y < 0:
+				animated_sprite_2d.play("front")
+				animated_sprite_2d.flip_v = true
+		
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed
 			area_2d.rotation = lerp_angle(area_2d.rotation, atan2(local_velocity.x, -local_velocity.y), delta*rotationspeed)
@@ -120,9 +131,9 @@ func release() -> void:
 func pick_up() -> void:
 	if carried_object != null and carried_object.global_type == "plate" and !carried_object.ingredient1\
 	and !carried_object.can_pick_food:
-		print(pickedup)
+		#print(pickedup)
 		release()
-		print(pickedup)
+		#print(pickedup)
 		return
 	
 	elif carried_object != null and carried_object.global_type == "plate" and carried_object.ingredient1\
@@ -142,22 +153,22 @@ func pick_up() -> void:
 		carried_object = carriable_object #Sets which object is being carried.
 		carried_object.carriable = true #Allows the object to be carriable.
 
-	if carried_object != null and carried_object.global_type == "plate" \
-	and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
-		print(carried_object.can_pick_food)
+	#if carried_object != null and carried_object.global_type == "plate" \
+	#and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
+		##print(carried_object.can_pick_food)
 		
 #endregion
 
 #region Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area)
+	#print(area)
 	#if area_2d.get_overlapping_areas():
 	if area.is_in_group("WorkStation"):
 #Sets the work station that can be used when the player 
 #can interact with it and tells the workstation it can be used.
 		can_interact = true
 		interactible_station = area.get_parent()
-		print(interactible_station)
+		#print(interactible_station)
 
 	if area.get_parent().is_in_group("Interactible") and carried_object == null\
 		 and area.get_parent().carriable:

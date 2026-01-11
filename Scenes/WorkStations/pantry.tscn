@@ -12,6 +12,7 @@ size = Vector2(15.000021, 27.50005)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_viask")
 cookable_food = ExtResource("3_2yx50")
+station_type = 2
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, 20.499998)
@@ -21,7 +22,7 @@ scale = Vector2(0.99999976, 0.99999976)
 scale = Vector2(0.06666667, 0.049999993)
 texture = ExtResource("4_2yx50")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="5"]
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="4"]
 disable_mode = 1
 collision_layer = 128
 collision_mask = 128

@@ -52,10 +52,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_spawner_timer_timeout() -> void:
-	if sat_clients <= daily_clients:
+	if sat_clients < daily_clients:
 		for b in range(sat_tables.size()): 
 				if sat_tables[b] == false:
-					print("manager is " + str(b))
 					var client : Node2D = client_list.instantiate()
 					client.table_number = b
 					client.client_spawner = self

@@ -18,12 +18,12 @@ static func select_daily_menu(dish_1:Resource, dish_2:Resource, dish_3:Resource)
 	dish_3.probabilty = probabilty_3
 
 
-static func calculate_client_number(popularity: int) -> int:
+static func calculate_client_number(popularity: float) -> int:
 # Calculates the amount of clients that will come to the restaurant depending on
 #the level of popularity decided by the daily manager.
 	match popularity:
 		1:
-			return 10
+			return 4
 		2:
 			return 15
 		3:
@@ -33,7 +33,7 @@ static func calculate_client_number(popularity: int) -> int:
 		5:
 			return 40
 		_:
-			return 0
+			return 4
 
 
 static func create_menu(_brain, soup, toast) -> Array:
