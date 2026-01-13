@@ -6,7 +6,7 @@ var daily_clients
 
 var average_waiting_time
 
-var served_plates = { "Blood Soup": 0, "Eyeball Toast": 0, "Brain Bolognese": 0}
+var served_plates = { "Blood Soup": 76, "Eyeball Toast": 0, "Brain Bolognese": 0}
 
 var sat_clients
 
@@ -19,3 +19,4 @@ func _ready() -> void:
 	for plates in served_plates:
 		print(served_plates[plates])
 	free_tables = max_tables
+	

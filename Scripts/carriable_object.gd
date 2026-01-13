@@ -114,6 +114,10 @@ func cook() -> void:
 	
 func prepare_food() -> void:
 	print(global_type)
-	sprite_2d.texture = preload("uid://bfesx1lken8py")
+	match global_type:
+		"eyeball_on_toast":
+			sprite_2d.texture = preload("uid://bfesx1lken8py")
+		"brain_bolognese":
+			sprite_2d.texture = preload("uid://bgehs6q6ccw5h")
 	sprite_2d.scale*=2
 	sprite_2d.rotation = 0

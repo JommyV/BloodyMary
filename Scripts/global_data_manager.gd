@@ -13,7 +13,7 @@ static var current_money: float
 func _ready() -> void:
 	load_data()
 	popularity = data.popularity
-	daily_clients = DayManager.calculate_client_number(1)
+	daily_clients = DayManager.calculate_client_number()
 
 
 static func save_data() -> void:
@@ -29,4 +29,4 @@ static func load_data() -> void:
 
 
 static func calculate_stats() -> void:
-	DayManager.calculate_client_number(popularity)
+	DayManager.calculate_client_number()

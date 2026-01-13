@@ -1,11 +1,167 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce1yiwaoaf5a4"]
+[gd_scene load_steps=34 format=3 uid="uid://ce1yiwaoaf5a4"]
 
-[ext_resource type="Texture2D" uid="uid://b7f5p3vi7oahg" path="res://Assets/Sprites/6009864.png" id="1_lgb4g"]
 [ext_resource type="Script" uid="uid://hnlip3ohujgg" path="res://Scripts/client.gd" id="1_o4a6k"]
 [ext_resource type="Texture2D" uid="uid://dkcyyw0vfqx4n" path="res://Assets/Sprites/bubble-emoji-thought-balloon-symbol-thinking-man.jpg" id="3_v1moc"]
+[ext_resource type="Texture2D" uid="uid://c1oxagrg78xbd" path="res://Assets/Animation/Client/clientsitdown0000.png" id="3_w6o80"]
+[ext_resource type="Texture2D" uid="uid://bkd0lkxl2jw2r" path="res://Assets/Animation/Client/clientsitdown0001.png" id="4_0ajxs"]
+[ext_resource type="Texture2D" uid="uid://duwy74ur7add7" path="res://Assets/Animation/Client/clientwalkback0000.png" id="4_82vly"]
+[ext_resource type="Texture2D" uid="uid://da6tv6lmuo2mo" path="res://Assets/Animation/Client/clientwalkside0000.png" id="4_w114r"]
 [ext_resource type="Texture2D" uid="uid://dchtjqv714273" path="res://Assets/Sprites/pngimg.com - circle_PNG4.png" id="4_wuhft"]
+[ext_resource type="Texture2D" uid="uid://dusfxn0ogafmo" path="res://Assets/Animation/Client/clientwalkside0001.png" id="5_2rw16"]
+[ext_resource type="Texture2D" uid="uid://dxg3bdu4lygm1" path="res://Assets/Animation/Client/clientwalkback0001.png" id="5_5p8bd"]
+[ext_resource type="Texture2D" uid="uid://dd7gqnx5j6nw1" path="res://Assets/Animation/Client/clientsitdown0002.png" id="5_bna6m"]
+[ext_resource type="Texture2D" uid="uid://chlavbbftv2tp" path="res://Assets/Animation/Client/clientwalkback0002.png" id="6_1ndce"]
+[ext_resource type="Texture2D" uid="uid://cx1vhmkl7ggki" path="res://Assets/Animation/Client/clientsitdown0003.png" id="6_3tfg5"]
+[ext_resource type="Texture2D" uid="uid://bk0r070jbml2n" path="res://Assets/Animation/Client/clientwalkside0002.png" id="6_y6515"]
+[ext_resource type="Texture2D" uid="uid://cocp0y4t803o2" path="res://Assets/Animation/Client/clientwalkback0003.png" id="7_5ok07"]
+[ext_resource type="Texture2D" uid="uid://b3mtxsf60q6k7" path="res://Assets/Animation/Client/clientwalkside0003.png" id="7_16usq"]
+[ext_resource type="Texture2D" uid="uid://csv3qati22e1e" path="res://Assets/Animation/Client/clientsitdown0004.png" id="7_qjaca"]
+[ext_resource type="Texture2D" uid="uid://cx17denox1h5h" path="res://Assets/Animation/Client/clientsitdown0005.png" id="8_bjlgd"]
+[ext_resource type="Texture2D" uid="uid://5ykg87reu5bl" path="res://Assets/Animation/Client/clientwalkfront0000.png" id="8_foea4"]
+[ext_resource type="Texture2D" uid="uid://gvb16r6acmv0" path="res://Assets/Animation/Client/clientwalkfront0001.png" id="9_6clio"]
+[ext_resource type="Texture2D" uid="uid://b5hhvmkjvnx32" path="res://Assets/Animation/Client/clientgetup0000.png" id="9_182og"]
+[ext_resource type="Texture2D" uid="uid://couuj2volg0vc" path="res://Assets/Animation/Client/clientgetup0001.png" id="10_hsv65"]
+[ext_resource type="Texture2D" uid="uid://droie6ddarau3" path="res://Assets/Animation/Client/clientwalkfront0002.png" id="10_kdeoq"]
+[ext_resource type="Texture2D" uid="uid://c80sscrtsfds0" path="res://Assets/Animation/Client/clientwalkfront0003.png" id="11_2rmsf"]
+[ext_resource type="Texture2D" uid="uid://dlir3pgr5semw" path="res://Assets/Animation/Client/clientgetup0002.png" id="11_vgepn"]
+[ext_resource type="Texture2D" uid="uid://cg0niujlbcwnp" path="res://Assets/Animation/Client/clientgetup0003.png" id="12_c86rw"]
+[ext_resource type="Texture2D" uid="uid://b7vqpuyh3o6us" path="res://Assets/Animation/Client/clientgetup0004.png" id="13_ykitg"]
+[ext_resource type="Texture2D" uid="uid://cokus7gcxrrye" path="res://Assets/Animation/Client/clientgetup0005.png" id="14_5wi7b"]
+[ext_resource type="Texture2D" uid="uid://bek8h5640pe5y" path="res://Assets/Animation/Client/clientgetup0006.png" id="15_qn0fq"]
+[ext_resource type="Texture2D" uid="uid://bj0xyh04584u3" path="res://Assets/Animation/Client/clientgetup0007.png" id="16_tymvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsqxe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpxcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w6o80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0ajxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bna6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3tfg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qjaca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bjlgd")
+}],
+"loop": false,
+"name": &"arrive",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_bjlgd")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_182og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hsv65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vgepn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c86rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ykitg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5wi7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qn0fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tymvt")
+}],
+"loop": false,
+"name": &"leave",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_82vly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5p8bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1ndce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5ok07")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_foea4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6clio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kdeoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2rmsf")
+}],
+"loop": true,
+"name": &"walk_front",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w114r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2rw16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y6515")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_16usq")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w114r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2rw16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y6515")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_16usq")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4a6k"]
 
@@ -22,15 +178,20 @@ tables = [null, null, null, null]
 shape = SubResource("RectangleShape2D_vsqxe")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.039062496, 0.0390625)
-texture = ExtResource("1_lgb4g")
-
 [node name="OrderSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -17)
 scale = Vector2(0.015999999, 0.016000003)
 texture = ExtResource("3_v1moc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 9)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_bpxcf")
+animation = &"arrive"
+frame = 5
+frame_progress = 1.0
 
 [node name="Start_timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -43,7 +204,7 @@ autostart = true
 
 [node name="Wait" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 10.0
+wait_time = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -80,10 +241,10 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("4_wuhft")
 
-[connection signal="timeout" from="Start_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="Start_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Eat_time" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Plate_area" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Plate_area" to="." method="_on_plate_area_area_entered"]
+[connection signal="area_entered" from="Plate_area" to="." method="_on_area_2d_area_entered"]

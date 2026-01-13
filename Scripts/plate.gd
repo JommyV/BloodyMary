@@ -20,6 +20,18 @@ func prepare_food():
 			ingredient1.global_type = "eyeball_on_toast"
 			ingredient1.prepare_food()
 			ready_dish = true
+			
+		if ingredient1.global_type == "cooked_brain" and ingredient2.global_type == "cooked_spaghetti":
+			ingredient2.queue_free()
+			ingredient1.global_type = "brain_bolognese"
+			ingredient1.prepare_food()
+			ready_dish = true
+
+		if ingredient1.global_type == "cooked_spaghetti" and ingredient2.global_type == "cooked_brain":
+			ingredient2.queue_free()
+			ingredient1.global_type = "brain_bolognese"
+			ingredient1.prepare_food()
+			ready_dish = true
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -66,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 		ingredient1.rotation = self.rotation
 		#print(ingredient2.global_type)
 		
-	if Input.is_action_just_pressed("mix"):
+	if Input.is_action_just_pressed("mix") and carried:
 		prepare_food()
 	if carried:
 		_update_highlight_under()

@@ -53,6 +53,7 @@ func _process(_delta: float) -> void:
 #the interact function on the working station that varies per type.
 	if Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
 		interactible_station.interact()
+		animated_sprite_2d.stop()
 		
 	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
 		#get_tree().call_group("Client", "start_eating")
@@ -86,18 +87,16 @@ func _physics_process(delta: float) -> void:
 		if local_velocity != Vector2.ZERO:
 			if local_velocity.y > 0 or local_velocity.y > 0 and local_velocity.x !=0:
 				animated_sprite_2d.play("front")
-				animated_sprite_2d.flip_v = false
+			elif local_velocity.y < 0 or local_velocity.y < 0 and local_velocity.x !=0:
+				animated_sprite_2d.play("back")
 			elif local_velocity.x > 0:
 				animated_sprite_2d.play("left")
 				animated_sprite_2d.flip_h = false
-				animated_sprite_2d.flip_v = false
 			elif local_velocity.x < 0:
 				animated_sprite_2d.play("right")
 				animated_sprite_2d.flip_h = true
-				animated_sprite_2d.flip_v = false
-			elif local_velocity.y < 0:
-				animated_sprite_2d.play("front")
-				animated_sprite_2d.flip_v = true
+			
+				
 		
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed

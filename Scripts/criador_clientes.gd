@@ -21,9 +21,9 @@ var daily_clients
 
 func _ready() -> void:
 #Sets the daily clients that will come to the restaurant.
-	daily_clients = DayManager.calculate_client_number(1)
-	#print(daily_clients)
-	DayManager.create_menu(dish1, dish2,dish3)
+	daily_clients = DayManager.calculate_client_number()
+	print("clients are " + str(daily_clients))
+	DayManager.create_menu(dish1,dish2,dish3)
 
 
 func _process(_delta: float) -> void:
@@ -55,6 +55,7 @@ func _on_spawner_timer_timeout() -> void:
 	if sat_clients < daily_clients:
 		for b in range(sat_tables.size()): 
 				if sat_tables[b] == false:
+					sat_clients += 1
 					var client : Node2D = client_list.instantiate()
 					client.table_number = b
 					client.client_spawner = self
@@ -67,10 +68,6 @@ func _on_spawner_timer_timeout() -> void:
 					b=+1
 					if b == sat_tables.size():
 						b = 0
-					sat_clients += 1
+					
 					return
 				
-
-
-#func create_menu() -> Array:
-	#pass

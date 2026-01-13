@@ -11,5 +11,7 @@ func create_food(type: String) -> void:
 	add_child(item)
 	if type == "blood_bag":
 		item.setup("blood_bag", preload("res://Assets/Sprites/blood_bag.png"), preload("res://Assets/Sprites/blood_soup_dish.png"))
-	elif type == "eyeball":
+	if type == "eyeball":
 		item.setup("eyeball", preload("res://Assets/Sprites/eyeball_new.png"), preload("res://Assets/Sprites/cut_eyeball_new.png"))
+	if type == "brain":
+		item.setup("brain", preload("uid://b5yri07n2cpwb"), preload("uid://bjpcr45vgpxur"))

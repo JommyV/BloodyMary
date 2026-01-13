@@ -14,6 +14,7 @@ func _ready() -> void:
 		item_type = "spaghetti"
 		button_2.icon = preload("uid://dub0ru24114re")
 
+
 func _on_button_2_pressed() -> void:
 	print(get_parent().get_parent().get_parent().name)
 	print(item_type)

@@ -28,7 +28,8 @@ var dish_to_order
 @onready var eat_time: Timer = %Eat_time
 var hud
 @onready var wait: Timer = %Wait
-
+@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
+var animated:bool = false
 
 
 func _ready() -> void:
@@ -41,7 +42,7 @@ func _ready() -> void:
 	plate_area.hide()
 	plate_area.monitoring = false
 	#print("client is " + str(table_number))
-	print(GlobalData.daily_clients)
+	print(GlobalData.daily_clients - client_spawner.sat_clients )
 	select_dish()
 
 
@@ -65,24 +66,43 @@ func _physics_process(_delta: float) -> void:
 
 	if position.distance_to(target_position_1)>300:
 		client_spawner.sat_tables[table_number] = false
-		print("number of clients is" + str(GlobalData.daily_clients))
+		print("number of clients is " + str(GlobalData.daily_clients))
 		GlobalData.daily_clients -= 1
 		queue_free()
 		return
-
+		
+	#if linear_velocity != Vector2.ZERO:
+			#if linear_velocity.y > 0 or linear_velocity.y > 0 and linear_velocity.x !=0:
+				#animated_sprite_2d.play("walk_front")
+			#elif linear_velocity.y < 0 or linear_velocity.y < 0 and linear_velocity.x !=0:
+				#animated_sprite_2d.play("walk_back")
+			#elif linear_velocity.x > 0:
+				#
+				#animated_sprite_2d.flip_h = false
+			#elif linear_velocity.x < 0:
+				#animated_sprite_2d.play("walk_right")
+				#animated_sprite_2d.flip_h = true
 
 
 func go_to_table() -> void:
 	target_position_2 = table_position - global_position
 	if position.distance_to(target_position_1)>1 and !arrived:
 		move_and_collide(target_position_1 / delay)
+		animated_sprite_2d.play("walk_back")
 	else: 
 		arrived = true
 	if arrived and global_position.distance_to(table_position)>1:
 		@warning_ignore("integer_division")
 		move_and_collide(target_position_2 / (delay/2))
+		animated_sprite_2d.play("walk_left")
+		animated_sprite_2d.flip_h = true
 
 	elif arrived:
+		
+		
+		if !animated:
+			animated_sprite_2d.play("arrive")
+			animated = true
 		await get_tree().create_timer(4).timeout
 		order_sprite.show()
 		sat = true
@@ -95,13 +115,10 @@ func go_to_table() -> void:
 func leave() -> void:
 		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
 		if hud:
-			hud.client_left = true
-		if hud and hud.client_left == true: 
 			hud.on_client_out()
 			hud.client_left = false
 			hud = null
 		#print(table_number)
-
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

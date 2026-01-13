@@ -12,4 +12,4 @@ func create_food(type: String) -> void:
 	if type == "slice":
 		item.setup("slice", preload("uid://ddogcrbdfu27y"), preload("uid://dfvhsrhx0w0xi"))
 	elif type == "spaghetti":
-		item.setup("spaghetti", preload("uid://dub0ru24114re"))
+		item.setup("spaghetti", preload("uid://dub0ru24114re"),preload("uid://b4r3w65f0ycno"))

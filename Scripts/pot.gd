@@ -7,21 +7,20 @@ var bags_added = 0
 func interact() -> void:
 	if object == null:
 		return 
-
-	if object.global_type != "blood_bag":
+	if object.global_type != "blood_bag" and object.global_type != "spaghetti" and object.global_type != "brain":
 		return
-
 	if working:
 		return
-
 	if object.cooked: 
 		return
-		
-	bags_added += 1
-	player.release()
-	if bags_added < 3: 
-		object.queue_free()
-		
+	if object.global_type == "blood_bag":
+		bags_added += 1
+		player.release()
+		if bags_added < 3: 
+			object.queue_free()
+	elif object.global_type == "spaghetti" or object.global_type == "brain":
+		player.release()
+		prepare_food()
 	if bags_added == 3:
 		prepare_food();
 
@@ -37,7 +36,13 @@ func prepare_food() -> void:
 	timer.start()
 	progress_bar.value = timer.time_left
 	progress_bar.show()
-	object.global_type = "cooked_blood"
+	match object.global_type:
+		"blood_bag":
+			object.global_type = "cooked_blood"
+		"spaghetti":
+			object.global_type = "cooked_spaghetti"
+		"brain":
+			object.global_type = "cooked_brain"
 	object.carriable = false
 	area_2d.monitorable = false
 	object.hide()

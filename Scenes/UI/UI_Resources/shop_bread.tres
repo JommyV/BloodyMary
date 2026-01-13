@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="purchaseable" load_steps=2 format=3 uid="uid://ciasxpiyf4hbb"]
 
-[ext_resource type="Script" uid="uid://cmss5auh3godi" path="res://Scenes/UI/purchaseable.gd" id="1_tj2po"]
+[ext_resource type="Script" uid="uid://cmss5auh3godi" path="res://Scripts/purchaseable.gd" id="1_tj2po"]
 
 [resource]
 script = ExtResource("1_tj2po")

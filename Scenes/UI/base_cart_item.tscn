@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dums68pvvo63x"]
 
-[ext_resource type="Script" uid="uid://cnniuy55jgdvh" path="res://Scenes/UI/base_cart_item.gd" id="1_bkg30"]
+[ext_resource type="Script" uid="uid://cnniuy55jgdvh" path="res://Scripts/base_cart_item.gd" id="1_bkg30"]
 
 [node name="BaseCartItem" type="HBoxContainer"]
 anchors_preset = 15

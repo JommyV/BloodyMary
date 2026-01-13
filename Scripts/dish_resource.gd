@@ -12,7 +12,7 @@ var probabilty
 
 enum types {
 	EYEBALL,
-	PASTA,
+	SPAGHETTI,
 	BRAIN,
 	BLOOD,
 	BREAD,
