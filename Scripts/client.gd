@@ -115,10 +115,15 @@ func go_to_table() -> void:
 func leave() -> void:
 		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
 		if hud:
-			hud.on_client_out()
-			hud.client_left = false
-			hud = null
-		#print(table_number)
+			if hud.spin_queue == 0:
+				hud.on_client_out()
+				hud.spin_queue += 1
+				print("the huds queue is " + str(hud.spin_queue ))
+				hud = null
+			else:
+				hud.spin_queue += 1
+				hud = null
+			#print(table_number)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

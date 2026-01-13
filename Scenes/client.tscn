@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://ce1yiwaoaf5a4"]
 
 [ext_resource type="Script" uid="uid://hnlip3ohujgg" path="res://Scripts/client.gd" id="1_o4a6k"]
-[ext_resource type="Texture2D" uid="uid://dkcyyw0vfqx4n" path="res://Assets/Sprites/bubble-emoji-thought-balloon-symbol-thinking-man.jpg" id="3_v1moc"]
+[ext_resource type="Texture2D" uid="uid://dhuw0x0ypgbtf" path="res://Assets/Sprites/bubble.png" id="2_w6o80"]
 [ext_resource type="Texture2D" uid="uid://c1oxagrg78xbd" path="res://Assets/Animation/Client/clientsitdown0000.png" id="3_w6o80"]
 [ext_resource type="Texture2D" uid="uid://bkd0lkxl2jw2r" path="res://Assets/Animation/Client/clientsitdown0001.png" id="4_0ajxs"]
 [ext_resource type="Texture2D" uid="uid://duwy74ur7add7" path="res://Assets/Animation/Client/clientwalkback0000.png" id="4_82vly"]
@@ -181,13 +181,13 @@ disabled = true
 [node name="OrderSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -17)
-scale = Vector2(0.015999999, 0.016000003)
-texture = ExtResource("3_v1moc")
+scale = Vector2(0.007, 0.007)
+texture = ExtResource("2_w6o80")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 9)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-1, 9)
+scale = Vector2(0.065, 0.065)
 sprite_frames = SubResource("SpriteFrames_bpxcf")
 animation = &"arrive"
 frame = 5
@@ -241,8 +241,8 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("4_wuhft")
 
-[connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Start_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Eat_time" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

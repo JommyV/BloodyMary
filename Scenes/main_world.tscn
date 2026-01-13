@@ -450,26 +450,26 @@ position = Vector2(-14, 306)
 tables = [NodePath("../Table1"), NodePath("../Table2"), NodePath("../Table3"), NodePath("../Table4")]
 
 [node name="Table1" type="Marker2D" parent="." groups=["Table"]]
-position = Vector2(-41, 196)
+position = Vector2(-40, 199)
 
 [node name="Connection" type="Marker2D" parent="Table1" groups=["Intermediate"]]
 unique_name_in_owner = true
 position = Vector2(30, 1)
 
 [node name="Table2" type="Marker2D" parent="." groups=["Table"]]
-position = Vector2(-40, 115)
+position = Vector2(-40, 119)
 
 [node name="Connection" type="Marker2D" parent="Table2" groups=["Intermediate"]]
 position = Vector2(25, 0)
 
 [node name="Table3" type="Marker2D" parent="." groups=["Table"]]
-position = Vector2(-120, 118)
+position = Vector2(-120, 119)
 
 [node name="Connection" type="Marker2D" parent="Table3" groups=["Intermediate"]]
 position = Vector2(24, 0)
 
 [node name="Table4" type="Marker2D" parent="." groups=["Table"]]
-position = Vector2(-120, 198)
+position = Vector2(-120, 199)
 
 [node name="Connection" type="Marker2D" parent="Table4" groups=["Intermediate"]]
 position = Vector2(28, 0)

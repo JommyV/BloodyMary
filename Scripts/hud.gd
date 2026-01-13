@@ -13,6 +13,7 @@ var PointerAngle : float
 @onready var Reset = $CanvasLayer/DebugInput/Res
 var client_left: bool = false
 var number_of_clients: int
+var spin_queue: int
 static var night
 
 func _ready():
@@ -68,8 +69,12 @@ func _on_res_pressed() -> void:
 
 
 func on_client_out() -> void: 
-	#if client_left:
 	var tween = get_tree().create_tween()
-	tween.tween_property(Pointer, "rotation_degrees", Pointer.rotation_degrees + PointerAngle, 0.2)
+	tween.tween_property(Pointer, "rotation_degrees", Pointer.rotation_degrees + PointerAngle, 1)
+	await tween.finished
+	spin_queue = clamp(spin_queue-1,0,100)
+	print("queue is " + str(spin_queue))
+	if spin_queue > 0:
+		on_client_out()
 		#Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle
 		#print(number_of_clients)
