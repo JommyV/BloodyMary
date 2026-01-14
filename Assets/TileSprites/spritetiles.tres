@@ -1,10 +1,13 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://btivwkas7wm6b"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://btivwkas7wm6b"]
 
 [ext_resource type="Texture2D" uid="uid://dmiic8l6786rd" path="res://Assets/TileSprites/Counter.jpg" id="1_8kgx4"]
 [ext_resource type="Texture2D" uid="uid://y0ko04cqx1tp" path="res://Assets/TileSprites/CounterSide.png" id="2_v1kok"]
 [ext_resource type="Texture2D" uid="uid://g3wu5wgpit8c" path="res://Assets/Sprites/TileSprite2/chaorestaurante2.png" id="3_8kgx4"]
 [ext_resource type="Texture2D" uid="uid://cft5csa1xowrd" path="res://Assets/TileSprites/Table.png" id="4_85xrs"]
 [ext_resource type="Texture2D" uid="uid://q3fclxg28mt4" path="res://Assets/TileSprites/TableSide.png" id="5_7t3y5"]
+[ext_resource type="Texture2D" uid="uid://cj3qdwc27w4hg" path="res://Assets/Sprites/TileSprite2/parederescozinha2.png" id="6_85xrs"]
+[ext_resource type="Texture2D" uid="uid://bc2ge0uiwh71n" path="res://Assets/Sprites/TileSprite2/chaocozinha2.png" id="7_7t3y5"]
+[ext_resource type="Texture2D" uid="uid://oiuekjkn0myk" path="res://Assets/Sprites/TileSprite2/parederestaurante2.png" id="8_xl4lu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xl4lu"]
 texture = ExtResource("1_8kgx4")
@@ -33,6 +36,22 @@ texture = ExtResource("5_7t3y5")
 texture_region_size = Vector2i(1600, 800)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5aj5v"]
+texture = ExtResource("6_85xrs")
+texture_region_size = Vector2i(1600, 1600)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1rjo"]
+texture = ExtResource("7_7t3y5")
+texture_region_size = Vector2i(1600, 1600)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78hgi"]
+texture = ExtResource("8_xl4lu")
+texture_region_size = Vector2i(1600, 1600)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-800, -800, 800, -800, 800, 800, -800, 800)
+
 [resource]
 tile_size = Vector2i(1600, 1600)
 physics_layer_0/collision_layer = 1
@@ -41,3 +60,6 @@ sources/1 = SubResource("TileSetAtlasSource_paphw")
 sources/2 = SubResource("TileSetAtlasSource_dpbk8")
 sources/3 = SubResource("TileSetAtlasSource_2w05v")
 sources/4 = SubResource("TileSetAtlasSource_d2nan")
+sources/5 = SubResource("TileSetAtlasSource_5aj5v")
+sources/6 = SubResource("TileSetAtlasSource_j1rjo")
+sources/7 = SubResource("TileSetAtlasSource_78hgi")

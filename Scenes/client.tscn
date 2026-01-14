@@ -180,8 +180,8 @@ disabled = true
 
 [node name="OrderSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -17)
-scale = Vector2(0.007, 0.007)
+position = Vector2(-1.9999998, -11.000001)
+scale = Vector2(0.006, 0.0060000005)
 texture = ExtResource("2_w6o80")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -204,7 +204,7 @@ autostart = true
 
 [node name="Wait" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 3.0
+wait_time = 10.0
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -225,9 +225,9 @@ shape = SubResource("RectangleShape2D_v1moc")
 layout_mode = 3
 anchors_preset = 0
 offset_left = -8.0
-offset_top = -25.0
-offset_right = 8.0
-offset_bottom = -9.0
+offset_top = -19.0
+offset_right = 6.0
+offset_bottom = -5.0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
 unique_name_in_owner = true
@@ -235,6 +235,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 fill_mode = 4

@@ -78,8 +78,6 @@ func _physics_process(_delta: float) -> void:
 
 func _update_highlight_under() -> void:
 		var cell : Vector2i = GridSnapping.world_to_cell(tilemap, global_position)
-		#print(cell)
-		#print(_last_highlighted_cell)
 		if cell != _last_highlighted_cell:
 			_clear_highlight()
 		if _is_cell_drop_allowed(cell):
@@ -113,10 +111,11 @@ func cook() -> void:
 	sprite_2d.texture = cooked_texture
 	
 func prepare_food() -> void:
-	print(global_type)
 	match global_type:
 		"eyeball_on_toast":
-			sprite_2d.texture = preload("uid://bfesx1lken8py")
+			sprite_2d.texture = preload("uid://d28ighl5komlw")
+			sprite_2d.scale.x = 0.001
+			sprite_2d.scale.y = 0.001
 		"brain_bolognese":
 			sprite_2d.texture = preload("uid://bgehs6q6ccw5h")
 	sprite_2d.scale*=2

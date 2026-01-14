@@ -60,11 +60,13 @@ func _process(_delta: float) -> void:
 		client.start_eating()
 		carried_object.kill_food()
 		release()
-	#print(can_serve)
+
 	if Input.is_action_just_pressed("night"):
 		get_tree().change_scene_to_file("uid://bpbcg217lm1nl")
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
+	if Input.is_action_just_pressed("save"):
+		GlobalData.save_data()
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:

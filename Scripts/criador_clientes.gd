@@ -22,7 +22,7 @@ var daily_clients
 func _ready() -> void:
 #Sets the daily clients that will come to the restaurant.
 	daily_clients = DayManager.calculate_client_number()
-	print("clients are " + str(daily_clients))
+	#print("clients are " + str(daily_clients))
 	DayManager.create_menu(dish1,dish2,dish3)
 
 

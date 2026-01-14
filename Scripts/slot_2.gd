@@ -1,7 +1,8 @@
 extends Panel
 signal cook_food
 
-@onready var button_2: Button = $Button2
+
+@onready var slot_2_button: Button = $slot2_button
 
 var item_type 
 
@@ -9,10 +10,10 @@ var item_type
 func _ready() -> void:
 	if get_parent().get_parent().get_parent().global_type == "fridge":
 		item_type = "blood_bag"
-		button_2.icon = preload("uid://bm47tblkuvdnw")
+		slot_2_button.icon = preload("uid://bm47tblkuvdnw")
 	if get_parent().get_parent().get_parent().global_type == "pantry":
 		item_type = "spaghetti"
-		button_2.icon = preload("uid://dub0ru24114re")
+		slot_2_button.icon = preload("uid://dub0ru24114re")
 
 
 func _on_button_2_pressed() -> void:

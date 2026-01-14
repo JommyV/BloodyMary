@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcwrqy3812xdr"]
+[gd_scene load_steps=6 format=3 uid="uid://dcwrqy3812xdr"]
 
 [ext_resource type="Script" uid="uid://bphq6sapxuhpf" path="res://Scripts/hud.gd" id="1_ny26j"]
 [ext_resource type="Texture2D" uid="uid://bqtuwmpb3eljc" path="res://Assets/Sprites/relogio.png" id="2_xaom8"]
 [ext_resource type="Texture2D" uid="uid://16c1c1y0gmxl" path="res://Assets/Sprites/ponteiro.png" id="3_4bm6u"]
+[ext_resource type="FontFile" uid="uid://d1in7rtolsvb0" path="res://Assets/Sprites/Jaini-Regular.ttf" id="3_ykvyr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lelo4"]
+font = ExtResource("3_ykvyr")
+font_size = 32
 
 [node name="hud" type="Node" groups=["HUD"]]
 script = ExtResource("1_ny26j")
@@ -22,7 +27,8 @@ offset_bottom = 80.0
 texture = ExtResource("2_xaom8")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Clock"]
+[node name="Day" type="Label" parent="CanvasLayer/Clock"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,6 +42,7 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Night 1"
+label_settings = SubResource("LabelSettings_lelo4")
 
 [node name="Pointer" type="TextureRect" parent="CanvasLayer/Clock"]
 unique_name_in_owner = true
@@ -121,6 +128,12 @@ offset_top = 152.0
 offset_right = 39.0
 offset_bottom = 183.0
 text = "Reset"
+
+[node name="served soups" type="Label" parent="CanvasLayer"]
+offset_left = 141.0
+offset_top = 2.0
+offset_right = 181.0
+offset_bottom = 25.0
 
 [connection signal="pressed" from="CanvasLayer/DebugInput/CommitClient" to="." method="_on_commit_client_pressed"]
 [connection signal="pressed" from="CanvasLayer/DebugInput/ClientOut" to="." method="_on_client_out_pressed"]

@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmxuggd07idw6"]
+[gd_scene load_steps=9 format=3 uid="uid://cmxuggd07idw6"]
 
 [ext_resource type="Script" uid="uid://cdof2aneo7db4" path="res://Scripts/main_menu.gd" id="1_g18y6"]
+[ext_resource type="Texture2D" uid="uid://cb3o0pve31epg" path="res://Assets/Sprites/Main_Menu.png" id="2_i2xx2"]
+[ext_resource type="Texture2D" uid="uid://cr7pktb6muufg" path="res://Assets/Sprites/playbutton.png" id="3_u7lva"]
+[ext_resource type="Texture2D" uid="uid://d20wskmqmhsxt" path="res://Assets/Sprites/quitbutton.png" id="4_mrfpk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pqbp"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gih0s"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7lva"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrfpk"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,25 +32,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_g18y6")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -308.5
-offset_top = -253.0
-offset_right = 308.5
-offset_bottom = -113.0
+offset_left = -648.15625
+offset_top = -372.0
+offset_right = 592.15625
+offset_bottom = 510.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 102
-text = "Bloody Mary"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("2_i2xx2")
+expand_mode = 2
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1
@@ -37,14 +58,17 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -116.0
-offset_top = -78.0
-offset_right = 116.0
-offset_bottom = -6.0
+offset_left = -169.89783
+offset_top = 15.0
+offset_right = 169.89783
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
-text = "Start Game"
+theme_override_styles/normal = SubResource("StyleBoxFlat_4pqbp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gih0s")
+icon = ExtResource("3_u7lva")
+expand_icon = true
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
@@ -52,14 +76,17 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -116.0
-offset_top = 9.0
-offset_right = 116.0
-offset_bottom = 81.0
+offset_left = -169.0
+offset_top = 117.0
+offset_right = 169.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
-text = "Quit Game"
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7lva")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mrfpk")
+icon = ExtResource("4_mrfpk")
+expand_icon = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

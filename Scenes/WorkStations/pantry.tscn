@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_ifwt2"]
 [ext_resource type="Script" uid="uid://cq1t4e70mq5sa" path="res://Scripts/pantry.gd" id="2_viask"]
 [ext_resource type="Resource" uid="uid://dvx3gek7ws0s8" path="res://Resources/bread.tres" id="3_2yx50"]
-[ext_resource type="Texture2D" uid="uid://duc4oycr6suo5" path="res://Assets/Sprites/prateleira.png" id="4_2yx50"]
+[ext_resource type="Texture2D" uid="uid://b6u1jm382su4k" path="res://Assets/Sprites/prateleira2.png" id="4_2yx50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yx50"]
-size = Vector2(15.000021, 27.50005)
+size = Vector2(15.000021, 32.50006)
 
 [node name="Pantry" instance=ExtResource("1_ifwt2")]
 scale = Vector2(0.2, 0.2)
@@ -30,6 +30,6 @@ mass = 1000.0
 gravity_scale = 0.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2(0, -8.749999)
-scale = Vector2(0.99999803, 0.99999803)
+position = Vector2(0, -6.249999)
+scale = Vector2(0.999998, 0.999998)
 shape = SubResource("RectangleShape2D_2yx50")

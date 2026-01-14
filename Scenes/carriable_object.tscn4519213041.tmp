@@ -14,6 +14,9 @@ z_index = 100
 scale = Vector2(6, 6)
 script = ExtResource("1_2aw3j")
 foods = Array[Resource]([ExtResource("2_u85by"), ExtResource("3_of0nh"), ExtResource("4_d4h7x")])
+tilemap_path = null
+highlight_tilemap_path = null
+highlight_source_id = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

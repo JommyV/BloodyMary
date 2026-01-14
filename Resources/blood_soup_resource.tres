@@ -9,5 +9,5 @@ price = 10
 ingredient_1 = 3
 ingredient_2 = 3
 ingredient_3 = 3
-global_type = "cooked_blood"
+global_type = "blood_soup"
 metadata/_custom_type_script = "uid://sb07313c2goo"

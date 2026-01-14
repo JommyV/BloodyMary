@@ -1,0 +1,209 @@
+[gd_scene load_steps=10 format=3 uid="uid://e00sec11tbyj"]
+
+[ext_resource type="Texture2D" uid="uid://bdweorh11iaw3" path="res://Assets/Sprites/backgroundENDscreen.png" id="1_dciam"]
+[ext_resource type="Script" uid="uid://58ts88behkyc" path="res://Scenes/UI/end_menu.gd" id="1_ekp3m"]
+[ext_resource type="FontFile" uid="uid://d1in7rtolsvb0" path="res://Assets/Sprites/Jaini-Regular.ttf" id="2_ekp3m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ee4bf"]
+font = ExtResource("2_ekp3m")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_kbped"]
+font = ExtResource("2_ekp3m")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_fj5cn"]
+font = ExtResource("2_ekp3m")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_iy58a"]
+font = ExtResource("2_ekp3m")
+font_size = 46
+
+[sub_resource type="LabelSettings" id="LabelSettings_6a6wx"]
+font = ExtResource("2_ekp3m")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_sky72"]
+font = ExtResource("2_ekp3m")
+font_size = 32
+
+[node name="EndMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekp3m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dciam")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 85.0
+offset_right = 20.0
+offset_bottom = 108.0
+grow_horizontal = 2
+text = "RESTAURANT CLOSED"
+label_settings = SubResource("LabelSettings_ee4bf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -113.0
+offset_right = 233.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="profit" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PROFIT"
+label_settings = SubResource("LabelSettings_kbped")
+
+[node name="expenses" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EXPENSES"
+label_settings = SubResource("LabelSettings_kbped")
+
+[node name="tips" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "TIPS"
+label_settings = SubResource("LabelSettings_kbped")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="profit_nb" type="Label" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_fj5cn")
+horizontal_alignment = 2
+
+[node name="expenses_nb" type="Label" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "N/A"
+label_settings = SubResource("LabelSettings_fj5cn")
+horizontal_alignment = 2
+
+[node name="tips_nb" type="Label" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "N/A"
+label_settings = SubResource("LabelSettings_fj5cn")
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = 66.0
+offset_right = 230.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vbox3" type="VBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -10
+
+[node name="stats" type="Label" parent="HBoxContainer2/Vbox3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "STATS"
+label_settings = SubResource("LabelSettings_iy58a")
+
+[node name="clients" type="Label" parent="HBoxContainer2/Vbox3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "N. of clients"
+label_settings = SubResource("LabelSettings_6a6wx")
+
+[node name="dishes" type="Label" parent="HBoxContainer2/Vbox3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dishes Served"
+label_settings = SubResource("LabelSettings_sky72")
+
+[node name="Vbox4" type="VBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -10
+
+[node name="empty" type="Label" parent="HBoxContainer2/Vbox4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_iy58a")
+horizontal_alignment = 2
+
+[node name="clients_nb" type="Label" parent="HBoxContainer2/Vbox4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_6a6wx")
+horizontal_alignment = 2
+
+[node name="dishes_nb" type="Label" parent="HBoxContainer2/Vbox4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_sky72")
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -122.0
+offset_right = -82.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next Day"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

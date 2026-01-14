@@ -38,7 +38,7 @@ func prepare_food() -> void:
 	progress_bar.show()
 	match object.global_type:
 		"blood_bag":
-			object.global_type = "cooked_blood"
+			object.global_type = "blood_soup"
 		"spaghetti":
 			object.global_type = "cooked_spaghetti"
 		"brain":

@@ -56,8 +56,6 @@ func _ready() -> void:
 			hud.slot_3.cook_food.connect(create_food.bind())
 		hud.hide()
 
-	#print("this station type is " + global_type + " i am "+ name)
-
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#Determines if the player can access the workstation.
@@ -68,11 +66,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		interactible = true
 		player = area.get_parent()
 #Defines the object that will be cooked, excludes plates.
-	if area.get_parent().is_in_group("Plate"):
+	if area.get_parent().is_in_group("Plate") and area.get_parent().dirty == false:
 		return
 	if area.get_parent() is Carriable:
 		object = area.get_parent()
-		print(object.cooked)
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:

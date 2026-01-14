@@ -15,12 +15,18 @@ var client_left: bool = false
 var number_of_clients: int
 var spin_queue: int
 static var night
+@onready var served_soups: Label = $"CanvasLayer/served soups"
+@onready var day: Label = %Day
+
+
+
 
 func _ready():
 	ClientOut.disabled = true
 	Reset.disabled = true
 	PointerAngle = 360.0 / DayManager.calculate_client_number()
 	number_of_clients = DayManager.calculate_client_number()
+	day.text = "Night " + str(global_data_manager.day)
 	#print("angle is " + str(PointerAngle))
 	#print("popularity is " + str(DayManager.calculate_client_number(GlobalData.popularity)))
 
@@ -73,7 +79,7 @@ func on_client_out() -> void:
 	tween.tween_property(Pointer, "rotation_degrees", Pointer.rotation_degrees + PointerAngle, 1)
 	await tween.finished
 	spin_queue = clamp(spin_queue-1,0,100)
-	print("queue is " + str(spin_queue))
+	#print("queue is " + str(spin_queue))
 	if spin_queue > 0:
 		on_client_out()
 		#Pointer.rotation_degrees = Pointer.rotation_degrees + PointerAngle

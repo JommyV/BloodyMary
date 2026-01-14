@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_7h7ne"]
 [ext_resource type="Script" uid="uid://dfcktmj3ufltf" path="res://Scripts/fridge.gd" id="2_lvk2a"]
 [ext_resource type="Resource" uid="uid://dgce1w6roup1j" path="res://Resources/eyeball.tres" id="3_ewk8l"]
-[ext_resource type="Texture2D" uid="uid://cqdke4bj8v5x7" path="res://Assets/Sprites/frigo.png" id="4_ewk8l"]
+[ext_resource type="Texture2D" uid="uid://bqnduwjy47jlr" path="res://Assets/Sprites/frigo2.png" id="4_ewk8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewk8l"]
-size = Vector2(15.000021, 31.25006)
+size = Vector2(15.000021, 35.00007)
 
 [node name="Fridge" instance=ExtResource("1_7h7ne")]
 scale = Vector2(0.2, 0.2)
@@ -31,6 +31,6 @@ mass = 1000.0
 gravity_scale = 0.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2(0, -9.374999)
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(0, -7.499995)
+scale = Vector2(0.99999774, 0.99999774)
 shape = SubResource("RectangleShape2D_ewk8l")

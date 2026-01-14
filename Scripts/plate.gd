@@ -5,9 +5,13 @@ var ingredient2: Node2D
 var ready_dish: bool = false
 var dish1_on_plate: bool = false
 var dish2_on_plate: bool = false
+var dirty: bool = false
 
 
 func prepare_food():
+	if dirty:
+		return
+
 	if ingredient1 and ingredient2:
 		if ingredient1.global_type == "toast" and ingredient2.global_type == "cut_eyeball":
 			ingredient2.queue_free()
@@ -41,7 +45,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		ingredient1 = area.get_parent()
 		ingredient1.carriable = false
 		can_pick_food = true
-		print("cooked")
+
 
 	elif ingredient2 == null and area.get_parent().is_in_group("Interactible") \
 		and area.get_parent().carried == false and !area.get_parent().is_in_group("Plate")\
@@ -49,8 +53,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		ingredient2 = area.get_parent()
 		ingredient2.carriable = false
 		can_pick_food = true
-		#print(ingredient2.get_groups())
-		print("cooked")
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -66,17 +68,14 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#print(ingredient2)
 	if dish1_on_plate and ingredient1:
 		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
-		#print(ingredient1.global_type)
 	if ingredient2 and dish2_on_plate:
 		ingredient2.global_position = global_position
 		ingredient1.rotation = self.rotation
 		ingredient1.global_position = global_position
 		ingredient1.rotation = self.rotation
-		#print(ingredient2.global_type)
 		
 	if Input.is_action_just_pressed("mix") and carried:
 		prepare_food()
@@ -91,17 +90,7 @@ func _physics_process(_delta: float) -> void:
 		ingredient1.carried = false
 
 
-	#if Input.is_action_just_pressed("pickup") and can_pick_food and !dish1_on_plate:
-		#dish1_on_plate = true
-		#can_pick_food = false
-		#
-	#elif Input.is_action_just_pressed("pickup") and can_pick_food and dish1_on_plate:
-		#dish2_on_plate = true
-		#can_pick_food = false
-
-
 func take_food() -> void:
-	#print(can_pick_food)
 	if can_pick_food and !dish1_on_plate:
 		dish1_on_plate = true
 		can_pick_food = false
@@ -109,7 +98,7 @@ func take_food() -> void:
 		ingredient1.area_2d.set_collision_mask_value(1, false)
 		ingredient1.area_2d.set_collision_layer_value(3, true)
 		ingredient1.area_2d.set_collision_mask_value(3, true)
-		
+
 	elif can_pick_food and dish1_on_plate:
 		dish2_on_plate = true
 		can_pick_food = false
@@ -121,3 +110,5 @@ func take_food() -> void:
 func kill_food() ->void:
 	await get_tree().create_timer(3).timeout
 	ingredient1.queue_free()
+	dirty = true
+	sprite_2d.texture = preload("uid://dbj1ssfqrc5wu")

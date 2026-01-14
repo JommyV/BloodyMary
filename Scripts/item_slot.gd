@@ -17,10 +17,7 @@ func _ready() -> void:
 	if parent.global_type == "pantry":
 		item_type = "slice"
 		button.icon = preload("uid://ddogcrbdfu27y")
-	print("I am slot 1 and a child of " + parent.global_type)
 
 
 func _on_button_pressed() -> void:
-	#print(get_parent().get_parent().get_parent().name)
-	print("here is your " + item_type)
 	cook_food.emit(item_type)

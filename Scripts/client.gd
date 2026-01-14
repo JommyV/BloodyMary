@@ -30,6 +30,8 @@ var hud
 @onready var wait: Timer = %Wait
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 var animated:bool = false
+var left_animated: bool = false
+var get_out: bool = false
 
 
 func _ready() -> void:
@@ -41,8 +43,6 @@ func _ready() -> void:
 	order_sprite.hide()
 	plate_area.hide()
 	plate_area.monitoring = false
-	#print("client is " + str(table_number))
-	print(GlobalData.daily_clients - client_spawner.sat_clients )
 	select_dish()
 
 
@@ -57,16 +57,29 @@ func _physics_process(_delta: float) -> void:
 	if should_move == true and sat == false:
 		go_to_table()
 	if should_leave:
-		leave()
+		if !left_animated:
+			animated_sprite_2d.play("leave")
+			left_animated = true
+			await animated_sprite_2d.animation_finished
+			get_out = true
+		
+		if get_out:
+			if table_number == 2 or table_number == 3:
+				@warning_ignore("integer_division") move_and_collide(Vector2(0.5,2))
+			else:
+				@warning_ignore("integer_division") move_and_collide(global_position / (delay*3))
+			animated_sprite_2d.play("walk_front")
 	if can_eat:
 		texture_progress_bar.value = eat_time.time_left*33
 		await get_tree().create_timer(3).timeout
+		texture_progress_bar.hide()
 		should_react = false
 		should_leave = true
+		can_eat = false
+		
 
 	if position.distance_to(target_position_1)>300:
 		client_spawner.sat_tables[table_number] = false
-		print("number of clients is " + str(GlobalData.daily_clients))
 		GlobalData.daily_clients -= 1
 		queue_free()
 		return
@@ -98,8 +111,6 @@ func go_to_table() -> void:
 		animated_sprite_2d.flip_h = true
 
 	elif arrived:
-		
-		
 		if !animated:
 			animated_sprite_2d.play("arrive")
 			animated = true
@@ -110,25 +121,28 @@ func go_to_table() -> void:
 		area_2d.monitoring = true
 		plate_area.show()
 		plate_area.monitoring = true
+		wait.start()
 
 
 func leave() -> void:
-		@warning_ignore("integer_division") move_and_collide(global_position / (delay/2))
-		if hud:
-			if hud.spin_queue == 0:
-				hud.on_client_out()
-				hud.spin_queue += 1
-				print("the huds queue is " + str(hud.spin_queue ))
-				hud = null
-			else:
-				hud.spin_queue += 1
-				hud = null
-			#print(table_number)
+			if hud:
+				if hud.spin_queue == 0:
+					hud.on_client_out()
+					hud.spin_queue += 1
+					hud = null
+				else:
+					hud.spin_queue += 1
+					hud = null
+			day_manager.clients_left -= 1
+			print("there are clients left: " + str(day_manager.clients_left))
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Player and not ordered and arrived and sat:
 		order_sprite.texture = order
+		if dish_to_order.global_type == "eyeball_on_toast":
+			order_sprite.scale.x = 0.003
+			order_sprite.scale.y = 0.003
 		should_move = false
 		area_2d.set_deferred("monitoring", false)
 		area_2d.hide()
@@ -139,14 +153,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_plate_area_area_entered(area: Area2D) -> void:
-	#print("food is: " + area.get_parent().name)
 	if area.get_parent() is Carriable and area.get_parent().global_type == dish_to_order.global_type:
-		#print("food is: " + area.get_parent().global_type)
 		plate = area
 		should_react = true
 		#player = area.get_parent()
 		#order_sprite.hide()
-		#print("yomama")
 		#await get_tree().create_timer(5).timeout
 		#should_leave = true
 		#move_and_collide(global_position / (delay/2))
@@ -160,11 +171,32 @@ func start_eating() -> void:
 	if should_react:
 		if wait.time_left > wait.wait_time/2:
 			GlobalData.popularity +=0.15
-			#print("full pop")
 		else:
 			GlobalData.popularity += 0.1
-			#print("half pop")
 		can_eat = true
+		match dish_to_order.global_type:
+			"blood_soup":
+				client_manager.daily_served_plates["Blood Soup"] += 1 
+				client_manager.global_served_plates["Blood Soup"] += 1 
+				client_manager.profit += 10
+			"eyeball_on_toast":
+				client_manager.daily_served_plates["Eyeball Toast"] += 1 
+				client_manager.global_served_plates["Eyeball Toast"] += 1 
+				client_manager.profit += 12
+			"brain_bolognese":
+				client_manager.daily_served_plates["Brain Bolognese"] += 1 
+				client_manager.global_served_plates["Brain Bolognese"] += 1
+				client_manager.profit += 18
+		client_manager.served_clients +=1
+		day_manager.clients_left -= 1
+	if hud:
+		if hud.spin_queue == 0:
+			hud.on_client_out()
+			hud.spin_queue += 1
+			hud = null
+		else:
+			hud.spin_queue += 1
+			hud = null
 		eat_time.start()
 		wait.stop()
 
@@ -176,8 +208,9 @@ func select_dish() -> void:
 		"Brain Bolognese":
 			order = preload("uid://dub0ru24114re")
 		"EyeBall Toast" :
-			order = preload("uid://bfesx1lken8py")
+			order = preload("uid://d28ighl5komlw")
 
 
 func _on_wait_timeout() -> void:
 	should_leave = true
+	leave()

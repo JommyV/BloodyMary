@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://b2i7inhx2lidc" path="res://Assets/Animation/Mary/left/walkleft0007.png" id="18_yh6i2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
-size = Vector2(155.55554, 92.92035)
+size = Vector2(155.55554, 61.946907)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(82.35268, 100.666374)
@@ -171,7 +171,7 @@ rotationspeed = 15.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.1920929e-07, 0.50000006)
+position = Vector2(1.1920929e-07, 7)
 scale = Vector2(0.09, 0.226)
 shape = SubResource("RectangleShape2D_6t5aa")
 
@@ -195,6 +195,7 @@ wait_time = 0.2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 1001
 scale = Vector2(0.064935066, 0.06493504)
 sprite_frames = SubResource("SpriteFrames_f1ek2")
 animation = &"back"

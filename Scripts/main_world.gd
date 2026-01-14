@@ -9,13 +9,14 @@ const ROWS = 6
 
 func _ready() -> void:
 	GlobalData.calculate_stats()
-	print(connection.global_position)
+	#print(connection.global_position)
 
 
-#func _on_area_2d_area_entered(area: Area2D) -> void:
-	#if area.get_parent() is Client:
-		#print("AHahahahahahahah Ronaldinho Soccer")
-		#
+func _process(_delta: float) -> void:
+	if day_manager.clients_left == 0:
+		await get_tree().create_timer(5).timeout
+		get_tree().change_scene_to_file("res://Scenes/UI/end_menu.tscn")
+
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("night"):
