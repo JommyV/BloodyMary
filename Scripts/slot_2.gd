@@ -12,8 +12,8 @@ func _ready() -> void:
 		item_type = "blood_bag"
 		slot_2_button.icon = preload("uid://bm47tblkuvdnw")
 	if get_parent().get_parent().get_parent().global_type == "pantry":
-		item_type = "spaghetti"
-		slot_2_button.icon = preload("uid://dub0ru24114re")
+		item_type = "slice"
+		slot_2_button.icon = preload("uid://ddogcrbdfu27y")
 
 
 func _on_button_2_pressed() -> void:

@@ -15,5 +15,7 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
-	global_data_manager.day += 1
+	GlobalData.day += 1
+	GlobalData.save_data()
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://Scenes/main_world.tscn")

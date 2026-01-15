@@ -71,6 +71,7 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite_2d.play("walk_front")
 	if can_eat:
 		texture_progress_bar.value = eat_time.time_left*33
+		order_sprite.hide()
 		await get_tree().create_timer(3).timeout
 		texture_progress_bar.hide()
 		should_react = false
@@ -125,16 +126,17 @@ func go_to_table() -> void:
 
 
 func leave() -> void:
-			if hud:
-				if hud.spin_queue == 0:
-					hud.on_client_out()
-					hud.spin_queue += 1
-					hud = null
-				else:
-					hud.spin_queue += 1
-					hud = null
-			day_manager.clients_left -= 1
-			print("there are clients left: " + str(day_manager.clients_left))
+	order_sprite.hide()
+	if hud:
+		if hud.spin_queue == 0:
+			hud.on_client_out()
+			hud.spin_queue += 1
+			hud = null
+		else:
+			hud.spin_queue += 1
+			hud = null
+	day_manager.clients_left -= 1
+	print("there are clients left: " + str(day_manager.clients_left))
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

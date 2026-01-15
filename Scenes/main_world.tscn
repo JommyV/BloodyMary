@@ -354,7 +354,6 @@ modulate = Color(1, 1, 1, 0.7137255)
 self_modulate = Color(1, 1, 1, 0.7294118)
 light_mask = 15
 visibility_layer = 15
-z_index = 1000
 z_as_relative = false
 tile_set = SubResource("TileSet_42jam")
 

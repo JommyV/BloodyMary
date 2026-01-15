@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://e00sec11tbyj"]
 
 [ext_resource type="Texture2D" uid="uid://bdweorh11iaw3" path="res://Assets/Sprites/backgroundENDscreen.png" id="1_dciam"]
-[ext_resource type="Script" uid="uid://58ts88behkyc" path="res://Scenes/UI/end_menu.gd" id="1_ekp3m"]
+[ext_resource type="Script" uid="uid://58ts88behkyc" path="res://Scripts/end_menu.gd" id="1_ekp3m"]
 [ext_resource type="FontFile" uid="uid://d1in7rtolsvb0" path="res://Assets/Sprites/Jaini-Regular.ttf" id="2_ekp3m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ee4bf"]

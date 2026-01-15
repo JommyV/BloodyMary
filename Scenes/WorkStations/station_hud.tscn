@@ -1,0 +1,177 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp6w7obgfyk3p"]
+
+[ext_resource type="Script" uid="uid://qr0ugl63kcai" path="res://Scripts/item_slot.gd" id="1_dvb3c"]
+[ext_resource type="Script" uid="uid://d0tn547c0r84i" path="res://Scripts/station_hud.gd" id="1_jee7q"]
+[ext_resource type="Script" uid="uid://cbbiyc8ultpsq" path="res://Scripts/slot_2.gd" id="3_3lu4g"]
+[ext_resource type="Texture2D" uid="uid://jkdy6b1m013y" path="res://Assets/Sprites/icon.svg" id="4_e7xh8"]
+[ext_resource type="Script" uid="uid://d30puuocfjvnq" path="res://Scripts/slot_3.gd" id="5_oxd7e"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wb6b0"]
+specular_color = Color(0.7368138, 0.00043914496, 0.74230754, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvb3c"]
+line_spacing = 0.0
+font_size = 57
+
+[node name="StationHud" type="CanvasLayer"]
+script = ExtResource("1_jee7q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.9999941, 0.477037, 0.41691098, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -211.0
+offset_right = 107.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wb6b0")
+
+[node name="VboxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -204.0
+offset_right = 100.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot1" type="Panel" parent="VboxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_dvb3c")
+
+[node name="Button" type="Button" parent="VboxContainer/Slot1"]
+unique_name_in_owner = true
+top_level = true
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41300002
+anchor_top = 0.18400002
+anchor_right = 0.58500004
+anchor_bottom = 0.49400002
+offset_left = 0.2239685
+offset_top = -0.23200989
+offset_right = 2.079956
+offset_bottom = -0.11199951
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="VboxContainer/Slot1"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 141.0
+offset_right = 197.0
+offset_bottom = 219.0
+text = "∞"
+label_settings = SubResource("LabelSettings_dvb3c")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Slot2" type="Panel" parent="VboxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_3lu4g")
+
+[node name="slot2_button" type="Button" parent="VboxContainer/Slot2"]
+top_level = true
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41300002
+anchor_top = 0.18400002
+anchor_right = 0.58500004
+anchor_bottom = 0.49400002
+offset_left = 1.2239685
+offset_top = 209.76799
+offset_right = 3.079956
+offset_bottom = 209.888
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("4_e7xh8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="VboxContainer/Slot2"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 141.0
+offset_right = 197.0
+offset_bottom = 219.0
+text = "∞"
+label_settings = SubResource("LabelSettings_dvb3c")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Slot3" type="Panel" parent="VboxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_oxd7e")
+
+[node name="slot3_button" type="Button" parent="VboxContainer/Slot3"]
+top_level = true
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41300002
+anchor_top = 0.18400002
+anchor_right = 0.58500004
+anchor_bottom = 0.49400002
+offset_left = 1.2239685
+offset_top = 209.76799
+offset_right = 3.079956
+offset_bottom = 209.888
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("4_e7xh8")
+expand_icon = true
+
+[node name="Label" type="Label" parent="VboxContainer/Slot3"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 141.0
+offset_right = 197.0
+offset_bottom = 219.0
+text = "∞"
+label_settings = SubResource("LabelSettings_dvb3c")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -459.0
+offset_top = 97.0
+offset_right = -429.0
+offset_bottom = 127.0
+grow_horizontal = 0
+text = "X"
+
+[connection signal="pressed" from="VboxContainer/Slot1/Button" to="VboxContainer/Slot1" method="_on_button_pressed"]
+[connection signal="pressed" from="VboxContainer/Slot2/slot2_button" to="VboxContainer/Slot2" method="_on_button_2_pressed"]
+[connection signal="pressed" from="VboxContainer/Slot3/slot3_button" to="VboxContainer/Slot3" method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

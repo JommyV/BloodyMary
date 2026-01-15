@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://nmlrdv4pay23" path="res://Scenes/WorkStations/work_stations.tscn" id="1_wlx7k"]
 [ext_resource type="Script" uid="uid://46f0yg34nptq" path="res://Scripts/cupboard.gd" id="2_oxra3"]
 [ext_resource type="Resource" uid="uid://d2poiinfaw71r" path="res://Resources/plate.tres" id="3_hkr8c"]
-[ext_resource type="Texture2D" uid="uid://cy31ghvuc5tmc" path="res://Assets/Sprites/table-bowl-kitchen-plate-chopsticks-creative-dishes-child-thumbnail.jpg" id="3_oxra3"]
+[ext_resource type="Texture2D" uid="uid://o544se12sjds" path="res://Assets/Sprites/platestuff.png" id="4_hkr8c"]
 
 [node name="Cupboard" instance=ExtResource("1_wlx7k")]
 scale = Vector2(0.2, 0.2)
@@ -12,5 +12,6 @@ cookable_food = ExtResource("3_hkr8c")
 station_type = 3
 
 [node name="Sprite2D" parent="." index="1"]
-scale = Vector2(0.20666666, 0.2780269)
-texture = ExtResource("3_oxra3")
+position = Vector2(0, 5)
+scale = Vector2(0.14285713, 0.14285715)
+texture = ExtResource("4_hkr8c")

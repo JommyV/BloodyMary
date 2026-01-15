@@ -26,7 +26,7 @@ func _ready():
 	Reset.disabled = true
 	PointerAngle = 360.0 / DayManager.calculate_client_number()
 	number_of_clients = DayManager.calculate_client_number()
-	day.text = "Night " + str(global_data_manager.day)
+	day.text = "Night " + str(GlobalData.day)
 	#print("angle is " + str(PointerAngle))
 	#print("popularity is " + str(DayManager.calculate_client_number(GlobalData.popularity)))
 

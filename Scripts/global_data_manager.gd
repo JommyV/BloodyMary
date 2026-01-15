@@ -9,19 +9,20 @@ static var popularity: float
 static var data := SaveData.new()
 static var daily_clients: int
 static var current_money: float
-static var day: int = 1
+static var day: int
 
 func _ready() -> void:
 	load_data()
 	popularity = data.popularity
 	client_manager.global_served_plates = data.global_served_plates
 	daily_clients = DayManager.calculate_client_number()
+	day = data.day
 
 
 static func save_data() -> void:
 	data.money = current_money
 	data.popularity = popularity
-	data.served_plates = client_manager.served_plates
+	data.global_served_plates = client_manager.served_clients
 	data.day = day
 	ResourceSaver.save(data, SAVE_PATH)
 
