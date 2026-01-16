@@ -178,16 +178,16 @@ func start_eating() -> void:
 		can_eat = true
 		match dish_to_order.global_type:
 			"blood_soup":
-				client_manager.daily_served_plates["Blood Soup"] += 1 
-				client_manager.global_served_plates["Blood Soup"] += 1 
-				client_manager.profit += 10
+				ClientManager.daily_served_plates["Blood Soup"] += 1 
+				#ClientManager.global_served_plates["Blood Soup"] += 1 
+				ClientManager.profit += 10
 			"eyeball_on_toast":
-				client_manager.daily_served_plates["Eyeball Toast"] += 1 
-				client_manager.global_served_plates["Eyeball Toast"] += 1 
-				client_manager.profit += 12
+				ClientManager.daily_served_plates["Eyeball Toast"] += 1 
+				#ClientManager.global_served_plates["Eyeball Toast"] += 1 
+				ClientManager.profit += 12
 			"brain_bolognese":
 				client_manager.daily_served_plates["Brain Bolognese"] += 1 
-				client_manager.global_served_plates["Brain Bolognese"] += 1
+				#client_manager.global_served_plates["Brain Bolognese"] += 1
 				client_manager.profit += 18
 		client_manager.served_clients +=1
 		day_manager.clients_left -= 1

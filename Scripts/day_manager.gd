@@ -31,11 +31,11 @@ static func calculate_client_number() -> int:
 			return 40
 
 
-static func create_menu(brain, soup, toast) -> Array:
+static func create_menu(_brain, soup, toast) -> Array:
 	for i in range(calculate_client_number()):  
 		var rng = RandomNumberGenerator.new()
-		var my_array = [brain, soup, toast]
-		var weights = PackedFloat32Array([0.4, 0.3, 0.3])
+		var my_array = [soup, toast]
+		var weights = PackedFloat32Array([0.5, 0.5])
 		menu.append(my_array[rng.rand_weighted(weights)])
 		#print(menu[i].dish_name)
 	return menu
