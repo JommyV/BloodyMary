@@ -70,7 +70,7 @@ func _physics_process(_delta: float) -> void:
 				@warning_ignore("integer_division") move_and_collide(global_position / (delay*3))
 			animated_sprite_2d.play("walk_front")
 	if can_eat:
-		texture_progress_bar.value = eat_time.time_left*33
+		#texture_progress_bar.value = eat_time.time_left*33
 		order_sprite.hide()
 		await get_tree().create_timer(3).timeout
 		texture_progress_bar.hide()
