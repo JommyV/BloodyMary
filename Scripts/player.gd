@@ -33,8 +33,6 @@ var served: bool = false
 var client: Node2D
 
 
-
-
 func _ready() -> void:
 	pass
 
@@ -46,20 +44,36 @@ func _process(_delta: float) -> void:
 # as it takes preference when picking up to the player.
 #If all are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
-	if carriable_object != null and Input.is_action_just_pressed("pickup") and \
-	carriable_object.carriable == true:
+
+
+	if carriable_object != null and Input.is_action_just_pressed("interact") and \
+		carriable_object.carriable == true and !interactible_station:
 		pick_up()
-		#Check if able to interact if in range and carrying object. If so, calls 
+
+#Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
-	if Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
-		interactible_station.interact()
-		animated_sprite_2d.stop()
+	elif Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
+		if carried_object and interactible_station.global_type == "toaster" or \
+		interactible_station.global_type == "chopping_board" or \
+		interactible_station.global_type == "pot":
+			interactible_station.interact()
+			animated_sprite_2d.stop()
+		elif carried_object:
+			return
+		else: 
+			interactible_station.interact()
+			animated_sprite_2d.stop()
+			
+		
 		
 	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
 		#get_tree().call_group("Client", "start_eating")
 		client.start_eating()
 		carried_object.kill_food()
 		release()
+		
+
+
 
 	if Input.is_action_just_pressed("night"):
 		get_tree().change_scene_to_file("uid://bpbcg217lm1nl")
@@ -67,6 +81,9 @@ func _process(_delta: float) -> void:
 		get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
 	if Input.is_action_just_pressed("save"):
 		GlobalData.save_data()
+
+	print(pickedup)
+
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:
@@ -130,34 +147,46 @@ func release() -> void:
 	carried_object = null
 
 func pick_up() -> void:
-	if carried_object != null and carried_object.global_type == "plate" and !carried_object.ingredient1\
-	and !carried_object.can_pick_food:
-		#print(pickedup)
-		release()
-		#print(pickedup)
+	#if !carriable_object:
+		#return
+
+	if carried_object != null and carried_object.global_type == "plate":
+		pick_up_plate()
 		return
-	
-	elif carried_object != null and carried_object.global_type == "plate" and carried_object.ingredient1\
-	and carried_object.can_pick_food:
-		carried_object.take_food()
-		return
-	#If the player is carrying an object, releases it. 
+
+#If the player is carrying an object, releases it. 
 	if pickedup == true:
 		#Snaps the object into the grid.
 		release()
+		print("release me")
 		return
 
 #If not carrying an object, picks it up.s
-	elif !carriable_object.carried:
+	if !carriable_object.carried:
 		pickedup = true #Sets object as carried in self.
 		carriable_object.carried = true #Sets object as carried in the object.
 		carried_object = carriable_object #Sets which object is being carried.
 		carried_object.carriable = true #Allows the object to be carriable.
-
-	#if carried_object != null and carried_object.global_type == "plate" \
-	#and Input.is_action_just_pressed("pickup") and carried_object.can_pick_food:
-		##print(carried_object.can_pick_food)
 		
+
+
+func pick_up_plate() -> void:
+	if carried_object.global_type == "plate" and !carried_object.can_pick_food:
+		release()
+		return
+
+	else:
+		carried_object.take_food()
+		return
+
+
+func get_food_from_fridge(object) -> void:
+	pickedup = true #Sets object as carried in self.
+	object.carried = true #Sets object as carried in the object.
+	carried_object = object #Sets which object is being carried.
+	object.carriable = true #Allows the object to be carriable.
+	carriable_object = object
+
 #endregion
 
 #region Area2D:

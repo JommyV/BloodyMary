@@ -9,18 +9,18 @@
 size = Vector2(15.000021, 35.00007)
 
 [node name="Fridge" instance=ExtResource("1_7h7ne")]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.23999864, 0.23999864)
 script = ExtResource("2_lvk2a")
 cookable_food = ExtResource("3_ewk8l")
 station_type = 1
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, 8.499998)
-scale = Vector2(0.99999994, 0.99999994)
+position = Vector2(3.4272648e-06, 8.499993)
+scale = Vector2(0.99999946, 0.99999946)
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(4.2021275e-06, 0)
-scale = Vector2(0.052, 0.05)
+scale = Vector2(0.041666895, 0.040064316)
 texture = ExtResource("4_ewk8l")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="4"]

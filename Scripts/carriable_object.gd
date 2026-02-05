@@ -3,6 +3,7 @@ extends Node2D
 class_name Carriable
 
 
+
 @onready var carried : bool = false
 @onready var sprite_2d: Sprite2D = %Sprite2D
 #Variable that defines the type of food the object is and how it can interact.
@@ -32,6 +33,8 @@ var drop_location
 @onready var marker_2d: Marker2D = %Marker2D
 var _can_drop := true 
 
+var player
+
 #Variable exclusive to the plate to determine if it can pick food. Is stated 
 #in the global class so the player can always access it as it is part of the check
 #it does when picking up things. If the plate can pickup foods, it takes priority
@@ -43,7 +46,8 @@ func _ready() -> void:
 	tilemap = get_node("/root/MainWorld/TilesFloor")
 	highlight_tm = get_node("/root/MainWorld/TileHighlight")
 	_last_highlighted_cell = Vector2i(999999, 999999)
-		
+	player = get_tree().get_first_node_in_group("Player")
+	player.get_food_from_fridge(self)
 
 
 func drop() -> void:

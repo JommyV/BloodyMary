@@ -15,4 +15,5 @@ static var served_clients: int
 
 func _ready() -> void: 
 	free_tables = max_tables
+	served_clients = 0
 	
