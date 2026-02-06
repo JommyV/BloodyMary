@@ -45,14 +45,17 @@ func _process(_delta: float) -> void:
 #If all are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
 
-
 	if carriable_object != null and Input.is_action_just_pressed("interact") and \
 		carriable_object.carriable == true and !interactible_station:
 		pick_up()
 
 #Check if able to interact if in range and carrying object. If so, calls 
 #the interact function on the working station that varies per type.
-	elif Input.is_action_just_pressed("interact") and interactible_station != null and can_interact:
+	elif Input.is_action_just_pressed("interact") and interactible_station and can_interact:
+		if carriable_object:
+			if carriable_object.global_type == "toast" or carriable_object.global_type == "cut_eyeball" \
+			or carriable_object.global_type == "blood_soup":    
+				pick_up()
 		if carried_object and interactible_station.global_type == "toaster" or \
 		interactible_station.global_type == "chopping_board" or \
 		interactible_station.global_type == "pot":
@@ -63,9 +66,8 @@ func _process(_delta: float) -> void:
 		else: 
 			interactible_station.interact()
 			animated_sprite_2d.stop()
-			
-		
-		
+
+
 	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
 		#get_tree().call_group("Client", "start_eating")
 		client.start_eating()
