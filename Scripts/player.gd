@@ -38,13 +38,19 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
+		#get_tree().call_group("Client", "start_eating")
+		client.start_eating()
+		carried_object.kill_food()
+		release()
+		return
+
 #Function to carry food. First checks if there is a carriable object in range to 
 #avoid null errors, checks if pickup is pressed, checks if the object is actually carriable
 #as it may be conditioned to not be and lastly checks to see if the plate can pick up food,
 # as it takes preference when picking up to the player.
 #If all are true sets that object as being carried. If already carrying,
 #drops object into snapped grid.
-
 	if carriable_object != null and Input.is_action_just_pressed("interact") and \
 		carriable_object.carriable == true and !interactible_station:
 		pick_up()
@@ -56,6 +62,8 @@ func _process(_delta: float) -> void:
 			if carriable_object.global_type == "toast" or carriable_object.global_type == "cut_eyeball" \
 			or carriable_object.global_type == "blood_soup":    
 				pick_up()
+			elif carried_object and carried_object.global_type == "plate" and !can_serve:
+				pick_up_plate()
 		if carried_object and interactible_station.global_type == "toaster" or \
 		interactible_station.global_type == "chopping_board" or \
 		interactible_station.global_type == "pot":
@@ -67,16 +75,6 @@ func _process(_delta: float) -> void:
 			interactible_station.interact()
 			animated_sprite_2d.stop()
 
-
-	if Input.is_action_just_pressed("interact") and can_serve and carried_object and carried_object.global_type == "plate":
-		#get_tree().call_group("Client", "start_eating")
-		client.start_eating()
-		carried_object.kill_food()
-		release()
-		
-
-
-
 	if Input.is_action_just_pressed("night"):
 		get_tree().change_scene_to_file("uid://bpbcg217lm1nl")
 	if Input.is_action_just_pressed("restart"):
@@ -84,24 +82,20 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("save"):
 		GlobalData.save_data()
 
-	print(pickedup)
-
 
 func _physics_process(delta: float) -> void:
 	#Control of movement:
 	var local_velocity = Vector2.ZERO
-	#check created to lock player out of movement if necessary for certain tasks.
+
+#Check created to lock player out of movement if necessary for certain tasks.
 	if can_walk:
 		animated_sprite_2d.pause()
 		if Input.is_action_pressed("move_right"):
 			local_velocity.x += 1
-
 		if Input.is_action_pressed("move_left"):
 			local_velocity.x -= 1
-
 		if Input.is_action_pressed("move_down"):
 			local_velocity.y += 1
-
 		if Input.is_action_pressed("move_up"):
 			local_velocity.y -= 1
 
@@ -116,24 +110,20 @@ func _physics_process(delta: float) -> void:
 			elif local_velocity.x < 0:
 				animated_sprite_2d.play("right")
 				animated_sprite_2d.flip_h = true
-			
-				
-		
 		if local_velocity.length() > 0:
 			local_velocity = local_velocity.normalized() * speed
 			area_2d.rotation = lerp_angle(area_2d.rotation, atan2(local_velocity.x, -local_velocity.y), delta*rotationspeed)
 			#carry_position.rotation = lerp_angle(carry_position.rotation, atan2(local_velocity.x, -local_velocity.y), delta*50.0)
 		position += local_velocity * delta
-		#if carriable_object != null:
-			#print(carriable_object.global_type)
-			
-			#Checks if object is held in hand, if so, keeps it in the hand of the player and
+
+#Checks if object is held in hand, if so, keeps it in the hand of the player and
 #aligns its rotation and makes it not collide with the player.
 	if pickedup and carried_object != null:
 		carried_object.global_position = carry_position.global_position
 		#carried_object.set_collision_layer_value(1,false)
 		#carried_object.freeze = true
 		#carried_object.rotation = area_2d.rotation
+
 
 #region Grabbing:
 #Function made for releasing the object when player presses the release button,
@@ -148,35 +138,31 @@ func release() -> void:
 	carried_object.carried = false
 	carried_object = null
 
+
 func pick_up() -> void:
 	#if !carriable_object:
 		#return
-
 	if carried_object != null and carried_object.global_type == "plate":
 		pick_up_plate()
 		return
-
 #If the player is carrying an object, releases it. 
 	if pickedup == true:
 		#Snaps the object into the grid.
 		release()
 		print("release me")
 		return
-
-#If not carrying an object, picks it up.s
+#If not carrying an object, picks it up.
 	if !carriable_object.carried:
 		pickedup = true #Sets object as carried in self.
 		carriable_object.carried = true #Sets object as carried in the object.
 		carried_object = carriable_object #Sets which object is being carried.
 		carried_object.carriable = true #Allows the object to be carriable.
-		
 
 
 func pick_up_plate() -> void:
 	if carried_object.global_type == "plate" and !carried_object.can_pick_food:
 		release()
 		return
-
 	else:
 		carried_object.take_food()
 		return
@@ -188,19 +174,15 @@ func get_food_from_fridge(object) -> void:
 	carried_object = object #Sets which object is being carried.
 	object.carriable = true #Allows the object to be carriable.
 	carriable_object = object
-
 #endregion
 
 #region Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	#print(area)
-	#if area_2d.get_overlapping_areas():
 	if area.is_in_group("WorkStation"):
 #Sets the work station that can be used when the player 
 #can interact with it and tells the workstation it can be used.
 		can_interact = true
 		interactible_station = area.get_parent()
-		#print(interactible_station)
 
 	if area.get_parent().is_in_group("Interactible") and carried_object == null\
 		 and area.get_parent().carriable:
@@ -214,7 +196,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			can_serve = true
 
 
-
 func _on_area_2d_area_exited(area: Area2D) -> void:
 #Removes the work station that can be carried when the player can no 
 #longer interact with it.
@@ -226,7 +207,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 #longer interact with it.
 		if area.get_parent().is_in_group("Interactible") and carried_object == null:
 			carriable_object = null
-			
+
 		if area.is_in_group("Table"):
 			can_serve = false
 #endregion

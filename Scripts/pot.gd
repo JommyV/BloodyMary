@@ -2,6 +2,8 @@ extends "res://Scripts/work_stations.gd"
 
 var bags_added = 0
 @onready var area_2d: Area2D = %Area2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 
 
 func interact() -> void:
@@ -23,6 +25,7 @@ func interact() -> void:
 		prepare_food()
 	if bags_added == 3:
 		prepare_food();
+		
 
 
 func _process(_delta: float) -> void:
@@ -48,7 +51,8 @@ func prepare_food() -> void:
 	object.hide()
 	
 	await timer.timeout
-	
+
+	sprite_2d.texture = preload("uid://b6435eejjwbjl")
 	area_2d.monitorable = true
 	progress_bar.hide()
 	object.cook()

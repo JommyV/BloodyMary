@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://nmlrdv4pay23"]
+[gd_scene load_steps=3 format=3 uid="uid://nmlrdv4pay23"]
 
 [ext_resource type="Script" uid="uid://ip65msbbs45f" path="res://Scripts/work_stations.gd" id="1_aolcr"]
 [ext_resource type="PackedScene" uid="uid://dp6w7obgfyk3p" path="res://Scenes/WorkStations/station_hud.tscn" id="2_3vljb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aolcr"]
-size = Vector2(80.00002, 167.00006)
 
 [node name="WorkStations" type="Node2D"]
 script = ExtResource("1_aolcr")
@@ -13,9 +10,6 @@ station_hud = ExtResource("2_3vljb")
 [node name="Area2D" type="Area2D" parent="." groups=["WorkStation"]]
 collision_layer = 3
 collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_aolcr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -10
